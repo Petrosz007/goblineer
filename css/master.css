@@ -1,0 +1,27 @@
+a, u {
+    text-decoration: none;
+}
+
+.table-mats {
+   width: 400px !important;
+   margin:auto;
+}
+
+span.gold-g {
+   color: rgb(221, 153, 53);
+}
+
+.choose-region {
+   padding-top: 150px !important;
+   padding-bottom: 150px !important;
+
+}
+
+.choose-region :hover {
+   transition: background-color 2s ease;
+   background-color: #f7f7f7;
+}
+
+.select-region-p {
+   padding-top: 10px;
+}
