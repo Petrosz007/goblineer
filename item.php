@@ -11,7 +11,17 @@ $sql =  "SELECT owner, buyout, quantity, (buyout / quantity) AS unit_price
          LIMIT 500;";
 
 $result = mysqli_query($conn, $sql);
+$result2 = $result;
 
+$marketArray = array();
+
+while ($row2 = mysqli_fetch_assoc($result2)) {
+   for($i = 0; $i < $row2["quantity"]; $i++){
+      array_push($marketArray, number_format($row2['unit_price']/10000, 2));
+   }
+};
+
+var_dump($marketArray[round(count($marketArray)*0.15, 0)]);
 
 ?>
 
@@ -43,8 +53,7 @@ $result = mysqli_query($conn, $sql);
          <?php
          $old_row = array("owner" => "", "buyout" => "", "quantity" => "");
          $counter = 1;
-         while ($row = mysqli_fetch_assoc($result))
-         {
+         while ($row = mysqli_fetch_assoc($result)) {
             if(!($row["owner"] == $old_row["owner"] && $row["buyout"] == $old_row["buyout"] && $row["quantity"] == $old_row["quantity"])){
 
                echo "<tr>
