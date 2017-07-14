@@ -51,6 +51,7 @@ function writeData($conn, $responseObject){
 
    mysqli_query($conn, "TRUNCATE TABLE auctions");
    mysqli_query($conn, "TRUNCATE TABLE marketvalue");
+   mysqli_query($conn, "TRUNCATE TABLE blood");
 
    $sql = "INSERT INTO auctions (auc, item, owner, buyout, quantity) VALUES ";
    $i = 0;
