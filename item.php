@@ -4,24 +4,10 @@ include "dbh.php";
 $item = $_GET["item"];
 
 
-$sql =  "SELECT owner, buyout, quantity, (buyout / quantity) AS unit_price
-         FROM auctions
-         WHERE item=".$item."
-         ORDER BY unit_price ASC
-         LIMIT 500;";
 
-$result = mysqli_query($conn, $sql);
-$result2 = $result;
+include "inc/marketvalue.inc.php";
+include "inc/item.inc.php";
 
-$marketArray = array();
-
-while ($row2 = mysqli_fetch_assoc($result2)) {
-   for($i = 0; $i < $row2["quantity"]; $i++){
-      array_push($marketArray, number_format($row2['unit_price']/10000, 2));
-   }
-};
-
-var_dump($marketArray[round(count($marketArray)*0.15, 0)]);
 
 ?>
 
@@ -37,7 +23,10 @@ var_dump($marketArray[round(count($marketArray)*0.15, 0)]);
 
 
    <h2><a href='//wowhead.com/item=<?php echo $item;?>' class='q3 iconmedium1' rel='item=<?php echo $item;?>' class="text-center"></a></h2>
-
+   <p>
+      <h4>Lowest Price: <?php echo number_format(item($item, $conn), 2);?><span class='gold-g'>g</span></h4>
+      <h4>Market Value: <?php echo number_format(marketValue($item, $conn), 2); ?><span class='gold-g'>g</span></h4>
+   <p>
    <table class="table table-striped table-hover align-center">
       <thead>
          <tr>
@@ -51,6 +40,13 @@ var_dump($marketArray[round(count($marketArray)*0.15, 0)]);
       </thead>
       <tbody>
          <?php
+         $sql =  "SELECT owner, buyout, quantity, (buyout / quantity) AS unit_price
+                  FROM auctions
+                  WHERE item=".$item."
+                  ORDER BY unit_price ASC";
+
+         $result = mysqli_query($conn, $sql);
+
          $old_row = array("owner" => "", "buyout" => "", "quantity" => "");
          $counter = 1;
          while ($row = mysqli_fetch_assoc($result)) {
