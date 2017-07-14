@@ -11,6 +11,9 @@
 
 
 include "dbh.php";
+include "inc/marketvalue.inc.php";
+
+$GLOBALS['conn'] = $conn;
 
 
 
@@ -40,20 +43,24 @@ function item_q($id, $conn){
 
 
 function herbRow($id, $herb, $q){
+   include 'dbh.php';
    echo ("
    <tr>
       <td><a href='item.php?item=".$id."' class='q3' rel='item=".$id."'></td>
-      <td align='right'>".number_format($herb,2)."<span class='gold-g'>g</span>
+      <td align='right'>".number_format($herb,2)."<span class='gold-g'>g</span></td>
+      <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>
    </tr>
    ");
 }
 
 function flaskRow($id, $flask, $q, $cost, $profit, $profit_r3){
+   include 'dbh.php';
    echo "
    <tr>
       <td><a href='item.php?item=".$id."' class='q3' rel='item=".$id."'></td>
-      <td align='right'>".number_format($flask,2)."<span class='gold-g'>g</span>
+      <td align='right'>".number_format($flask,2)."<span class='gold-g'>g</span></td>
+      <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>
       <td align='right'>";
          if ($profit>0) {
@@ -211,6 +218,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
          <tr>
             <th class="tg-9nbt">Item name:</th>
             <th class="tg-9right">Low buy:</th>
+            <th class="tg-9right">Market Value:</th>
             <th class="tg-9right">Available:</th>
             <th class="tg-9center">Profit:</th>
             <th class="tg-9center">Profit Rank 3:</th>
@@ -233,6 +241,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
       <thead>
          <th class="tg-9nbt">Item name:</th>
          <th class="tg-9right">Low buy:</th>
+         <th class="tg-9right">Market Value:</th>
          <th class="tg-9right">Available:</th>
       </thead>
 
@@ -256,6 +265,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
          <tr>
             <th class="tg-9nbt">Item name:</th>
             <th class="tg-9right">Low buy:</th>
+            <th class="tg-9right">Market Value:</th>
             <th class="tg-9right">Available:</th>
          <tr>
       </thead>
@@ -270,6 +280,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
          <tr>
             <th class="tg-9nbt">Item name:</th>
             <th class="tg-9right">Low buy:</th>
+            <th class="tg-9right">Market Value:</th>
             <th class="tg-9right">Available:</th>
          </tr>
 
