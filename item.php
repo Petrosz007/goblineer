@@ -4,13 +4,9 @@ include "dbh.php";
 $item = $_GET["item"];
 
 
-$sql =  "SELECT owner, buyout, quantity, (buyout / quantity) AS unit_price
-         FROM auctions
-         WHERE item=".$item."
-         ORDER BY unit_price ASC
-         LIMIT 500;";
 
-$result = mysqli_query($conn, $sql);
+include "inc/marketvalue.inc.php";
+include "inc/item.inc.php";
 
 
 ?>
@@ -27,7 +23,10 @@ $result = mysqli_query($conn, $sql);
 
 
    <h2><a href='//wowhead.com/item=<?php echo $item;?>' class='q3 iconmedium1' rel='item=<?php echo $item;?>' class="text-center"></a></h2>
-
+   <p>
+      <h4>Lowest Price: <?php echo number_format(item($item, $conn), 2);?><span class='gold-g'>g</span></h4>
+      <h4>Market Value: <?php echo number_format(marketValue($item, $conn), 2); ?><span class='gold-g'>g</span></h4>
+   <p>
    <table class="table table-striped table-hover align-center">
       <thead>
          <tr>
@@ -41,10 +40,16 @@ $result = mysqli_query($conn, $sql);
       </thead>
       <tbody>
          <?php
+         $sql =  "SELECT owner, buyout, quantity, (buyout / quantity) AS unit_price
+                  FROM auctions
+                  WHERE item=".$item."
+                  ORDER BY unit_price ASC";
+
+         $result = mysqli_query($conn, $sql);
+
          $old_row = array("owner" => "", "buyout" => "", "quantity" => "");
          $counter = 1;
-         while ($row = mysqli_fetch_assoc($result))
-         {
+         while ($row = mysqli_fetch_assoc($result)) {
             if(!($row["owner"] == $old_row["owner"] && $row["buyout"] == $old_row["buyout"] && $row["quantity"] == $old_row["quantity"])){
 
                echo "<tr>

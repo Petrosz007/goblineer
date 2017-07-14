@@ -1,6 +1,7 @@
 <?php
 
 include "dbh.php";
+include "inc/marketvalue.inc.php";
 
 
    $response = file_get_contents('https://'. $realmRegion .'.api.battle.net/wow/auction/data/'. $realmName .'?locale=en_GB&apikey=' . $apiKey);
@@ -49,6 +50,7 @@ function writeData($conn, $responseObject){
    $auctionsArray = json_decode($auctionsFile, true)['auctions'];
 
    mysqli_query($conn, "TRUNCATE TABLE auctions");
+   mysqli_query($conn, "TRUNCATE TABLE marketvalue");
 
    $sql = "INSERT INTO auctions (auc, item, owner, buyout, quantity) VALUES ";
    $i = 0;
