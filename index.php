@@ -294,6 +294,22 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
    </table>
 
    <table class="table table-striped table-hover table-mats align-center">
+      <caption class="text-center">Legion other</caption>
+      <thead>
+         <th class="tg-9nbt">Item name:</th>
+         <th class="tg-9right">Low buy:</th>
+         <th class="tg-9right">Market Value:</th>
+         <th class="tg-9right">Available:</th>
+      </thead>
+
+      <tbody>
+      <?php
+         herbRow(140587, $Defiled_Augment_Rune, $Defiled_Augment_Rune_q);
+      ?>
+      </tbody>
+   </table>
+   
+   <table class="table table-striped table-hover table-mats align-center">
       <h2 class="text-center"> Category: Legion Mats</h2>
 
       <caption class="text-center">Herbs</caption>
@@ -318,21 +334,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
    </table>
 
-   <table class="table table-striped table-hover table-mats align-center">
-      <caption class="text-center">Legion other</caption>
-      <thead>
-         <th class="tg-9nbt">Item name:</th>
-         <th class="tg-9right">Low buy:</th>
-         <th class="tg-9right">Market Value:</th>
-         <th class="tg-9right">Available:</th>
-      </thead>
 
-      <tbody>
-      <?php
-         herbRow(140587, $Defiled_Augment_Rune, $Defiled_Augment_Rune_q);
-      ?>
-      </tbody>
-   </table>
 
    <table class="table table-striped table-hover table-mats align-center">
       <caption class="text-center">Seeds</caption>
