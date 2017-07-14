@@ -185,7 +185,6 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 </div>
 
 <div class="col-md-6 col-sm-8 col-xs-10">
-   <a href="update.php" class="btn btn-default">UPDAAAATE</a><span> (it takes 1-2 minutes, do not close the page or else it will not update)</span>
    <p>Last Updated: <?php echo date("Y-m-d H:i:s", $last_updated);?></p>
    <p>Next Update should happen at: <span id='nextUpdate' style="display: none;"><?php echo $last_updated_unix; ?></span><?php echo date("Y-m-d H:i:s", strtotime("+30 minutes", $last_updated));?></p>
    <?php echo "<p><span id='update'></span></p>"; ?>
