@@ -1,11 +1,11 @@
 <?php
-$servername = 'localhost';
-$username = 'root';
+$servername = '';
+$username = '';
 $password = '';
-$schema = 'wowah';
-$apiKey = '6szbehcvdvjn8eccd2s496sr92956c87';
-$realmName = 'ragnaros';
-$realmRegion = 'eu';
+$schema = '';
+$apiKey = '';
+$realmName = '';
+$realmRegion = '';
 
 
 $conn = new mysqli($servername, $username, $password, $schema);
