@@ -10,15 +10,14 @@
 <?php
 
 
-include "dbh.php";
-include "inc/marketvalue.inc.php";
+include "includes.php";
 
 $GLOBALS['conn'] = $conn;
 
 
 
 
-function item($id, $conn){
+/*function item($id, $conn){
    $sql_herb = "SELECT MIN(buyout / quantity)/10000 as MIN FROM auctions where item=".$id."";
    $result_herb = mysqli_query($conn, $sql_herb);
    if ($result_herb->num_rows > 0) {
@@ -38,7 +37,7 @@ function item_q($id, $conn){
        }
    }
    return $herb;
-}
+}*/
 
 
 
@@ -81,8 +80,8 @@ function flaskRow($id, $flask, $q, $cost, $profit, $profit_r3){
 }
 
 
-
-
+//blood of sargeras price
+$bloodPrice = bloodPrice($conn);
 
 //Legion Herbs
 $Felwort         = item(124106, $conn);
@@ -194,11 +193,9 @@ $Old_War_Crafting_Cost=number_format((($Foxflower*2)+($Fjarnskaggl*2)+$Starlight
 $Old_War_Profit=($Old_War-$Old_War_Crafting_Cost)*0.95;
 $Old_War_Profit_r3=($Old_War-$Old_War_Crafting_Cost/1.4802)*0.95;
 
-$Prolonged_Power_Crafting_Cost=0;
-$Prolonged_Power_Profit=0;
-$Prolonged_Power_Profit_r3=0;
-
-
+$Prolonged_Power_Crafting_Cost = number_format($bloodPrice/10,2)/*/1.4802*/;
+$Prolonged_Power_Profit        = ($Prolonged_Power - $Prolonged_Power_Crafting_Cost)*0.95;
+$Prolonged_Power_Profit_r3     = ($Prolonged_Power - $Prolonged_Power_Crafting_Cost/1.4802)*0.95;
 
 
 
@@ -225,6 +222,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 </div>
 
 <div class="col-md-6 col-sm-8 col-xs-10">
+   <p>The time is diplayed in UTC. The Blizzard API may not update exactly every 30 minutes, it is possible that you may get the 'Last entry is too recent' page.</p>
    <p>Last Updated: <?php echo date("Y-m-d H:i:s", $last_updated);?></p>
    <p>Next Update should happen at: <span id='nextUpdate' style="display: none;"><?php echo $last_updated_unix; ?></span><?php echo date("Y-m-d H:i:s", strtotime("+30 minutes", $last_updated));?></p>
    <?php echo "<p><span id='update'></span></p>"; ?>
@@ -248,6 +246,12 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
         }
      }, 1000);
    </script>
+
+
+   <br><br>
+   <a href='//wowhead.com/item=124124' class='q3 iconmedium1' rel='item=124124' class="text-center"></a>: <?php echo $bloodPrice;?><span class='gold-g'>g</span><br>
+   <a href='blood.php' class="btn btn-default btn-primary">See Blood of Sargeras Price in-depth</a><br>
+
    <h2 class="text-center"> Category: Alchemy</h2>
 
 
@@ -294,6 +298,22 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
    </table>
 
    <table class="table table-striped table-hover table-mats align-center">
+      <caption class="text-center">Legion other</caption>
+      <thead>
+         <th class="tg-9nbt">Item name:</th>
+         <th class="tg-9right">Low buy:</th>
+         <th class="tg-9right">Market Value:</th>
+         <th class="tg-9right">Available:</th>
+      </thead>
+
+      <tbody>
+      <?php
+         herbRow(140587, $Defiled_Augment_Rune, $Defiled_Augment_Rune_q);
+      ?>
+      </tbody>
+   </table>
+
+   <table class="table table-striped table-hover table-mats align-center">
       <h2 class="text-center"> Category: Legion Mats</h2>
 
       <caption class="text-center">Herbs</caption>
@@ -318,21 +338,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
    </table>
 
-   <table class="table table-striped table-hover table-mats align-center">
-      <caption class="text-center">Legion other</caption>
-      <thead>
-         <th class="tg-9nbt">Item name:</th>
-         <th class="tg-9right">Low buy:</th>
-         <th class="tg-9right">Market Value:</th>
-         <th class="tg-9right">Available:</th>
-      </thead>
 
-      <tbody>
-      <?php
-         herbRow(140587, $Defiled_Augment_Rune, $Defiled_Augment_Rune_q);
-      ?>
-      </tbody>
-   </table>
 
    <table class="table table-striped table-hover table-mats align-center">
       <caption class="text-center">Seeds</caption>
