@@ -197,10 +197,10 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
    <p>Last Updated: <span id='updated'></span></p>
 
-   <?php echo "<span id='lastUpdate' display='none'></span>"; ?>
+   <?php echo "<span id='lastUpdate' style='display: none;'>".$last_updated_unix."</span>"; ?>
    <script>
      var lastUpdate = document.getElementById('lastUpdate').innerHTML;
-     console.log(lastUpdate);
+     
      var x = setInterval(function(){
         var now = new Date().getTime();
 
