@@ -193,35 +193,42 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 <?php include "inc/header.inc.php"; ?>
 
 
-   <p>The time is diplayed in UTC. The Blizzard API may not update exactly every 30 minutes, it is possible that you may get the 'Last entry is too recent' page.</p>
-   <p>Last Updated: <?php echo date("Y-m-d H:i:s", $last_updated);?></p>
-   <p>Next Update should happen at: <span id='nextUpdate' style="display: none;"><?php echo $last_updated_unix; ?></span><?php echo date("Y-m-d H:i:s", strtotime("+30 minutes", $last_updated));?></p>
-   <?php echo "<p><span id='update'></span></p>"; ?>
+   <p>The Blizzard API may not update exactly every 30 minutes, it is possible that you may get the 'Last entry is too recent' page even if 30 minutes has passsed.</p>
+
+   <p>Last Updated: <span id='updated'></span></p>
+
+   <?php echo "<span id='lastUpdate' display='none'></span>"; ?>
    <script>
-      var nextUpdate = document.getElementById('nextUpdate').innerHTML;
-
-      var x = setInterval(function() {
-
+     var lastUpdate = document.getElementById('lastUpdate').innerHTML;
+     console.log(lastUpdate);
+     var x = setInterval(function(){
         var now = new Date().getTime();
 
-        var distance = nextUpdate - now + 30*60*1000;
+        var distance = now - lastUpdate;
 
+        var days = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("update").innerHTML = "The database can be updated in <strong>" + minutes + " minutes " + seconds + " seconds.</strong>";
 
-        if (distance < 0) {
-          clearInterval(x);
-          document.getElementById("update").innerHTML = "The database can be updated!";
-        }
+
+            if(days > 1){
+               document.getElementById("updated").innerHTML = "<strong>"+ days + " days " + hours + " hours ago.</strong>";
+            } else if(hours > 1){
+               document.getElementById("updated").innerHTML = "<strong>"+ hours + "h " + minutes + "m ago.</strong>";
+            } else if(minutes > 1) {
+               document.getElementById("updated").innerHTML = "<strong>"+ minutes + "m " + seconds + "s ago.</strong>";
+            } else {
+               document.getElementById("updated").innerHTML = "<strong>"+ seconds + "s.</strong>";
+            }
+
      }, 1000);
    </script>
 
 
    <br><br>
-   <a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>: <?php echo $bloodPrice;?><span class='gold-g'>g</span><br>
-   <a href='blood.php' class="btn btn-default btn-primary links">See Blood of Sargeras Price in-depth</a><br>
+   <h2><a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>: <?php echo $bloodPrice;?><span class='gold-g'>g </span><a href='blood.php' class="btn btn-default links">See Blood of Sargeras Price in-depth</a></h2>
 
    <h2 class="text-center"> Category: Alchemy</h2>
 
