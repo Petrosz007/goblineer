@@ -1,7 +1,6 @@
 <?php
 
-include "dbh.php";
-include "inc/marketvalue.inc.php";
+include "includes.php";
 
 
    $response = file_get_contents('https://'. $realmRegion .'.api.battle.net/wow/auction/data/'. $realmName .'?locale=en_GB&apikey=' . $apiKey);
@@ -82,6 +81,9 @@ function writeData($conn, $responseObject){
    mysqli_query($conn, "INSERT INTO test (auc, item, owner, buyout, quantity) SELECT auc, item, owner, buyout, quantity FROM auctions ORDER BY item, owner, quantity, buyout");
    mysqli_query($conn, "DROP TABLE auctions");
    mysqli_query($conn, "RENAME TABLE test TO auctions");
+
+
+   bloodPrices($conn);
 
    header("Location: index.php");
    exit();

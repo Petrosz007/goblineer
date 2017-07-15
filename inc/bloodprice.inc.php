@@ -10,7 +10,9 @@ function bloodPrice($conn){
            FROM blood
            ORDER BY unit_price DESC
            LIMIT 1";
-   return mysqli_fetch_assoc(mysqli_query($conn, $sql))['unit_price'];
+
+   $result = mysqli_query($conn, $sql);
+   return number_format(mysqli_fetch_assoc($result)['unit_price'], 2);
 }
 
 function bloodPrices($conn){
