@@ -3,10 +3,8 @@ include "dbh.php";
 
 $item = $_GET["item"];
 
+include "includes.php";
 
-
-include "inc/marketvalue.inc.php";
-include "inc/item.inc.php";
 
 
 ?>
@@ -21,6 +19,7 @@ include "inc/item.inc.php";
 <p>
    <h4>Lowest Price: <?php echo number_format(item($item, $conn), 2);?><span class='gold-g'>g</span></h4>
    <h4>Market Value: <?php echo number_format(marketValue($item, $conn), 2); ?><span class='gold-g'>g</span></h4>
+   <h4>Available: <?php echo item_q($item, $conn);?></h4>
 <p>
 <table class="table table-striped table-hover align-center">
    <thead>

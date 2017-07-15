@@ -228,6 +228,11 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
 
    <br><br>
+   <form method="post" action="item.php" class="form-inline">
+      <label for="id">Search:</label>
+      <input type="text" placeholder="Type item id here..." name="item" id="item" class="form-control">
+      <input type="submit" class="btn btn-default">
+   </form>
    <h2><a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>: <?php echo $bloodPrice;?><span class='gold-g'>g </span><a href='blood.php' class="btn btn-default links">See Blood of Sargeras Price in-depth</a></h2>
 
    <h2 class="text-center"> Category: Alchemy</h2>
