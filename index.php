@@ -15,37 +15,11 @@ include "includes.php";
 $GLOBALS['conn'] = $conn;
 
 
-
-
-/*function item($id, $conn){
-   $sql_herb = "SELECT MIN(buyout / quantity)/10000 as MIN FROM auctions where item=".$id."";
-   $result_herb = mysqli_query($conn, $sql_herb);
-   if ($result_herb->num_rows > 0) {
-       while($row = $result_herb->fetch_assoc()) {
-   	      $herb=$row["MIN"];
-       }
-   }
-   return $herb;
-}
-
-function item_q($id, $conn){
-   $sql_herb = "SELECT sum(quantity) as SUM FROM auctions where item=".$id."";
-   $result_herb = mysqli_query($conn, $sql_herb);
-   if ($result_herb->num_rows > 0) {
-       while($row = $result_herb->fetch_assoc()) {
-   	      $herb=$row["SUM"];
-       }
-   }
-   return $herb;
-}*/
-
-
-
 function herbRow($id, $herb, $q){
    include 'dbh.php';
    echo ("
    <tr>
-      <td><a href='item.php?item=".$id."' class='q3' rel='item=".$id."'></td>
+      <td><a href='item.php?item=".$id."' class='q3 links' rel='item=".$id."'></td>
       <td align='right'>".number_format($herb,2)."<span class='gold-g'>g</span></td>
       <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>
@@ -57,7 +31,7 @@ function flaskRow($id, $flask, $q, $cost, $profit, $profit_r3){
    include 'dbh.php';
    echo "
    <tr>
-      <td><a href='item.php?item=".$id."' class='q3' rel='item=".$id."'></td>
+      <td><a href='item.php?item=".$id."' class='q3 links' rel='item=".$id."'></td>
       <td align='right'>".number_format($flask,2)."<span class='gold-g'>g</span></td>
       <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>
@@ -218,10 +192,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
 <?php include "inc/header.inc.php"; ?>
 
-<div class="col-md-3 col-sm-1 col-xs-0">
-</div>
 
-<div class="col-md-6 col-sm-8 col-xs-10">
    <p>The time is diplayed in UTC. The Blizzard API may not update exactly every 30 minutes, it is possible that you may get the 'Last entry is too recent' page.</p>
    <p>Last Updated: <?php echo date("Y-m-d H:i:s", $last_updated);?></p>
    <p>Next Update should happen at: <span id='nextUpdate' style="display: none;"><?php echo $last_updated_unix; ?></span><?php echo date("Y-m-d H:i:s", strtotime("+30 minutes", $last_updated));?></p>
@@ -249,8 +220,8 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
 
    <br><br>
-   <a href='//wowhead.com/item=124124' class='q3 iconmedium1' rel='item=124124' class="text-center"></a>: <?php echo $bloodPrice;?><span class='gold-g'>g</span><br>
-   <a href='blood.php' class="btn btn-default btn-primary">See Blood of Sargeras Price in-depth</a><br>
+   <a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>: <?php echo $bloodPrice;?><span class='gold-g'>g</span><br>
+   <a href='blood.php' class="btn btn-default btn-primary links">See Blood of Sargeras Price in-depth</a><br>
 
    <h2 class="text-center"> Category: Alchemy</h2>
 
@@ -393,9 +364,5 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
          ?>
       </tbody>
    </table>
-</div>
-
-<div class="col-md-3 col-sm-1 col-xs-0">
-</div>
 
 <?php include "inc/footer.inc.php"; ?>
