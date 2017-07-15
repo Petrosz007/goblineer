@@ -25,3 +25,7 @@ span.gold-g {
 .select-region-p {
    padding-top: 10px;
 }
+
+.links {
+   z-index:9999 !important;
+}
