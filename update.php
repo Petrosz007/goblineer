@@ -83,7 +83,8 @@ function writeData($conn, $responseObject){
    mysqli_query($conn, "RENAME TABLE test TO auctions");
 
 
-   bloodPrices($conn);
+   header("Location: getBloodPrices.php");
+   exit();
 
    header("Location: index.php");
    exit();
