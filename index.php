@@ -179,7 +179,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
    </script>
 
 
-   
+
 
    <h2>
       <a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>
@@ -189,144 +189,154 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
    <h2 class="text-center"> Category: Alchemy</h2>
 
+   <div class="table-responsive">
+      <table class="table table-striped table-hover table-crafts table-sm">
+         <caption class="text-center">Alchemy: Legion Flasks</caption>
+         <thead>
+            <tr>
+               <th class="tg-9nbt">Item name:</th>
+               <th class="tg-9right">Low buy:</th>
+               <th class="tg-9right">Market Value:</th>
+               <th class="tg-9right">Available:</th>
+               <th class="tg-9center">Profit:</th>
+               <th class="tg-9center">Profit Rank 3:</th>
+            </tr>
+         </thead>
+         <tbody>
+            <?php
+               flaskRow(127847, $Wispered_Pact, $Wispered_Pact_Q, $Wisper_Crafting_Cost, $Wisper_Profit, $Wisper_Profit_r3);
+               flaskRow(127848, $Seventh_Demon, $Seventh_Demon_Q, $Seventh_Crafting_Cost, $Seventh_Profit, $Seventh_Profit_r3);
+               flaskRow(127849, $Countless_Armies, $Countless_Armies_Q, $Countless_Crafting_Cost, $Countless_Profit, $Countless_Profit_r3);
+               flaskRow(127850, $Ten_Thousand, $Ten_Thousand_Q, $Ten_Thousand_Crafting_Cost, $Ten_Thousand_Profit, $Ten_Thousand_Profit_r3);
+            ?>
+         </tbody>
+      </table>
+   </div>
 
-   <table class="table table-striped table-hover">
-      <caption class="text-center">Alchemy: Legion Flasks</caption>
-      <thead>
-         <tr>
+   <div class="table-responsive">
+      <table class="table table-striped table-hover table-crafts">
+         <caption class="text-center">Alchemy: Legion Potions</caption>
+         <thead>
+            <tr>
+               <th class="tg-9nbt">Item name:</th>
+               <th class="tg-9right">Low buy:</th>
+               <th class="tg-9right">Market Value:</th>
+               <th class="tg-9right">Available:</th>
+               <th class="tg-9center">Profit:</th>
+               <th class="tg-9center">Profit Rank 3:</th>
+            </tr>
+         </thead>
+         <tbody>
+            <?php
+               flaskRow(142117, $Prolonged_Power, $Prolonged_Power_q, $Prolonged_Power_Crafting_Cost, $Prolonged_Power_Profit, $Prolonged_Power_Profit_r3);
+               flaskRow(127844, $Old_War, $Old_War_q, $Old_War_Crafting_Cost, $Old_War_Profit, $Old_War_Profit_r3);
+            ?>
+         </tbody>
+      </table>
+   </div>
+
+   <div class="table-responsive">
+      <table class="table table-striped table-hover table-mats align-center">
+         <caption class="text-center">Legion other</caption>
+         <thead>
             <th class="tg-9nbt">Item name:</th>
             <th class="tg-9right">Low buy:</th>
             <th class="tg-9right">Market Value:</th>
             <th class="tg-9right">Available:</th>
-            <th class="tg-9center">Profit:</th>
-            <th class="tg-9center">Profit Rank 3:</th>
-         </tr>
-      </thead>
-      <tbody>
-         <?php
-            flaskRow(127847, $Wispered_Pact, $Wispered_Pact_Q, $Wisper_Crafting_Cost, $Wisper_Profit, $Wisper_Profit_r3);
-            flaskRow(127848, $Seventh_Demon, $Seventh_Demon_Q, $Seventh_Crafting_Cost, $Seventh_Profit, $Seventh_Profit_r3);
-            flaskRow(127849, $Countless_Armies, $Countless_Armies_Q, $Countless_Crafting_Cost, $Countless_Profit, $Countless_Profit_r3);
-            flaskRow(127850, $Ten_Thousand, $Ten_Thousand_Q, $Ten_Thousand_Crafting_Cost, $Ten_Thousand_Profit, $Ten_Thousand_Profit_r3);
-         ?>
-      </tbody>
-   </table>
+         </thead>
 
-   <table class="table table-striped table-hover">
-      <caption class="text-center">Alchemy: Legion Potions</caption>
-      <thead>
-         <tr>
+         <tbody>
+         <?php
+            herbRow(140587, $Defiled_Augment_Rune, $Defiled_Augment_Rune_q);
+         ?>
+         </tbody>
+      </table>
+   </div>
+
+   <div class="table-responsive">
+      <table class="table table-striped table-hover table-mats align-center">
+         <h2 class="text-center"> Category: Legion Mats</h2>
+
+         <caption class="text-center">Herbs</caption>
+         <thead>
             <th class="tg-9nbt">Item name:</th>
             <th class="tg-9right">Low buy:</th>
             <th class="tg-9right">Market Value:</th>
             <th class="tg-9right">Available:</th>
-            <th class="tg-9center">Profit:</th>
-            <th class="tg-9center">Profit Rank 3:</th>
-         </tr>
-      </thead>
-      <tbody>
+         </thead>
+
+         <tbody>
          <?php
-            flaskRow(142117, $Prolonged_Power, $Prolonged_Power_q, $Prolonged_Power_Crafting_Cost, $Prolonged_Power_Profit, $Prolonged_Power_Profit_r3);
-            flaskRow(127844, $Old_War, $Old_War_q, $Old_War_Crafting_Cost, $Old_War_Profit, $Old_War_Profit_r3);
+            herbRow(124106, $Felwort, $Felwort_q);
+            herbRow(124105, $Starlight_Rose, $Starlight_Rose_q);
+            herbRow(124104, $Fjarnskaggl, $Fjarnskaggl_q);
+            herbRow(124103, $Foxflower, $Foxflower_q);
+            herbRow(124102, $Dreamleaf, $Dreamleaf_q);
+            herbRow(124101, $Aethril, $Aethril_q);
+            herbRow(128304, $Yseralline_Seed , $Yseralline_Seed_q);
          ?>
-      </tbody>
-   </table>
+         </tbody>
 
-   <table class="table table-striped table-hover table-mats align-center">
-      <caption class="text-center">Legion other</caption>
-      <thead>
-         <th class="tg-9nbt">Item name:</th>
-         <th class="tg-9right">Low buy:</th>
-         <th class="tg-9right">Market Value:</th>
-         <th class="tg-9right">Available:</th>
-      </thead>
-
-      <tbody>
-      <?php
-         herbRow(140587, $Defiled_Augment_Rune, $Defiled_Augment_Rune_q);
-      ?>
-      </tbody>
-   </table>
-
-   <table class="table table-striped table-hover table-mats align-center">
-      <h2 class="text-center"> Category: Legion Mats</h2>
-
-      <caption class="text-center">Herbs</caption>
-      <thead>
-         <th class="tg-9nbt">Item name:</th>
-         <th class="tg-9right">Low buy:</th>
-         <th class="tg-9right">Market Value:</th>
-         <th class="tg-9right">Available:</th>
-      </thead>
-
-      <tbody>
-      <?php
-         herbRow(124106, $Felwort, $Felwort_q);
-         herbRow(124105, $Starlight_Rose, $Starlight_Rose_q);
-         herbRow(124104, $Fjarnskaggl, $Fjarnskaggl_q);
-         herbRow(124103, $Foxflower, $Foxflower_q);
-         herbRow(124102, $Dreamleaf, $Dreamleaf_q);
-         herbRow(124101, $Aethril, $Aethril_q);
-         herbRow(128304, $Yseralline_Seed , $Yseralline_Seed_q);
-      ?>
-      </tbody>
-
-   </table>
+      </table>
+   </div>
 
 
-
-   <table class="table table-striped table-hover table-mats align-center">
-      <caption class="text-center">Seeds</caption>
-      <thead>
-         <th class="tg-9nbt">Item name:</th>
-         <th class="tg-9right">Low buy:</th>
-         <th class="tg-9right">Market Value:</th>
-         <th class="tg-9right">Available:</th>
-      </thead>
-
-      <tbody>
-      <?php
-         herbRow(129289, $Felwort_Seed, $Felwort_Seed_q);
-         herbRow(129288, $Starlight_Rose_Seed, $Starlight_Rose_Seed_q);
-         herbRow(129287, $Fjarnskaggl_Seed, $Fjarnskaggl_Seed_q);
-         herbRow(129286, $Foxflower_Seed, $Foxflower_Seed_q);
-         herbRow(129285, $Dreamleaf_Seed, $Dreamleaf_Seed_q);
-         herbRow(129284, $Aethril_Seed, $Aethril_Seed_q);
-      ?>
-      </tbody>
-   </table>
-
-   <table  class="table table-striped table-hover table-mats align-center">
-      <caption class="text-center">Other mats<caption>
-      <thead>
-         <tr>
+   <div class="table-responsive">
+      <table class="table table-striped table-hover table-mats align-center">
+         <caption class="text-center">Seeds</caption>
+         <thead>
             <th class="tg-9nbt">Item name:</th>
             <th class="tg-9right">Low buy:</th>
             <th class="tg-9right">Market Value:</th>
             <th class="tg-9right">Available:</th>
-         <tr>
-      </thead>
+         </thead>
 
-      <tbody>
+         <tbody>
          <?php
-            herbRow(124442, $Chaos_Crystal, $Chaos_Crystal_q);
-            herbRow(124441, $Leylight_Shard, $Leylight_Shard_q);
-            herbRow(124440, $Arkhana, $Arkhana_q);
+            herbRow(129289, $Felwort_Seed, $Felwort_Seed_q);
+            herbRow(129288, $Starlight_Rose_Seed, $Starlight_Rose_Seed_q);
+            herbRow(129287, $Fjarnskaggl_Seed, $Fjarnskaggl_Seed_q);
+            herbRow(129286, $Foxflower_Seed, $Foxflower_Seed_q);
+            herbRow(129285, $Dreamleaf_Seed, $Dreamleaf_Seed_q);
+            herbRow(129284, $Aethril_Seed, $Aethril_Seed_q);
          ?>
+         </tbody>
+      </table>
+   </div>
 
-         <tr>
-            <th class="tg-9nbt">Item name:</th>
-            <th class="tg-9right">Low buy:</th>
-            <th class="tg-9right">Market Value:</th>
-            <th class="tg-9right">Available:</th>
-         </tr>
+   <div class="table-responsive">
+      <table  class="table table-striped table-hover table-mats align-center">
+         <caption class="text-center">Other mats<caption>
+         <thead>
+            <tr>
+               <th class="tg-9nbt">Item name:</th>
+               <th class="tg-9right">Low buy:</th>
+               <th class="tg-9right">Market Value:</th>
+               <th class="tg-9right">Available:</th>
+            <tr>
+         </thead>
 
-         <?php
-            herbRow(124116, $Felhide, $Felhide_q);
-            herbRow(124115, $Stonehide_Leather, $Stonehide_Leather_q);
-            herbRow(124113, $Stormscale, $Stormscale_q);
-         ?>
-      </tbody>
-   </table>
+         <tbody>
+            <?php
+               herbRow(124442, $Chaos_Crystal, $Chaos_Crystal_q);
+               herbRow(124441, $Leylight_Shard, $Leylight_Shard_q);
+               herbRow(124440, $Arkhana, $Arkhana_q);
+            ?>
+
+            <tr>
+               <th class="tg-9nbt">Item name:</th>
+               <th class="tg-9right">Low buy:</th>
+               <th class="tg-9right">Market Value:</th>
+               <th class="tg-9right">Available:</th>
+            </tr>
+
+            <?php
+               herbRow(124116, $Felhide, $Felhide_q);
+               herbRow(124115, $Stonehide_Leather, $Stonehide_Leather_q);
+               herbRow(124113, $Stormscale, $Stormscale_q);
+            ?>
+         </tbody>
+      </table>
+   </div>
 
 <?php include "inc/footer.inc.php"; ?>

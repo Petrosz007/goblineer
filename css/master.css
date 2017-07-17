@@ -29,3 +29,33 @@ span.gold-g {
 .links {
    z-index:9999 !important;
 }
+
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+   .table-mats {
+      font-size: 75%;
+      width: 100% !important;
+   }
+   .table-crafts {
+      font-size: 75%;
+      width: 100% !important;
+   }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+   .table-mats {
+      font-size: 75%;
+      width: 100% !important;
+   }
+   .table-crafts {
+      font-size: 75%;
+      width: 100% !important;
+   }
+}

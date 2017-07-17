@@ -34,7 +34,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
-              <li><a href="custom.php">Custom Items</a></li>
+              <li><a href="custom.php">Custom Tables</a></li>
 
             </ul>
             <form method="GET" action="item.php" class="navbar-form navbar-left">
@@ -53,4 +53,4 @@
          <div class="col-md-3 col-sm-1 col-xs-0">
          </div>
 
-         <div class="col-md-6 col-sm-8 col-xs-10">
+         <div class="col-md-6 col-sm-8 col-xs-12">
