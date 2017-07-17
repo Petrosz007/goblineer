@@ -1,58 +1,9 @@
-<head>
-
-<script type="text/javascript" src="//wow.zamimg.com/widgets/power.js"></script>
-<script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
-
-
-</head>
-
-
 <?php
 
 
 include "includes.php";
 
 $GLOBALS['conn'] = $conn;
-
-
-function herbRow($id, $herb, $q){
-   include 'dbh.php';
-   echo ("
-   <tr>
-      <td><a href='item.php?item=".$id."' class='q3 links' rel='item=".$id."'></td>
-      <td align='right'>".number_format($herb,2)."<span class='gold-g'>g</span></td>
-      <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
-      <td align='right'>".$q."</td>
-   </tr>
-   ");
-}
-
-function flaskRow($id, $flask, $q, $cost, $profit, $profit_r3){
-   include 'dbh.php';
-   echo "
-   <tr>
-      <td><a href='item.php?item=".$id."' class='q3 links' rel='item=".$id."'></td>
-      <td align='right'>".number_format($flask,2)."<span class='gold-g'>g</span></td>
-      <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
-      <td align='right'>".$q."</td>
-      <td align='right'>";
-         if ($profit>0) {
-            echo "<b><font color=green> +" .number_format($profit,2)."<span class='gold-g'>g</span>";
-         } else {
-            echo "<b><font color=red>" .number_format($profit,2)."<span class='gold-g'>g</span>";
-         }
-      echo "</td>
-            <td align='right'>";
-      if ($profit_r3>0)
-      {
-         echo "<b><font color=green> +" .number_format($profit_r3,2)."<span class='gold-g'>g</span>";
-      } else {
-         echo "<b><font color=red>" .number_format($profit_r3,2)."<span class='gold-g'>g</span>";
-      }
-      echo "</td>";
-   echo "</tr>";
-}
-
 
 //blood of sargeras price
 $bloodPrice = bloodPrice($conn);
@@ -229,13 +180,19 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
 
    <br><br>
-   <form method="GET" action="item.php" class="form-inline text-right">
+   <form method="GET" action="item.php" class="form-inline">
       <input type="text" placeholder="Type item id here..." name="item" id="item" class="form-control">
       <input type="submit" class="btn btn-default" value="Search">
    </form>
    <br><br>
 
-   <h2><a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>: <?php echo $bloodPrice;?><span class='gold-g'>g </span><a href='blood.php' class="btn btn-default links">See Blood of Sargeras Price in-depth</a></h2>
+   <a href='custom.php' class="btn btn-default links">Custom items</a>
+
+   <h2>
+      <a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>
+      :
+      <?php echo $bloodPrice;?><span class='gold-g'>g </span>
+      <a href='blood.php' class="btn btn-default links">See Blood of Sargeras Price in-depth</a></h2>
 
    <h2 class="text-center"> Category: Alchemy</h2>
 
