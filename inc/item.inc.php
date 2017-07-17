@@ -2,10 +2,10 @@
 include 'dbh.php';
 
 function item($id, $conn){
-   $sql_herb = "SELECT MIN(buyout / quantity)/10000 as MIN FROM auctions where item=".$id."";
+   $sql_herb = "SELECT MIN(buyout / quantity)/10000 as MIN FROM auctions where item=$id";
    $result_herb = mysqli_query($conn, $sql_herb);
-   if ($result_herb->num_rows > 0) {
-       while($row = $result_herb->fetch_assoc()) {
+   if (mysqli_num_rows($result_herb) > 0) {
+       while($row = mysqli_fetch_assoc($result_herb)) {
    	      $herb=$row["MIN"];
        }
    }
@@ -13,12 +13,14 @@ function item($id, $conn){
 }
 
 function item_q($id, $conn){
-   $sql_herb = "SELECT sum(quantity) as SUM FROM auctions where item=".$id."";
+   $sql_herb = "SELECT sum(quantity) as SUM FROM auctions where item=$id";
    $result_herb = mysqli_query($conn, $sql_herb);
-   if ($result_herb->num_rows > 0) {
-       while($row = $result_herb->fetch_assoc()) {
+   if (mysqli_num_rows($result_herb) > 0) {
+       while($row = mysqli_fetch_assoc($result_herb)) {
    	      $herb=$row["SUM"];
        }
+   } elseif (mysqli_num_rows($result_herb) == 0) {
+      return 0;
    }
    return $herb;
 }

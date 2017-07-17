@@ -132,10 +132,10 @@ $Countless_Armies_Q = item_q(127849, $conn);
 
 //Legion Potions
 $Prolonged_Power = item(142117, $conn);
-$Old_War         = item(127884, $conn);
+$Old_War         = item(127844, $conn);
 
 $Prolonged_Power_q = item_q(142117, $conn);
-$Old_War_q         = item_q(127884, $conn);
+$Old_War_q         = item_q(127844, $conn);
 
 //Legion other
 $Defiled_Augment_Rune   = item(140587, $conn);
@@ -277,7 +277,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
       <tbody>
          <?php
             flaskRow(142117, $Prolonged_Power, $Prolonged_Power_q, $Prolonged_Power_Crafting_Cost, $Prolonged_Power_Profit, $Prolonged_Power_Profit_r3);
-            //flaskRow(127884, $Old_War, $Old_War_q, $Old_War_Crafting_Cost, $Old_War_Profit, $Old_War_Profit_r3);
+            flaskRow(127844, $Old_War, $Old_War_q, $Old_War_Crafting_Cost, $Old_War_Profit, $Old_War_Profit_r3);
          ?>
       </tbody>
    </table>
