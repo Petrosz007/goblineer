@@ -43,6 +43,14 @@ only screen and (min-device-pixel-ratio : 1.5) {
       font-size: 75%;
       width: 100% !important;
    }
+
+   div#bootsrap-overrides {
+      padding: 0 !important;
+   }
+
+   .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+      padding: 8px 2px 8px 2px;
+   }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -57,5 +65,14 @@ and (max-device-width : 480px) {
    .table-crafts {
       font-size: 75%;
       width: 100% !important;
+   }
+
+   div#bootsrap-overrides {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+   }
+
+   .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+      padding: 8px 2px 8px 2px;
    }
 }
