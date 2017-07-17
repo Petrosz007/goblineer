@@ -7,7 +7,7 @@ include "includes.php";
    $responseObject = json_decode($response, true);
 
 
-   $checkdate="SELECT realm from status where realm=(select max(realm));";
+   $checkdate="SELECT realm from status ORDER BY id ASC";
    $result3 = mysqli_query($conn, $checkdate);
 
 

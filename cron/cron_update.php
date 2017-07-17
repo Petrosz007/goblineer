@@ -7,7 +7,7 @@ require __DIR__ . "/cron_includes.php";
    $responseObject = json_decode($response, true);
 
 
-   $checkdate="SELECT realm from status where realm=(select max(realm));";
+   $checkdate="SELECT realm from status ORDER BY id ASC";
    $result3 = mysqli_query($conn, $checkdate);
 
 
@@ -28,13 +28,14 @@ require __DIR__ . "/cron_includes.php";
       } else {
 
          writeData($conn, $responseObject);
+         exit();
 
       }
    } elseif (mysqli_num_rows($result3) == 0) {
 
          echo "No last entry found. Forcing update.";
          writeData($conn, $responseObject);
-
+         exit();
    }
 
 
