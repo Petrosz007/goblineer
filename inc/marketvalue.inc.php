@@ -10,14 +10,8 @@ function marketValue($item, $conn) {
    $sql = 'SELECT * FROM marketvalue WHERE item='.$item;
    $result = mysqli_query($conn, $sql);
 
-   $sql2 = 'SELECT * FROM auctions WHERE item='.$item;
-   $result2 = mysqli_query($conn, $sql);
-
-   if(mysqli_num_rows($result) > 0){
+   if(mysqli_num_rows($result) > 0 || mysqli_fetch_assoc($result)['marketvalue'] != 0){
       return mysqli_fetch_assoc($result)['marketvalue'];
-
-   } elseif(mysqli_num_rows($result2) == 0) {
-      return 0;
 
    } else {
       //$sql_write = "INSERT INTO marketvalue (item, marketvalue) VALUES (".$item.",".$mv['mv'].")";
@@ -32,7 +26,7 @@ function marketValue($item, $conn) {
       $result2 = mysqli_query($conn, $sql);
 
       if(mysqli_num_rows($result2) == 0){
-         //return false;
+         return 0;
          exit();
       } elseif (mysqli_num_rows($result2) == 1){
          $marketValue = number_format(mysqli_fetch_assoc($result2)['unit_price']/10000, 2,".","");

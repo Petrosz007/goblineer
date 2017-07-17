@@ -87,9 +87,6 @@ function writeData($conn, $responseObject){
 
 
    echo "Update successful. Updating blood prices...";
-   $path = dirname(__FILE__);
-   $cron = $path . "/cron_getBloodPrices.php";
-   exec("php ".$cron." &> /dev/null");
    exit();
 ;
 
