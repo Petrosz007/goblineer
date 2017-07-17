@@ -179,14 +179,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
    </script>
 
 
-   <br><br>
-   <form method="GET" action="item.php" class="form-inline">
-      <input type="text" placeholder="Type item id here..." name="item" id="item" class="form-control">
-      <input type="submit" class="btn btn-default" value="Search">
-   </form>
-   <br><br>
-
-   <a href='custom.php' class="btn btn-default links">Custom items</a>
+   
 
    <h2>
       <a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>

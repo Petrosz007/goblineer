@@ -4,9 +4,6 @@ include "includes.php";
 
 <?php include "inc/header.inc.php"; ?>
 
-<a href='index.php' class="btn btn-default links">Back to the Home Page</a><br>
-
-
 
 <h2><a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center align-center"></a></h2>
 <table class="table table-striped table-hover table-mats align-center">

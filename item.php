@@ -11,9 +11,6 @@ include "includes.php";
 
 <?php include "inc/header.inc.php"; ?>
 
-<a href='index.php' class="btn btn-default links">Back to the Home Page</a><br>
-
-
 
 <h2><a href='//wowhead.com/item=<?php echo $item;?>' class='q3 iconmedium1 links' rel='item=<?php echo $item;?>' class="text-center"></a></h2>
 <p>

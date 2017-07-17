@@ -15,7 +15,6 @@ if(isset($_GET['items']) && $_GET['items'] != ""){
 
 <?php include "inc/header.inc.php"; ?>
 
-<br><a href='index.php' class="btn btn-default links">Back to the Home Page</a><br><br>
 <a target="_blank" href="https://www.tradeskillmaster.com/group-maker/create">You can create inport strings here.</a>
 
 <form method="GET" action="" class="form">
