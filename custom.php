@@ -15,7 +15,8 @@ if(isset($_GET['items']) && $_GET['items'] != ""){
 
 <?php include "inc/header.inc.php"; ?>
 
-<a target="_blank" href="https://www.tradeskillmaster.com/group-maker/create">You can create inport strings here.</a>
+<p>If you wish to save these tables you can do so by bookmarking the page or just saving the link!</p>
+<a target="_blank" href="https://www.tradeskillmaster.com/group-maker/create">You can create import strings here.</a>
 
 <form method="GET" action="" class="form">
    <textarea class="form-control" rows="3" name="items" placeholder="Example: i:127834,i:128304,i:3371,i:127835 &#13;&#10;or&#13;&#10;127834,128304,3371,127835"
