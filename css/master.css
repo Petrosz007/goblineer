@@ -30,6 +30,10 @@ span.gold-g {
    z-index:9999 !important;
 }
 
+.seller-search {
+    width: 60%;
+}
+
 
 /* iPhone 4 ----------- */
 @media
@@ -51,6 +55,10 @@ only screen and (min-device-pixel-ratio : 1.5) {
    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
       padding: 8px 2px 8px 2px;
    }
+
+   .seller-search {
+        width: 100%;
+    }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -75,4 +83,8 @@ and (max-device-width : 480px) {
    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
       padding: 8px 2px 8px 2px;
    }
+
+    .seller-search {
+        width: 100%;
+    }
 }

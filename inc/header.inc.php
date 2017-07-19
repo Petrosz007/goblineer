@@ -47,6 +47,7 @@
             <ul class="nav navbar-nav">
 
               <li><a href="custom.php">Custom Tables</a></li>
+              <li><a href="seller.php">Look up a Seller</a></li>
 
             </ul>
             <form method="GET" action="item.php" class="navbar-form navbar-left">
