@@ -52,7 +52,7 @@
             </ul>
             <form method="GET" action="item.php" class="navbar-form navbar-left">
                <div class="input-group">
-                  <input type="text" placeholder="Type item id here..." name="item" id="item" class="form-control">
+                  <input type="text" placeholder="Type item name or id here..." name="item" id="item" class="form-control">
                   <span class="input-group-btn">
                      <input type="submit" class="btn btn-default" value="Search">
                   </span>

@@ -5,6 +5,13 @@ $item = $_GET["item"];
 
 include "includes.php";
 
+if(isset($item)){
+    if(!is_numeric($item)){
+        $sql = "SELECT item FROM items WHERE name='".$item."'";
+        $result = mysqli_query($conn, $sql);
+        $item = mysqli_fetch_assoc($result)['item'];
+    }
+}
 
 
 ?>
