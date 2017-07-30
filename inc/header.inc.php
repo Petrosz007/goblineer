@@ -50,14 +50,29 @@
               <li><a href="seller.php">Look up a Seller</a></li>
 
             </ul>
+
+
+
+
+
             <form method="GET" action="item.php" class="navbar-form navbar-left">
                <div class="input-group">
-                  <input type="text" placeholder="Type item name or id here..." name="item" id="item" class="form-control">
+                    <input type="text" list="items" placeholder="Type item name or id here..." name="item" id="item" class="search form-control" autocomplete="off">
+                    <datalist id="items" class="suggestions">
+                    </datalist>
                   <span class="input-group-btn">
-                     <input type="submit" class="btn btn-default" value="Search">
+                    
+                    <!---<ul id="def" class="suggestions dropdown-menu"></ul>-->
+                    <input type="submit" class="btn btn-default" value="Search">
                   </span>
-            </div>
+                  
+              </div>
             </form>
+
+
+
+
+
 
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
