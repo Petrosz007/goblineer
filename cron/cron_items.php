@@ -42,7 +42,7 @@ while($row = mysqli_fetch_assoc($result)){
             $name = str_replace('"','""',$responseObject);
             $sql = $sql . ' ('.$row['item'].', "'.$name.'"),';
             ++$i;
-            if($i == 15) {
+            if($i == 45) {
                 $sql = substr($sql, 0, -1);
                 $sql = $sql .";";
                 mysqli_query($conn, $sql);
