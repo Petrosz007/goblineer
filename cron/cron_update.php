@@ -41,6 +41,13 @@ require __DIR__ . "/cron_includes.php";
 
 function writeData($conn, $responseObject){
 
+	$last_updated_unix_row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(realm) FROM status"));
+	$last_updated_unix = $last_updated_unix_row["MAX(realm)"];
+	$last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
+	/*Archiving previous data*/
+	$historicalSql = "INSERT INTO historical(item, marketvalue, quantity, date) SELECT item, marketvalue, quantity, ".$last_updated." FROM marketvalue";
+	mysqli_query($conn, $historicalSql);
+
 
 
    $sql = "INSERT INTO status (realm) VALUES(".$responseObject['files'][0]['lastModified'].");";
@@ -86,7 +93,7 @@ function writeData($conn, $responseObject){
 
 
 
-   echo "Update successful. Updating blood prices...";
+   echo "Update successful.";
    exit();
 ;
 

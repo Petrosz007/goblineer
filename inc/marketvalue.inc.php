@@ -25,12 +25,16 @@ function marketValue($item, $conn) {
 
       $result2 = mysqli_query($conn, $sql);
 
+      $quantitySql = 'SELECT sum(quantity) as quantity FROM auctions where item='.$item;
+      $quantity = mysqli_fetch_assoc(mysqli_query($conn, $quantitySql))['quantity'];
+
+
       if(mysqli_num_rows($result2) == 0){
          return 0;
          exit();
       } elseif (mysqli_num_rows($result2) == 1){
          $marketValue = number_format(mysqli_fetch_assoc($result2)['unit_price']/10000, 2,".","");
-         mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue) VALUES (".$item.",".$marketValue.")");
+         mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
          return $marketValue;
          exit();
       }
@@ -67,7 +71,7 @@ function marketValue($item, $conn) {
 
       if (count($marketValueArray) == 1){
          $marketValue = number_format($marketValueArray[0], 2,".","");
-         mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue) VALUES (".$item.",".$marketValue.")");
+         mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
          return $marketValue;
          exit();
       }
@@ -89,7 +93,7 @@ function marketValue($item, $conn) {
       //Gets the market value of the item
       $marketValue = number_format(array_sum($marketValueArray) / count($marketValueArray), 2,".","");
 
-      mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue) VALUES (".$item.",".$marketValue.")");
+      mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
       return $marketValue;
    }
 }
