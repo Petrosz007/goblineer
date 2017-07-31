@@ -11,8 +11,28 @@ if(isset($item)){
         $result = mysqli_query($conn, $sql);
         $item = mysqli_fetch_assoc($result)['item'];
     }
-}
 
+    $historicalSqlMv = "SELECT marketvalue FROM historical WHERE item=".$item;
+    $historicalResultMv = mysqli_query($conn, $historicalSqlMv);
+    $historicalArrayMv = array();
+    while($row = mysqli_fetch_assoc($historicalResultMv)){
+        $historicalArrayMv[] = floatval($row['marketvalue']);
+    }
+
+    $historicalSqlQuantity = "SELECT quantity FROM historical WHERE item=".$item;
+    $historicalResultQuantity = mysqli_query($conn, $historicalSqlQuantity);
+    $historicalArrayQuantity = array();
+    while($row = mysqli_fetch_assoc($historicalResultQuantity)){
+        $historicalArrayQuantity[] = intval($row['quantity']);
+    }
+
+    $historicalSqlDate = "SELECT date FROM historical WHERE item=".$item;
+    $historicalResultDate = mysqli_query($conn, $historicalSqlDate);
+    $historicalArrayDate = array();
+    while($row = mysqli_fetch_assoc($historicalResultDate)){
+        $historicalArrayDate[] = $row['date'];
+    }
+}
 
 ?>
 
@@ -25,6 +45,13 @@ if(isset($item)){
    <h4>Market Value: <?php echo number_format(marketValue($item, $conn), 2); ?><span class='gold-g'>g</span></h4>
    <h4>Available: <?php echo item_q($item, $conn);?></h4>
 <p>
+
+<div id="JSON-mv" style="display:none;"><?php echo json_encode($historicalArrayMv); ?></div>
+<div id="JSON-quantity" style="display:none;"><?php echo json_encode($historicalArrayQuantity); ?></div>
+<div id="JSON-date" style="display:none;"><?php echo json_encode($historicalArrayDate); ?></div>
+<!--<canvas id="myChart" width="400" height="200"></canvas>-->
+<div id="chart" style="width:100%; height:400px;"></div>
+
 <div class='table-responsive'>
     <table class="table table-striped table-hover align-center">
         <thead>
