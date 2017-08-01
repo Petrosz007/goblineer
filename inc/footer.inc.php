@@ -87,8 +87,22 @@ $(document).ready(function () {
             shared: true,
             crosshairs: true
         },
+        legend: {
+            align: 'center',
+            verticalAlign: 'top',
+        },
         xAxis: {
-            categories: dataDate//[1501457113,1501459513,1501461913,1501464313,1501466713,1501469113,1501471513,1501473913,1501476313,1501478713,1501481113,1501483513,1501485913,1501488313,1501490713,1501493113,1501495513,1501497913]
+            categories: dataDate,
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%e. %b',
+                week: '%e. %b',
+                month: '%b \'%y',
+                year: '%Y'
+            }            
         },
         yAxis: [{
             title: {
