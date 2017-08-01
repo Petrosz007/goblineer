@@ -1,4 +1,6 @@
 <?php
+ini_set('mysql.connect_timeout', 1000);
+ini_set('default_socket_timeout', 1000); 
 
 require __DIR__ . "/cron_includes.php";
 
@@ -11,6 +13,12 @@ require __DIR__ . "/cron_includes.php";
    $result3 = mysqli_query($conn, $checkdate);
 
 
+      if($argv[1] == 'force'){
+            echo "Forcing update.". PHP_EOL;
+            writeData($conn, $responseObject);
+            exit();
+      }
+
    if (mysqli_num_rows($result3) > 0) {
 
       while($row = mysqli_fetch_assoc($result3)){
@@ -22,7 +30,7 @@ require __DIR__ . "/cron_includes.php";
       if ($lastentry==$responseObject['files'][0]['lastModified']) {
 
          echo "Last entry in the database is too recent. Not updating. Try again later.<br>
-               <a href='index.php'>Return to the home page</a>";
+               <a href='index.php'>Return to the home page</a>".PHP_EOL;
          exit();
 
       } else {
@@ -33,7 +41,7 @@ require __DIR__ . "/cron_includes.php";
       }
    } elseif (mysqli_num_rows($result3) == 0) {
 
-         echo "No last entry found. Forcing update.";
+         echo "No last entry found. Forcing update.".PHP_EOL;
          writeData($conn, $responseObject);
          exit();
    }
@@ -47,6 +55,12 @@ function writeData($conn, $responseObject){
 	/*Archiving previous data*/
 	$historicalSql = "INSERT INTO historical(item, marketvalue, quantity, date) SELECT item, marketvalue, quantity, ".$last_updated." FROM marketvalue";
 	mysqli_query($conn, $historicalSql);
+
+      /*deleting duplicates*/
+      mysqli_query($conn, "CREATE TABLE test20 LIKE historical");
+      mysqli_query($conn, "INSERT INTO test20 (item, marketvalue, quantity, date) SELECT DISTINCT item, marketvalue, quantity, date FROM `historical`");
+      mysqli_query($conn, "DROP TABLE historical");
+      mysqli_query($conn, "RENAME TABLE test20 TO historical");
 
 
 
@@ -62,15 +76,18 @@ function writeData($conn, $responseObject){
 
    $sql = "INSERT INTO auctions (auc, item, owner, buyout, quantity) VALUES ";
    $i = 0;
+   $counter = 0;
 
    foreach ($auctionsArray as $auction) {
       $sql = $sql . " (". $auction['auc'].",". $auction['item'].",'".$auction['owner']."',".$auction['buyout'].",".$auction['quantity']."),";
 
       ++$i;
-      if($i == 1000) {
+      ++$counter;
+      if($i == 5000) {
          $sql = substr($sql, 0, -1);
          $sql = $sql .";";
          mysqli_query($conn, $sql);
+         echo "Ran ".$counter. PHP_EOL;
          $sql = "INSERT INTO auctions (auc, item, owner, buyout, quantity) VALUES ";
          $i = 0;
       }
@@ -79,6 +96,7 @@ function writeData($conn, $responseObject){
    if($i > 0){
       $sql = substr($sql, 0, -1);
       $sql = $sql .";";
+      echo "Ran".$counter. PHP_EOL;
       mysqli_query($conn, $sql);
    }
 
@@ -93,7 +111,10 @@ function writeData($conn, $responseObject){
 
 
 
-   echo "Update successful.";
+   echo "Update successful.". PHP_EOL;
+   echo "Updating Market Values.". PHP_EOL;
+   system('php /var/www/html/cron/cron_mv_all.php 2>&1', $output);
+   echo $output. PHP_EOL;
    exit();
 ;
 

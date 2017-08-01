@@ -2,7 +2,11 @@
 ini_set('max_execution_time', 300);
 require __DIR__ . "/cron_includes.php";
 
-$sql = "SELECT DISTINCT item FROM auctions";
+
+sleep(20);
+//marketValueAll($conn);
+
+$sql = "SELECT DISTINCT item FROM auctions ORDER BY item ASC";
 $result = mysqli_query($conn, $sql);
 
 $i = 0;
