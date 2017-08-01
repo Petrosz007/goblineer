@@ -8,7 +8,7 @@
          <div class="col-md-3 col-sm-1 col-xs-0">
          </div>
       </div>
-      <script type="text/javascript">
+      <script async type="text/javascript">
         const endpoint = "cron/items.json";
         const items = [];
 
@@ -45,7 +45,6 @@
       </script>
    </body>
 </html>
-<script src="js/date_format.min.js"></script>
 <script async>
 /*Getting and formatting Data*/
 var dataMv0 = document.getElementById('JSON-mv').innerHTML;
@@ -84,6 +83,10 @@ $(document).ready(function () {
         title: {
             text: ''
         },
+        tooltip: {
+            shared: true,
+            crosshairs: true
+        },
         xAxis: {
             categories: dataDate//[1501457113,1501459513,1501461913,1501464313,1501466713,1501469113,1501471513,1501473913,1501476313,1501478713,1501481113,1501483513,1501485913,1501488313,1501490713,1501493113,1501495513,1501497913]
         },
@@ -110,60 +113,4 @@ $(document).ready(function () {
         }]
     });
 });
-/*
-var data = {
-    labels: [1501457113,1501459513,1501461913,1501464313,1501466713,1501469113,1501471513,1501473913,1501476313,1501478713,1501481113,1501483513,1501485913,1501488313,1501490713,1501493113,1501495513],//dataDate,
-    datasets: [
-        {
-            label: "MarketValue",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            yAxisId: "y-axis-0",
-            data: [19.69,19.69,19.69,19.69,19.69,19.69,19.69,19.69,19.69,19.69,19.69,16.66,16.06,16.66,16.66,16.66,16.66]//dataMv
-        },
-        {
-            label: "Quantity",
-            fillColor: "rgba(0,255,205,0.2)",
-            strokeColor: "rgba(0,255,205,1)",
-            pointColor: "rgba(0,255,205,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(0,255,205,1)",
-            yAxisId: "y-axis-1",
-            data: dataQuantity//[8327,8327,8327,8327,8327,8327,8327,8327,8327,8327,8327,27786,30589,27989,28141,28141,28141]//dataQuantity
-        }
-    ]
-};
-
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: {
-        elements: {
-            line: {
-                tension: 0, // disables bezier curves
-            }
-        },
-        scales: {
-            yAxes: [{
-                position: "left",
-                "id": "y-axis-0",
-                ticks: {
-                    beginAtZero: true
-                }
-            }, {
-                position: "right",
-                "id": "y-axis-1",
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});*/
 </script>
