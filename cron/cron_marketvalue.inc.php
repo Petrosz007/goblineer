@@ -1,7 +1,7 @@
 <?php
 
 
-function marketValue($item, $conn) {
+function marketValue($item, $conn/*, $sqlResponse*/) {
    $sql = 'SELECT * FROM marketvalue WHERE item='.$item;
    $result = mysqli_query($conn, $sql);
 
@@ -87,10 +87,52 @@ function marketValue($item, $conn) {
       //Gets the market value of the item
       $marketValue = number_format(array_sum($marketValueArray) / count($marketValueArray), 2,".","");
 
-      mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
-      return $marketValue;
+
+      if(isset($sqlResponse)){
+        if($sqlResponse = 'sqlResponse'){
+            return "(".$item.",".$marketValue.", ".$quantity."),";
+        }
+      } else {
+        mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
+        return $marketValue;
+      }
+      
    }
 }
+
+/*function marketValueAll($conn){
+    $sql = "SELECT DISTINCT item FROM auctions";
+    $result = mysqli_query($conn, $sql);
+
+
+    $mvSql = "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES ";
+
+    $counter = 0;
+    $i = 0;
+    while($row = mysqli_fetch_assoc($result)){
+        $mvSql = $mvSql . marketValue($row['item'], $conn, 'sqlResponse');
+
+        ++$i;
+        ++$counter;
+        if($i == 100) {
+            $mvSql = substr($mvSql, 0, -1);
+            $mvSql = $mvSql .";";
+            mysqli_query($conn, $mvSql);
+            echo $counter." completed.". PHP_EOL;
+            $mvSql = "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES ";
+            $i = 0;
+        }
+        
+    }
+
+    if($i > 0){
+        $mvSql = substr($mvSql, 0, -1);
+        $mvSql = $mvSql .";";
+        mysqli_query($conn, $mvSql);
+        echo $counter." completed.". PHP_EOL;
+    }
+
+}*/
 
 
 if (!function_exists('stats_standard_deviation')) {
