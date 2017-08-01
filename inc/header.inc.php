@@ -9,16 +9,16 @@
 
       <link rel="stylesheet" href="./css/master.css">
 
-      <script type="text/javascript" src="//wow.zamimg.com/widgets/power.js"></script>
+      <script async type="text/javascript" src="//wow.zamimg.com/widgets/power.js"></script>
       <script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
 
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+      <script async src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script async src="https://code.highcharts.com/highcharts.js"></script>
 
-      <script>
+      <script async>
          //Google Analytics
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -47,35 +47,19 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-
               <li><a href="custom.php">Custom Tables</a></li>
               <li><a href="seller.php">Look up a Seller</a></li>
-
             </ul>
-
-
-
-
-
             <form method="GET" action="item.php" class="navbar-form navbar-left">
                <div class="input-group">
                     <input type="text" list="items" placeholder="Type item name or id here..." name="item" id="item" class="search form-control" autocomplete="off">
                     <datalist id="items" class="suggestions">
                     </datalist>
                   <span class="input-group-btn">
-                    
-                    <!---<ul id="def" class="suggestions dropdown-menu"></ul>-->
                     <input type="submit" class="btn btn-default" value="Search">
                   </span>
-                  
               </div>
             </form>
-
-
-
-
-
-
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
