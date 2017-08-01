@@ -12,24 +12,15 @@ if(isset($item)){
         $item = mysqli_fetch_assoc($result)['item'];
     }
 
-    $historicalSqlMv = "SELECT marketvalue FROM historical WHERE item=".$item;
-    $historicalResultMv = mysqli_query($conn, $historicalSqlMv);
+    $historicalSql = "SELECT marketvalue, quantity, date FROM historical WHERE item=".$item. " ORDER BY date ASC, marketvalue, quantity";
+    $historicalResult = mysqli_query($conn, $historicalSql);
+
     $historicalArrayMv = array();
-    while($row = mysqli_fetch_assoc($historicalResultMv)){
-        $historicalArrayMv[] = floatval($row['marketvalue']);
-    }
-
-    $historicalSqlQuantity = "SELECT quantity FROM historical WHERE item=".$item;
-    $historicalResultQuantity = mysqli_query($conn, $historicalSqlQuantity);
     $historicalArrayQuantity = array();
-    while($row = mysqli_fetch_assoc($historicalResultQuantity)){
-        $historicalArrayQuantity[] = intval($row['quantity']);
-    }
-
-    $historicalSqlDate = "SELECT date FROM historical WHERE item=".$item;
-    $historicalResultDate = mysqli_query($conn, $historicalSqlDate);
     $historicalArrayDate = array();
-    while($row = mysqli_fetch_assoc($historicalResultDate)){
+    while($row = mysqli_fetch_assoc($historicalResult)){
+        $historicalArrayMv[] = floatval($row['marketvalue']);
+        $historicalArrayQuantity[] = intval($row['quantity']);
         $historicalArrayDate[] = $row['date'];
     }
 }
