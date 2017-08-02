@@ -33,7 +33,15 @@ span.gold-g {
 .seller-search {
     width: 60%;
 }
-
+#offline-notification {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+#inner-message {
+    margin: 0 auto;
+}
 
 /* iPhone 4 ----------- */
 @media

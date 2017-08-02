@@ -5,18 +5,33 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+      <!-- Chrome, Firefox OS and Opera -->
+      <meta name="theme-color" content="#3a8df4">
+      <!-- Windows Phone -->
+      <meta name="msapplication-navbutton-color" content="#3a8df4">
+      <!-- iOS Safari -->
+      <meta name="apple-mobile-web-app-status-bar-style" content="#3a8df4">
+
+      <link rel="manifest" href="./manifest.json" />
+      <script defer src="./site.js"></script>
+
+      <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
       <title>Goblineer</title>
+      <meta name="description" content="In-depth data analizer tool for the World of Warcraft Auction House">
+      <meta name="keywords" content="wow,ah,goblineer,money,gold">
+      <meta name="author" content="Peter Andi">
 
       <link rel="stylesheet" href="./css/master.css">
 
       <script async type="text/javascript" src="//wow.zamimg.com/widgets/power.js"></script>
       <script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
 
-      <script async src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+      <script defer src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script defer src="https://code.highcharts.com/highcharts.js"></script>
 
       <script async>
          //Google Analytics
