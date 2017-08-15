@@ -1,9 +1,9 @@
 <?php
 $servername = '127.0.0.1';
-$username = 'root';
-$password = 'Andipeti@7';
+$username = '';
+$password = '';
 $schema = 'wowah';
-$apiKey = '6szbehcvdvjn8eccd2s496sr92956c87';
+$apiKey = '';
 $realmName = 'ragnaros';
 $realmRegion = 'eu';
 
