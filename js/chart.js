@@ -45,6 +45,13 @@ $(document).ready(function () {
             align: 'center',
             verticalAlign: 'top',
         },
+        plotOptions: {
+            line: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
         xAxis: {
             categories: dataDate,
             dateTimeLabelFormats: {
