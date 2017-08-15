@@ -29,7 +29,7 @@ function herbRow($id, $herb, $q){
    include 'dbh.php';
    echo ("
    <tr>
-      <td><a href='item.php?item=".$id."' class='q3 links' rel='item=".$id."'></td>
+      <td><a href='item/".$id."' class='q3 links' rel='item=".$id."'></td>
       <td align='right'>".number_format($herb,2)."<span class='gold-g'>g</span></td>
       <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>
@@ -41,7 +41,7 @@ function flaskRow($id, $flask, $q, $cost, $profit, $profit_r3){
    include 'dbh.php';
    echo "
    <tr>
-      <td><a href='item.php?item=".$id."' class='q3 links' rel='item=".$id."'></td>
+      <td><a href='item/".$id."' class='q3 links' rel='item=".$id."'></td>
       <td align='right'>".number_format($flask,2)."<span class='gold-g'>g</span></td>
       <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>

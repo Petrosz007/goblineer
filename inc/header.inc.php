@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+      <base href="/"> 
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -56,7 +57,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Goblineer</a>
+            <a class="navbar-brand" href="/">Goblineer</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -65,13 +66,13 @@
               <li><a href="custom.php">Custom Tables</a></li>
               <li><a href="seller.php">Look up a Seller</a></li>
             </ul>
-            <form method="GET" action="item.php" class="navbar-form navbar-left">
+            <form method="GET" action="item.php" class="navbar-form navbar-left" id="search-from">
                <div class="input-group">
                     <input type="text" list="items" placeholder="Type item name or id here..." name="item" id="item" class="search form-control" autocomplete="off">
                     <datalist id="items" class="suggestions">
                     </datalist>
                   <span class="input-group-btn">
-                    <input type="submit" class="btn btn-default" value="Search">
+                    <button type="submit" class="btn btn-default">Search</button>
                   </span>
               </div>
             </form>
