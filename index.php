@@ -8,6 +8,25 @@ $GLOBALS['conn'] = $conn;
 //blood of sargeras price
 $bloodPrice = bloodPrice($conn);
 
+//Argus Stuff
+$Obliterum           = item(124125, $conn);
+$PrimalObliterum     = item(152296, $conn);
+$AstralGlory         = item(151565, $conn);
+$Empyrium            = item(151564, $conn);
+$FiendishLeather     = item(151566, $conn);
+$LightweaveCloth     = item(151567, $conn);
+$AstralHealingPotion = item(152615, $conn);
+
+$Obliterum_q           = item_q(124125, $conn);
+$PrimalObliterum_q     = item_q(152296, $conn);
+$AstralGlory_q         = item_q(151565, $conn);
+$Empyrium_q            = item_q(151564, $conn);
+$FiendishLeather_q     = item_q(151566, $conn);
+$LightweaveCloth_q     = item_q(151567, $conn);
+$AstralHealingPotion_q = item_q(152615, $conn);
+
+
+
 //Legion Herbs
 $Felwort         = item(124106, $conn);
 $Starlight_Rose  = item(124105, $conn);
@@ -114,13 +133,18 @@ $Countless_Profit_r3=($Countless_Armies-$Countless_Crafting_Cost/1.4802)*0.95;
 
 
 //Legion Potion Crafting Cost
-$Old_War_Crafting_Cost=number_format((($Foxflower*2)+($Fjarnskaggl*2)+$Starlight_Rose),2)/*/1.4802*/;
-$Old_War_Profit=($Old_War-$Old_War_Crafting_Cost)*0.95;
-$Old_War_Profit_r3=($Old_War-$Old_War_Crafting_Cost/1.4802)*0.95;
+$Old_War_Crafting_Cost  = number_format((($Foxflower*2)+($Fjarnskaggl*2)+$Starlight_Rose),2)/*/1.4802*/;
+$Old_War_Profit         = ($Old_War-$Old_War_Crafting_Cost)*0.95;
+$Old_War_Profit_r3      = ($Old_War-$Old_War_Crafting_Cost/1.4802)*0.95;
 
 $Prolonged_Power_Crafting_Cost = number_format($bloodPrice/10,2)/*/1.4802*/;
 $Prolonged_Power_Profit        = ($Prolonged_Power - $Prolonged_Power_Crafting_Cost)*0.95;
 $Prolonged_Power_Profit_r3     = ($Prolonged_Power - $Prolonged_Power_Crafting_Cost/1.4802)*0.95;
+
+
+$AstralHealingPotion_Crafting_Cost  = number_format(($AstralGlory*20),2)/*/1.4802*/;
+$AstralHealingPotion_Profit         = ($AstralHealingPotion - $AstralHealingPotion_Crafting_Cost)*0.95;
+$AstralHealingPotion_Profit_r3      = ($AstralHealingPotion - number_format(($AstralGlory*15),2)/1.4802)*0.95;
 
 
 
@@ -187,8 +211,52 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
       <?php echo $bloodPrice;?><span class='gold-g'>g </span>
       <a href='blood.php' class="btn btn-default links">See Blood of Sargeras Price in-depth</a></h2>
 
-   <h2 class="text-center"> Category: Alchemy</h2>
+   
 
+
+    <h2 class="text-center"> Category: Argus Stuff</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-mats align-center">
+         <caption class="text-center">Materials</caption>
+         <thead>
+            <th class="tg-9nbt">Item name:</th>
+            <th class="tg-9right">Low buy:</th>
+            <th class="tg-9right">Market Value:</th>
+            <th class="tg-9right">Available:</th>
+         </thead>
+
+         <tbody>
+         <?php
+            herbRow(151565, $AstralGlory, $AstralGlory_q);
+            herbRow(151564, $Empyrium, $Empyrium_q);
+            herbRow(151567, $LightweaveCloth, $LightweaveCloth_q);
+            herbRow(151566, $FiendishLeather, $FiendishLeather_q);
+         ?>
+         </tbody>
+      </table>
+   </div>
+
+   <div class="table-responsive">
+      <table class="table table-striped table-hover table-mats align-center">
+         <caption class="text-center">Obliterum</caption>
+         <thead>
+            <th class="tg-9nbt">Item name:</th>
+            <th class="tg-9right">Low buy:</th>
+            <th class="tg-9right">Market Value:</th>
+            <th class="tg-9right">Available:</th>
+         </thead>
+
+         <tbody>
+         <?php
+            herbRow(124125, $Obliterum , $Obliterum_q);
+            herbRow(152296, $PrimalObliterum, $PrimalObliterum_q);
+            
+         ?>
+         </tbody>
+      </table>
+   </div>
+
+   <h2 class="text-center"> Category: Alchemy</h2>
    <div class="table-responsive">
       <table class="table table-striped table-hover table-crafts table-sm">
          <caption class="text-center">Alchemy: Legion Flasks</caption>
@@ -230,6 +298,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
             <?php
                flaskRow(142117, $Prolonged_Power, $Prolonged_Power_q, $Prolonged_Power_Crafting_Cost, $Prolonged_Power_Profit, $Prolonged_Power_Profit_r3);
                flaskRow(127844, $Old_War, $Old_War_q, $Old_War_Crafting_Cost, $Old_War_Profit, $Old_War_Profit_r3);
+               flaskRow(152615, $AstralHealingPotion, $AstralHealingPotion_q, $AstralHealingPotion_Crafting_Cost, $AstralHealingPotion_Profit, $AstralHealingPotion_Profit_r3);
             ?>
          </tbody>
       </table>
