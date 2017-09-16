@@ -12,6 +12,8 @@ require __DIR__ . "/cron_includes.php";
    $checkdate="SELECT realm from status ORDER BY id ASC";
    $result3 = mysqli_query($conn, $checkdate);
 
+   $checkEmpty = mysqli_query($conn, "SELECT * FROM auctions");
+
 
       if($argv[1] == 'force'){
             echo "Forcing update.". PHP_EOL;
@@ -19,32 +21,36 @@ require __DIR__ . "/cron_includes.php";
             exit();
       }
 
-   if (mysqli_num_rows($result3) > 0) {
+      if(mysqli_num_rows($checkEmpty) == 0){
+            echo "No data found in the auctions table. Updating.".PHP_EOL;
+            writeData($conn, $responseObject);
+            exit();
+      } elseif (mysqli_num_rows($result3) > 0) {
 
-      while($row = mysqli_fetch_assoc($result3)){
+            while($row = mysqli_fetch_assoc($result3)){
 
-           $lastentry=$row["realm"];
+                  $lastentry=$row["realm"];
 
+            }
+
+            if ($lastentry==$responseObject['files'][0]['lastModified']) {
+
+                  echo "Last entry in the database is too recent. Not updating. Try again later.<br>
+                        <a href='index.php'>Return to the home page</a>".PHP_EOL;
+                  exit();
+
+            } else {
+
+                  writeData($conn, $responseObject);
+                  exit();
+
+            }
+      } elseif (mysqli_num_rows($result3) == 0) {
+
+            echo "No last entry found. Forcing update.".PHP_EOL;
+            writeData($conn, $responseObject);
+            exit();
       }
-
-      if ($lastentry==$responseObject['files'][0]['lastModified']) {
-
-         echo "Last entry in the database is too recent. Not updating. Try again later.<br>
-               <a href='index.php'>Return to the home page</a>".PHP_EOL;
-         exit();
-
-      } else {
-
-         writeData($conn, $responseObject);
-         exit();
-
-      }
-   } elseif (mysqli_num_rows($result3) == 0) {
-
-         echo "No last entry found. Forcing update.".PHP_EOL;
-         writeData($conn, $responseObject);
-         exit();
-   }
 
 
 function writeData($conn, $responseObject){
@@ -57,10 +63,11 @@ function writeData($conn, $responseObject){
 	mysqli_query($conn, $historicalSql);
 
       /*deleting duplicates*/
-      mysqli_query($conn, "CREATE TABLE test20 LIKE historical");
-      mysqli_query($conn, "INSERT INTO test20 (item, marketvalue, quantity, date) SELECT DISTINCT item, marketvalue, quantity, date FROM `historical`");
-      mysqli_query($conn, "DROP TABLE historical");
-      mysqli_query($conn, "RENAME TABLE test20 TO historical");
+      mysqli_query($conn,    "CREATE TABLE historical_tmp LIKE historical;
+                              INSERT INTO historical_tmp (item, marketvalue, quantity, date) SELECT DISTINCT item, marketvalue, quantity, date FROM `historical`;
+                              TRUNCATE TABLE historical;
+                              INSERT INTO historical SELECT * FROM historical_tmp;
+                              DROP TABLE historical_tmp;");
 
 
 
@@ -103,10 +110,11 @@ function writeData($conn, $responseObject){
 
    mysqli_query($conn, "DELETE FROM auctions WHERE buyout=0");
 
-   mysqli_query($conn, "CREATE TABLE test LIKE auctions");
-   mysqli_query($conn, "INSERT INTO test (auc, item, owner, buyout, quantity) SELECT auc, item, owner, buyout, quantity FROM auctions ORDER BY item, owner, quantity, buyout");
-   mysqli_query($conn, "DROP TABLE auctions");
-   mysqli_query($conn, "RENAME TABLE test TO auctions");
+   mysqli_query($conn, "CREATE TABLE auctions_tmp LIKE auctions;
+                        INSERT INTO auctions_tmp (auc, item, owner, buyout, quantity) SELECT auc, item, owner, buyout, quantity FROM auctions ORDER BY item, owner, quantity, buyout;
+                        TRUNCATE TABLE auctions;
+                        INSERT INTO auctions SELECT * FROM auctions_tmp;
+                        DROP TABLE auctions_tmp");
 
 
 
