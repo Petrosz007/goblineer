@@ -32,3 +32,11 @@ CREATE TABLE `marketvalue` (
   `item` int(11) NOT NULL,
   `marketvalue` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+CREATE TABLE `historical` (
+  `id` int(12) NOT NULL,
+  `item` int(12) NOT NULL,
+  `marketvalue` varchar(255) NOT NULL,
+  `quantity` int(255) NOT NULL,
+  `date` int(255) NOT NULL
+) ENGINE=MyISAM

@@ -58,7 +58,9 @@ function bloodPrices($conn){
 
       $sql = "SELECT item, marketvalue, quantity, (marketvalue * quantity) AS unit_price FROM blood ORDER BY unit_price DESC";
       return $result = mysqli_query($conn, $sql);
+      exit();
    } else {
       return $result;
+      exit();
    }
 }

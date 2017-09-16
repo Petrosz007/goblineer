@@ -180,8 +180,6 @@ function marketValue($item, $conn) {
 
       //Gets the market value of the item
       $marketValue = number_format(array_sum($marketValueArray) / count($marketValueArray), 2,".","");
-
-
       
     mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
     return $marketValue;
