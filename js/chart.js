@@ -32,7 +32,8 @@ $(document).ready(function () {
     
     myChart = Highcharts.chart('chart', {
         chart: {
-            type: 'line'
+            type: 'line',
+            zoomType: 'x'
         },
         title: {
             text: ''
