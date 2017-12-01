@@ -168,7 +168,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 <?php include "inc/header.inc.php"; ?>
 
 
-   <p>The Blizzard API may not update exactly every 30 minutes, it is possible that you may get the 'Last entry is too recent' page even if 30 minutes has passsed.</p>
+   <p>The Blizzard API updates around every 30-40 minutes.</p>
 
    <p>Last Updated: <span id='updated'></span></p>
 
