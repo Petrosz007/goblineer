@@ -58,17 +58,17 @@ echo "File created!". PHP_EOL;
 
 //Creating mv_names.json, the same as above, but has items names and min buyout as well
 $selectSql =   "SELECT t1.item, t1.name, t1.marketvalue, t1.quantity, t2.MIN
-FROM
-    (SELECT marketvalue.item, name, marketvalue, quantity FROM marketvalue LEFT JOIN items ON marketvalue.item = items.item) as t1
-LEFT JOIN 
-    (SELECT MIN(buyout / quantity)/10000 as MIN, item FROM auctions GROUP BY item) as t2
-ON
-    t1.item = t2.item";
+                FROM
+                    (SELECT marketvalue.item, name, marketvalue, quantity FROM marketvalue LEFT JOIN items ON marketvalue.item = items.item) as t1
+                LEFT JOIN 
+                    (SELECT MIN(buyout / quantity)/10000 as MIN, item FROM auctions GROUP BY item) as t2
+                ON
+                    t1.item = t2.item";
 $selectResult = mysqli_query($conn, $selectSql);
 echo "Query done...". PHP_EOL;
 $allItems = array();
 while($row = mysqli_fetch_assoc($selectResult)){
-$allItems[] = $row;
+    $allItems[] = $row;
 }
 echo "Created Array...". PHP_EOL;
 //write to json file
