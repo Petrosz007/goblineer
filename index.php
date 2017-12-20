@@ -7,7 +7,7 @@ $GLOBALS['conn'] = $conn;
 
 //blood of sargeras price
 $bloodPrice = bloodPrice($conn);
-
+/*
 //Argus Stuff
 $Obliterum           = item(124125, $conn);
 $PrimalObliterum     = item(152296, $conn);
@@ -109,7 +109,155 @@ $Old_War_q         = item_q(127844, $conn);
 
 //Legion other
 $Defiled_Augment_Rune   = item(140587, $conn);
-$Defiled_Augment_Rune_q = item_q(140587, $conn);
+$Defiled_Augment_Rune_q = item_q(140587, $conn);*/
+$everything_data = [
+  "Obliterum"           => 124125,
+  "PrimalObliterum"     => 152296,
+  "AstralGlory"         => 151565,
+  "Empyrium"            => 151564,
+  "FiendishLeather"     => 151566,
+  "LightweaveCloth"     => 151567,
+  "AstralHealingPotion" => 152615,
+
+  "Felwort"         => 124106,
+  "Starlight_Rose"  => 124105,
+  "Fjarnskaggl"     => 124104,
+  "Foxflower"       => 124103,
+  "Dreamleaf"       => 124102,
+  "Aethril"         => 124101,
+  "Yseralline_Seed" => 128304,
+
+  "Felwort_Seed"        => 129289,
+  "Starlight_Rose_Seed" => 129288,
+  "Fjarnskaggl_Seed"    => 129287,
+  "Foxflower_Seed"      => 129286,
+  "Dreamleaf_Seed"      => 129285,
+  "Aethril_Seed"        => 129284,
+
+  "Chaos_Crystal"  => 124442,
+  "Leylight_Shard" => 124441,
+  "Arkhana"        => 124440,
+
+  "Felhide"           => 124116,
+  "Stonehide_Leather" => 124115,
+  "Stormscale"        => 124113,
+
+  "Wispered_Pact"    => 127847,
+  "Seventh_Demon"    => 127848,
+  "Ten_Thousand"     => 127850,
+  "Countless_Armies" => 127849,
+
+  "Prolonged_Power" => 142117,
+  "Old_War"         => 127844,
+
+  "Defiled_Augment_Rune"   => 140587
+
+];
+$everything = item_array($everything_data, $conn);
+//Argus Stuff
+$Obliterum           = $everything["Obliterum"]["min"];
+$PrimalObliterum     = $everything["PrimalObliterum"]["min"];
+$AstralGlory         = $everything["AstralGlory"]["min"];
+$Empyrium            = $everything["Empyrium"]["min"];
+$FiendishLeather     = $everything["FiendishLeather"]["min"];
+$LightweaveCloth     = $everything["LightweaveCloth"]["min"];
+$AstralHealingPotion = $everything["AstralHealingPotion"]["min"];
+
+$Obliterum_q           = $everything["Obliterum"]["quantity"];
+$PrimalObliterum_q     = $everything["PrimalObliterum"]["quantity"];
+$AstralGlory_q         = $everything["AstralGlory"]["quantity"];
+$Empyrium_q            = $everything["Empyrium"]["quantity"];
+$FiendishLeather_q     = $everything["FiendishLeather"]["quantity"];
+$LightweaveCloth_q     = $everything["LightweaveCloth"]["quantity"];
+$AstralHealingPotion_q = $everything["AstralHealingPotion"]["quantity"];
+
+
+
+//Legion Herbs
+$Felwort         = $everything["Felwort"]["min"];
+$Starlight_Rose  = $everything["Starlight_Rose"]["min"];
+$Fjarnskaggl     = $everything["Fjarnskaggl"]["min"];
+$Foxflower       = $everything["Foxflower"]["min"];
+$Dreamleaf       = $everything["Dreamleaf"]["min"];
+$Aethril         = $everything["Aethril"]["min"];
+$Yseralline_Seed = $everything["Yseralline_Seed"]["min"];
+
+$Felwort_q           = $everything["Felwort"]["quantity"];
+$Starlight_Rose_q    = $everything["Starlight_Rose"]["quantity"];
+$Fjarnskaggl_q       = $everything["Fjarnskaggl"]["quantity"];
+$Foxflower_q         = $everything["Foxflower"]["quantity"];
+$Dreamleaf_q         = $everything["Dreamleaf"]["quantity"];
+$Aethril_q           = $everything["Aethril"]["quantity"];
+$Yseralline_Seed_q   = $everything["Yseralline_Seed"]["quantity"];
+
+//Legion seeds item:129289;item:129286;item:129288;item:129287;item:129284;item:129285
+$Felwort_Seed        = $everything["Felwort_Seed"]["min"];
+$Starlight_Rose_Seed = $everything["Starlight_Rose_Seed"]["min"];
+$Fjarnskaggl_Seed    = $everything["Fjarnskaggl_Seed"]["min"];
+$Foxflower_Seed      = $everything["Foxflower_Seed"]["min"];
+$Dreamleaf_Seed      = $everything["Dreamleaf_Seed"]["min"];
+$Aethril_Seed        = $everything["Aethril_Seed"]["min"];
+
+$Felwort_Seed_q        = $everything["Felwort_Seed"]["quantity"];
+$Starlight_Rose_Seed_q = $everything["Starlight_Rose_Seed"]["quantity"];
+$Fjarnskaggl_Seed_q    = $everything["Fjarnskaggl_Seed"]["quantity"];
+$Foxflower_Seed_q      = $everything["Foxflower_Seed"]["quantity"];
+$Dreamleaf_Seed_q      = $everything["Dreamleaf_Seed"]["quantity"];
+$Aethril_Seed_q        = $everything["Aethril_Seed"]["quantity"];
+
+
+//Legion Enchanting Mats
+$Chaos_Crystal  = $everything["Chaos_Crystal"]["min"];
+$Leylight_Shard = $everything["Leylight_Shard"]["min"];
+$Arkhana        = $everything["Arkhana"]["min"];
+
+$Chaos_Crystal_q  = $everything["Chaos_Crystal"]["quantity"];
+$Leylight_Shard_q = $everything["Leylight_Shard"]["quantity"];
+$Arkhana_q        = $everything["Arkhana"]["quantity"];
+
+
+
+//Legion Skinning
+$Felhide           = $everything["Felhide"]["min"];
+$Stonehide_Leather = $everything["Stonehide_Leather"]["min"];
+$Stormscale        = $everything["Stormscale"]["min"];
+
+$Felhide_q           = $everything["Felhide"]["quantity"];
+$Stonehide_Leather_q = $everything["Stonehide_Leather"]["quantity"];
+$Stormscale_q        = $everything["Stormscale"]["quantity"];
+
+
+
+
+
+
+
+
+
+//Legion Flasks
+$Wispered_Pact    = $everything["Wispered_Pact"]["min"];
+$Seventh_Demon    = $everything["Seventh_Demon"]["min"];
+$Ten_Thousand     = $everything["Ten_Thousand"]["min"];
+$Countless_Armies = $everything["Countless_Armies"]["min"];
+
+$Wispered_Pact_Q    = $everything["Wispered_Pact"]["quantity"];
+$Seventh_Demon_Q    = $everything["Seventh_Demon"]["quantity"];
+$Ten_Thousand_Q     = $everything["Ten_Thousand"]["quantity"];
+$Countless_Armies_Q = $everything["Countless_Armies"]["quantity"];
+
+
+
+
+//Legion Potions
+$Prolonged_Power = $everything["Prolonged_Power"]["min"];
+$Old_War         = $everything["Old_War"]["min"];
+
+$Prolonged_Power_q = $everything["Prolonged_Power"]["quantity"];
+$Old_War_q         = $everything["Old_War"]["quantity"];
+
+//Legion other
+$Defiled_Augment_Rune   = $everything["Defiled_Augment_Rune"]["min"];
+$Defiled_Augment_Rune_q = $everything["Defiled_Augment_Rune"]["quantity"];
 
 
 

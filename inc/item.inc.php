@@ -25,6 +25,37 @@ function item_q($id, $conn){
    return $herb;
 }
 
+
+
+
+
+
+function item_array($ids, $conn)
+{
+    $items = [];
+    foreach($ids as $name => $id)
+    {
+        $sql_item = "SELECT MIN(buyout / quantity)/10000 as MIN, sum(quantity) as quantity FROM auctions where item=$id";
+        $result_item = mysqli_query($conn, $sql_item);
+        if (mysqli_num_rows($result_item) > 0) {
+            while($row = mysqli_fetch_assoc($result_item)) {
+                $items[$name]["min"] =  $row["MIN"];
+                $items[$name]["quantity"] =  $row["quantity"];
+            }
+        } else {
+            $items[$name]["min"] =  null;
+            $items[$name]["quantity"] =  null;
+        }
+    }
+
+    return $items;
+}
+
+
+
+
+
+
 function herbRow($id, $herb, $q){
    include 'dbh.php';
    echo ("
