@@ -12,7 +12,7 @@ if(isset($item)){
         $item = mysqli_fetch_assoc($result)['item'];
     }
 
-    $historicalSql = "SELECT marketvalue, quantity, date FROM historical WHERE item=".$item. " ORDER BY date ASC, marketvalue, quantity";
+    $historicalSql = "select * from ( SELECT marketvalue, quantity, date FROM historical WHERE item=$item ORDER BY date DESC LIMIT 800 ) as tmp order by tmp.date asc";//"SELECT marketvalue, quantity, date FROM historical WHERE item=".$item. " ORDER BY date ASC, marketvalue, quantity";
     $historicalResult = mysqli_query($conn, $historicalSql);
 
     $historicalArrayMv = array();

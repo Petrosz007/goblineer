@@ -1,5 +1,7 @@
-
-
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
 
 var myChart = null;
 $(document).ready(function () {
@@ -19,11 +21,11 @@ $(document).ready(function () {
     var dataDate0 = document.getElementById('JSON-date').innerHTML;
     dataDate0 = dataDate0.replace('[','');
     dataDate0 = dataDate0.replace(']','');
-    for(var i = 0; i < dataDate0.length; i++){
-        dataDate0 = dataDate0.replace('"','');
-        dataDate0 = dataDate0.replace('"','');
-    }
     dataDate0 = dataDate0.split(',');
+    for(var i = 0; i < dataDate0.length; i++){
+        dataDate0[i] = dataDate0[i].replace('"','').replace('"','');
+    }
+
     var dataDate1 = dataDate0.map(Number);
 
     var dataDate = dataDate1.map(function(x){
@@ -35,6 +37,9 @@ $(document).ready(function () {
             type: 'line',
             zoomType: 'x'
         },
+        /*boost: {
+            useGPUTranslations: true
+        },*/
         title: {
             text: ''
         },
@@ -81,11 +86,17 @@ $(document).ready(function () {
         series: [{
             name: 'Market Value',
             yAxis: 0,
-            data: dataMv//[19.69,19.69,19.69,19.69,19.69,19.69,19.69,19.69,19.69,19.69,19.69,16.66,16.06,16.66,16.66,16.66,16.66,16.66]
+            data: dataMv,
+            dataGrouping: {
+                enabled: true
+            }
         }, {
             name: 'Quantity',
             yAxis: 1,
-            data: dataQuantity//[8327,8327,8327,8327,8327,8327,8327,8327,8327,8327,8327,27786,30589,27989,28141,28141,28141,28141]
+            data: dataQuantity,
+            dataGrouping: {
+                enabled: true
+            }
         }]
     });
 });
