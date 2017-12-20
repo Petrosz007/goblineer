@@ -42,4 +42,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 
 RewriteRule ^/?item/(.*)$ item.php?item=$1 [NC,L]
-RewriteRule ^/ index.php [NC,L] 
+RewriteRule ^/ index.php [NC,L]
+RewriteRule ^/?seller seller.php [NC,L] 
+RewriteRule ^/?seller/(.*)$ seller.php?seller=$1 [NC,L] 
+RewriteRule ^/?addon addon.php [NC,L]
+RewriteRule ^/?custom custom.php [NC,L]
