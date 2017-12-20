@@ -16,7 +16,7 @@ function findMatches(wordToMatch, items){
 function displayMatches() {
     if(this.value.length > 4){
         const matchArray = findMatches(this.value, items);
-        const html = matchArray.map(item => {
+        const html = matchArray.slice(0, 30).map(item => {
             const regex = new RegExp(this.value, 'gi');
             return `
             <option value="${item.name}">
