@@ -44,7 +44,7 @@ if(isset($seller)){
                WHERE owner='".$seller."'
                ORDER BY unit_price ASC";
 
-      $result = mysqli_query($conn, $sql);
+      $result = mysqli_query($GLOBALS['conn'], $sql);
 
       $old_row = array('owner' => '', 'buyout' => '', 'quantity' => '');
       $counter = 1;

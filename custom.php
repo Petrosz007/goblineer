@@ -37,7 +37,7 @@ if(isset($items)){
 
          <tbody>";
          foreach($items as $i){
-            herbRow($i, item($i, $conn), item_q($i, $conn));
+            herbRow($i, item($i), item_q($i));
          }
 
    echo"

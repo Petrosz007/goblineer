@@ -2,7 +2,7 @@
 require __DIR__ . "/cron_includes.php";
 
 $selectSql = "SELECT item, name FROM items";
-$selectResult = mysqli_query($conn, $selectSql);
+$selectResult = mysqli_query($GLOBALS['conn'], $selectSql);
 echo "Query done...". PHP_EOL;
 $allItems = array();
 while($row = mysqli_fetch_assoc($selectResult)){

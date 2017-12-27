@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/cron_includes.php";
 
-bloodPrices($conn);
+bloodPrices();
 
 echo "Updated Blood Prices" . PHP_EOL;
 exit();

@@ -4,15 +4,15 @@ ini_set('max_execution_time', 300);
 require __DIR__ . "/cron_includes.php";
 
 $sql = "SELECT DISTINCT item FROM auctions";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($GLOBALS['conn'], $sql);
 
 
 $sql2 = "SELECT * FROM items";
-$result2 = mysqli_query($conn, $sql2);
+$result2 = mysqli_query($GLOBALS['conn'], $sql2);
 $alreadydid = array();
 
 $last_sql = "SELECT MAX(last) AS last FROM item_status";
-$last_result = mysqli_query($conn, $last_sql);
+$last_result = mysqli_query($GLOBALS['conn'], $last_sql);
 $last = mysqli_fetch_assoc($last_result)['last'];
 echo "Last: ".$last. PHP_EOL;
 
@@ -45,7 +45,7 @@ while($row = mysqli_fetch_assoc($result)){
             if($i == 45) {
                 $sql = substr($sql, 0, -1);
                 $sql = $sql .";";
-                mysqli_query($conn, $sql);
+                mysqli_query($GLOBALS['conn'], $sql);
                 exit();
 
             }
@@ -62,7 +62,7 @@ while($row = mysqli_fetch_assoc($result)){
 if($i > 0){
     $sql = substr($sql, 0, -1);
     $sql = $sql .";";
-    mysqli_query($conn, $sql);
+    mysqli_query($GLOBALS['conn'], $sql);
 }
 
 

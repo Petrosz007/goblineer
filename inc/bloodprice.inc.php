@@ -1,18 +1,18 @@
 <?php
 
-function bloodPrice($conn){
+function bloodPrice(){
    $sql = "SELECT item, marketvalue, quantity, (marketvalue * quantity) AS unit_price
            FROM blood
            ORDER BY unit_price DESC
            LIMIT 1";
 
-   $result = mysqli_query($conn, $sql);
+   $result = mysqli_query($GLOBALS['conn'], $sql);
    return number_format(mysqli_fetch_assoc($result)['unit_price'], 2);
 }
 
-function bloodPrices($conn){
+function bloodPrices(){
    $sql = "SELECT item, marketvalue, quantity, (marketvalue * quantity) AS unit_price FROM blood ORDER BY unit_price DESC";
-   $result = mysqli_query($conn, $sql);
+   $result = mysqli_query($GLOBALS['conn'], $sql);
 
    if(mysqli_num_rows($result) == 0){
 
@@ -29,32 +29,32 @@ function bloodPrices($conn){
       $sql = "INSERT INTO blood(item, marketvalue, quantity, bloodprice) VALUES ";
 
       foreach($Blood20 as $b){
-         $mv = marketValue($b, $conn);
+         $mv = marketValue($b, $GLOBALS['conn']);
          $sql = $sql . "($b, $mv, 20, ".($mv*20)."),";
       }
 
       foreach($Blood10 as $b){
-         $mv = marketValue($b, $conn);
+         $mv = marketValue($b, $GLOBALS['conn']);
          $sql = $sql . "($b, $mv, 10, ".($mv*10)."),";
       }
 
       foreach($Blood5 as $b){
-         $mv = marketValue($b, $conn);
+         $mv = marketValue($b, $GLOBALS['conn']);
          $sql = $sql . "($b, $mv, 5, ".($mv*5)."),";
       }
 
       foreach($Blood3 as $b){
-         $mv = marketValue($b, $conn);
+         $mv = marketValue($b, $GLOBALS['conn']);
          $sql = $sql . "($b, $mv, 3, ".($mv*3)."),";
       }
 
 
       $sql = substr($sql, 0, -1);
       $sql = $sql .";";
-      mysqli_query($conn, $sql);
+      mysqli_query($GLOBALS['conn'], $sql);
 
       $sql = "SELECT item, marketvalue, quantity, (marketvalue * quantity) AS unit_price FROM blood ORDER BY unit_price DESC";
-      return $result = mysqli_query($conn, $sql);
+      return $result = mysqli_query($GLOBALS['conn'], $sql);
       exit();
    } else {
       return $result;

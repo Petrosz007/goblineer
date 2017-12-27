@@ -3,113 +3,10 @@
 
 include "includes.php";
 
-$GLOBALS['conn'] = $conn;
 
 //blood of sargeras price
-$bloodPrice = bloodPrice($conn);
-/*
-//Argus Stuff
-$Obliterum           = item(124125, $conn);
-$PrimalObliterum     = item(152296, $conn);
-$AstralGlory         = item(151565, $conn);
-$Empyrium            = item(151564, $conn);
-$FiendishLeather     = item(151566, $conn);
-$LightweaveCloth     = item(151567, $conn);
-$AstralHealingPotion = item(152615, $conn);
+$bloodPrice = bloodPrice();
 
-$Obliterum_q           = item_q(124125, $conn);
-$PrimalObliterum_q     = item_q(152296, $conn);
-$AstralGlory_q         = item_q(151565, $conn);
-$Empyrium_q            = item_q(151564, $conn);
-$FiendishLeather_q     = item_q(151566, $conn);
-$LightweaveCloth_q     = item_q(151567, $conn);
-$AstralHealingPotion_q = item_q(152615, $conn);
-
-
-
-//Legion Herbs
-$Felwort         = item(124106, $conn);
-$Starlight_Rose  = item(124105, $conn);
-$Fjarnskaggl     = item(124104, $conn);
-$Foxflower       = item(124103, $conn);
-$Dreamleaf       = item(124102, $conn);
-$Aethril         = item(124101, $conn);
-$Yseralline_Seed = item(128304, $conn);
-
-$Felwort_q           = item_q(124106, $conn);
-$Starlight_Rose_q    = item_q(124105, $conn);
-$Fjarnskaggl_q       = item_q(124104, $conn);
-$Foxflower_q         = item_q(124103, $conn);
-$Dreamleaf_q         = item_q(124102, $conn);
-$Aethril_q           = item_q(124101, $conn);
-$Yseralline_Seed_q   = item_q(128304, $conn);
-
-//Legion seeds item:129289;item:129286;item:129288;item:129287;item:129284;item:129285
-$Felwort_Seed        = item(129289, $conn);
-$Starlight_Rose_Seed = item(129288, $conn);
-$Fjarnskaggl_Seed    = item(129287, $conn);
-$Foxflower_Seed      = item(129286, $conn);
-$Dreamleaf_Seed      = item(129285, $conn);
-$Aethril_Seed        = item(129284, $conn);
-
-$Felwort_Seed_q        = item_q(129289, $conn);
-$Starlight_Rose_Seed_q = item_q(129288, $conn);
-$Fjarnskaggl_Seed_q    = item_q(129287, $conn);
-$Foxflower_Seed_q      = item_q(129286, $conn);
-$Dreamleaf_Seed_q      = item_q(129285, $conn);
-$Aethril_Seed_q        = item_q(129284, $conn);
-
-
-//Legion Enchanting Mats
-$Chaos_Crystal = item(124442, $conn);
-$Leylight_Shard = item(124441, $conn);
-$Arkhana = item(124440, $conn);
-
-$Chaos_Crystal_q = item_q(124442, $conn);
-$Leylight_Shard_q = item_q(124441, $conn);
-$Arkhana_q = item_q(124440, $conn);
-
-
-
-//Legion Skinning
-$Felhide = item(124116 ,$conn);
-$Stonehide_Leather = item(124115 ,$conn);
-$Stormscale = item(124113 ,$conn);
-
-$Felhide_q = item_q(124116 ,$conn);
-$Stonehide_Leather_q = item_q(124115 ,$conn);
-$Stormscale_q = item_q(124113 ,$conn);
-
-
-
-
-
-
-
-
-
-//Legion Flasks
-$Wispered_Pact = item(127847, $conn);
-$Wispered_Pact_Q = item_q(127847, $conn);
-$Seventh_Demon = item(127848, $conn);
-$Seventh_Demon_Q = item_q(127848, $conn);
-$Ten_Thousand = item(127850, $conn);
-$Ten_Thousand_Q = item_q(127850, $conn);
-$Countless_Armies = item(127849, $conn);
-$Countless_Armies_Q = item_q(127849, $conn);
-
-
-
-//Legion Potions
-$Prolonged_Power = item(142117, $conn);
-$Old_War         = item(127844, $conn);
-
-$Prolonged_Power_q = item_q(142117, $conn);
-$Old_War_q         = item_q(127844, $conn);
-
-//Legion other
-$Defiled_Augment_Rune   = item(140587, $conn);
-$Defiled_Augment_Rune_q = item_q(140587, $conn);*/
 $everything_data = [
   "Obliterum"           => 124125,
   "PrimalObliterum"     => 152296,
@@ -153,7 +50,7 @@ $everything_data = [
   "Defiled_Augment_Rune"   => 140587
 
 ];
-$everything = item_array($everything_data, $conn);
+$everything = item_array($everything_data);
 //Argus Stuff
 $Obliterum           = $everything["Obliterum"]["min"];
 $PrimalObliterum     = $everything["PrimalObliterum"]["min"];
@@ -297,7 +194,7 @@ $AstralHealingPotion_Profit_r3      = ($AstralHealingPotion - number_format(($As
 
 
 
-$last_updated_unix_row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(realm) FROM status"));
+$last_updated_unix_row = mysqli_fetch_assoc(mysqli_query($GLOBALS['conn'], "SELECT MAX(realm) FROM status"));
 $last_updated_unix = $last_updated_unix_row["MAX(realm)"];
 $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 

@@ -1,7 +1,7 @@
 <?php
 include 'includes.php';
 
-bloodPrices($conn);
+bloodPrices();
 
 header("Location: index.php");
 exit();

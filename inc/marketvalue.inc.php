@@ -1,15 +1,15 @@
 <?php
 
-function marketValueArray($item, $conn) {
+function marketValueArray($item) {
     $sql =  'SELECT owner, buyout, quantity, (buyout / quantity) AS unit_price
             FROM auctions
             WHERE item='.$item.'
             ORDER BY unit_price ASC';
 
-    $result2 = mysqli_query($conn, $sql);
+    $result2 = mysqli_query($GLOBALS['conn'], $sql);
 
     $quantitySql = 'SELECT sum(quantity) as quantity FROM auctions_test where item='.$item;
-    $quantity = mysqli_fetch_assoc(mysqli_query($conn, $quantitySql))['quantity'];
+    $quantity = mysqli_fetch_assoc(mysqli_query($GLOBALS['conn'], $quantitySql))['quantity'];
 
     if(mysqli_num_rows($result2) == 0){
         return 0;
@@ -79,9 +79,9 @@ function marketValueArray($item, $conn) {
 
 
 
-function marketValue($item, $conn) {
+function marketValue($item) {
    $sql = 'SELECT * FROM marketvalue WHERE item='.$item;
-   $result = mysqli_query($conn, $sql);
+   $result = mysqli_query($GLOBALS['conn'], $sql);
 
    if(mysqli_num_rows($result) > 0 || mysqli_fetch_assoc($result)['marketvalue'] != 0){
       return mysqli_fetch_assoc($result)['marketvalue'];
@@ -92,10 +92,10 @@ function marketValue($item, $conn) {
                WHERE item='.$item.'
                ORDER BY unit_price ASC';
 
-      $result2 = mysqli_query($conn, $sql);
+      $result2 = mysqli_query($GLOBALS['conn'], $sql);
 
       $quantitySql = 'SELECT sum(quantity) as quantity FROM auctions where item='.$item;
-      $quantity = mysqli_fetch_assoc(mysqli_query($conn, $quantitySql))['quantity'];
+      $quantity = mysqli_fetch_assoc(mysqli_query($GLOBALS['conn'], $quantitySql))['quantity'];
 
 
       if(mysqli_num_rows($result2) == 0){
@@ -103,7 +103,7 @@ function marketValue($item, $conn) {
          exit();
       } elseif (mysqli_num_rows($result2) == 1){
          $marketValue = number_format(mysqli_fetch_assoc($result2)['unit_price']/10000, 2,".","");
-         mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
+         mysqli_query($GLOBALS['conn'], "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
          return $marketValue;
          exit();
       }
@@ -140,7 +140,7 @@ function marketValue($item, $conn) {
 
       if (count($marketValueArray) == 1){
          $marketValue = number_format($marketValueArray[0], 2,".","");
-         mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
+         mysqli_query($GLOBALS['conn'], "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
          return $marketValue;
          exit();
       }
@@ -162,44 +162,10 @@ function marketValue($item, $conn) {
       //Gets the market value of the item
       $marketValue = number_format(array_sum($marketValueArray) / count($marketValueArray), 2,".","");
 
-      mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
+      mysqli_query($GLOBALS['conn'], "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
       return $marketValue;
    }
 }
-
-/*function marketValueAll($conn){
-    $sql = "SELECT DISTINCT item FROM auctions";
-    $result = mysqli_query($conn, $sql);
-
-
-    $mvSql = "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES ";
-
-    $counter = 0;
-    $i = 0;
-    while($row = mysqli_fetch_assoc($result)){
-        $mvSql = $mvSql . marketValue($row['item'], $conn, 'sqlResponse');
-
-        ++$i;
-        ++$counter;
-        if($i == 100) {
-            $mvSql = substr($mvSql, 0, -1);
-            $mvSql = $mvSql .";";
-            mysqli_query($conn, $mvSql);
-            echo $counter." completed.". PHP_EOL;
-            $mvSql = "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES ";
-            $i = 0;
-        }
-        
-    }
-
-    if($i > 0){
-        $mvSql = substr($mvSql, 0, -1);
-        $mvSql = $mvSql .";";
-        mysqli_query($conn, $mvSql);
-        echo $counter." completed.". PHP_EOL;
-    }
-
-}*/
 
 
 if (!function_exists('stats_standard_deviation')) {

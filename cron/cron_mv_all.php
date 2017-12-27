@@ -6,15 +6,15 @@ $rustart = getrusage();
 require __DIR__ . "/cron_includes.php";
 
 
-//sleep(20);
+sleep(10);
 
 
 $sql = "SELECT DISTINCT item FROM auctions ORDER BY item ASC";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($GLOBALS['conn'], $sql);
 
 $i = 0;
 while($row = mysqli_fetch_assoc($result)){
-    marketValue($row['item'], $conn);
+    marketValue($row['item']);
     ++$i;
     echo "MV for item ".$row['item']." complete, ".$i." completed.". PHP_EOL;
 }
@@ -28,7 +28,7 @@ while($row = mysqli_fetch_assoc($result)){
 
 //Creating mv.json, which will be used in the in-game addon
 $selectSql = "SELECT item, marketvalue, quantity FROM marketvalue";
-$selectResult = mysqli_query($conn, $selectSql);
+$selectResult = mysqli_query($GLOBALS['conn'], $selectSql);
 echo "Query done...". PHP_EOL;
 $allItems = array();
 while($row = mysqli_fetch_assoc($selectResult)){
