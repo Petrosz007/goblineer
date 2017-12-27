@@ -6,7 +6,7 @@ $rustart = getrusage();
 require __DIR__ . "/cron_includes.php";
 
 
-//sleep(20);
+sleep(5);
 
 
 $sql = "SELECT DISTINCT item FROM auctions ORDER BY item ASC";
