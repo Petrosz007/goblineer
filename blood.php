@@ -22,7 +22,7 @@ include "includes.php";
 			   echo "
 			   <tr>
 			      <td align='right'>".$row['quantity']."</td>
-			      <td><a href='item.php?item=".$row['item']."' class='q3 links' rel='item=".$row['item']."'></td>
+			      <td><a href='item/".$row['item']."' class='q3 links' rel='item=".$row['item']."'></td>
                <td align='right'>".number_format($row['unit_price'], 2)."<span class='gold-g'>g</span></td>
 			      <td align='right'>".number_format($row['marketvalue'], 2)."<span class='gold-g'>g</span></td>
 			   </tr>";
