@@ -2,12 +2,12 @@
 // Script start
 $rustart = getrusage();
 
-ini_set('max_execution_time', 300);
+//ini_set('max_execution_time', 300);
 require __DIR__ . "/cron_includes.php";
 
 
-sleep(20);
-//marketValueAll($conn);
+//sleep(20);
+
 
 $sql = "SELECT DISTINCT item FROM auctions ORDER BY item ASC";
 $result = mysqli_query($conn, $sql);
@@ -53,9 +53,6 @@ echo "File created!". PHP_EOL;
 
 
 
-
-
-
 //Creating mv_names.json, the same as above, but has items names and min buyout as well
 $selectSql =   "SELECT t1.item, t1.name, t1.marketvalue, t1.quantity, t2.MIN
                 FROM
@@ -76,9 +73,6 @@ $fp = fopen(__DIR__ . '/../json/mv_names.json', 'w');
 fwrite($fp, json_encode($allItems));
 fclose($fp);
 echo "File created!". PHP_EOL;
-
-
-
 
 
 

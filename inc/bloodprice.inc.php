@@ -1,7 +1,4 @@
 <?php
-include "dbh.php";
-
-
 
 function bloodPrice($conn){
    $sql = "SELECT item, marketvalue, quantity, (marketvalue * quantity) AS unit_price
