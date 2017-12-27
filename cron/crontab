@@ -1,4 +1,3 @@
-
 # Edit this file to introduce tasks to be run by cron.
 #
 # Each task to run has to be defined through a single line
@@ -21,5 +20,8 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-* * * * * /usr/lib/php /var/www/html/cron/cron_update.php >/dev/null 2>&1
-0 * * * * /usr/local/mysql/bin/mysqldump -uuser -ppassword > /var/mysql-backup/data_$( date +"%Y_%m_%d" ).sql
+* * * * * /usr/bin/php /var/www/html/cron/cron_update.php &> /dev/null
+* * * * * /usr/bin/php /var/www/html/cron/cron_getBloodPrices.php &> /dev/null
+* * * * * /usr/bin/php /var/www/html/cron/cron_items.php &> /dev/null
+*/20 * * * * /usr/bin/php /var/www/html/cron/convert.php &> /dev/null
+0 * * * * mysqldump -uuser -ppassword wowah > /var/mysql-backup/data_$( date +"%Y_%m_%d" ).sql
