@@ -14,9 +14,7 @@ function updateStatus() {
   const notification = document.querySelector('#offline-notification');
   if (!navigator.onLine) {
     notification.style.display = 'block';
-    console.log('offline');
   } else {
     notification.style.display = 'none';
-    console.log('online');
   }
 }
