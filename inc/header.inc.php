@@ -28,12 +28,8 @@
       <script async type="text/javascript" src="//wow.zamimg.com/widgets/power.js"></script>
       <script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
 
-      <script defer src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  
-      <script defer src="https://code.highcharts.com/stock/highstock.js"></script>
-      <script defer src="http://code.highcharts.com/modules/boost.js"></script>
+      
 
       <script async>
          //Google Analytics
@@ -68,16 +64,15 @@
               <li><a href="/seller">Look up a Seller</a></li>
               <li><a href="/addon">Addon</a></li>
             </ul>
-            <form method="GET" action="item.php" class="navbar-form navbar-left" id="search-from">
-               <div class="input-group">
+            <div class="navbar-form navbar-left" id="search-from">
+               <div class="input-group" id="nav-input-group">
                     <input type="text" list="items" placeholder="Type item name or id here..." name="item" id="item" class="search form-control" autocomplete="off">
-                    <datalist id="items" class="suggestions">
-                    </datalist>
+                    <div id="search-dropdown" class="list-group suggestions"></div>
                   <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default">Search</button>
+                    <button id="searchSubmit" class="btn btn-default">Search</button>
                   </span>
               </div>
-            </form>
+            </div>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
