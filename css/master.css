@@ -37,6 +37,22 @@ span.gold-g {
 .seller-search {
     width: 60%;
 }
+
+#search-dropdown {
+    min-width: 100%; /* Set width of the dropdown */
+    margin-top: 32px;
+    background: #d3d3d3;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    list-style: none;
+    overflow: hidden;
+}
+#search-dropdown li{
+    display: block;
+}
+
 #offline-notification {
     position: fixed;
     bottom: 0;
