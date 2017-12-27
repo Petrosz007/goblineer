@@ -10,6 +10,9 @@ $(document).ready(function () {
     dataMv0 = dataMv0.replace('[','');
     dataMv0 = dataMv0.replace(']','');
     dataMv0 = dataMv0.split(',');
+    for(var i = 0; i < dataMv0.length; i++){
+        dataMv0[i] = parseFloat(dataMv0[i]).toFixed(2);
+    }
     var dataMv = dataMv0.map(Number);
 
     var dataQuantity0 = document.getElementById('JSON-quantity').innerHTML;
