@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 include "includes.php";
 
@@ -220,57 +222,30 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
   
   </div>
 
-  <!--
-    <p>The Blizzard API updates around every 30-40 minutes.</p>
-
-    <p>Last Updated: <span id='updated'></span></p>
-
-    <?php /*echo "<span id='lastUpdate' style='display: none;'>".$last_updated_unix."</span>";*/ ?>
-    <script>
-      var lastUpdate = document.getElementById('lastUpdate').innerHTML;
-
-      var x = setInterval(function(){
-        var now = new Date().getTime();
-
-        var distance = now - lastUpdate;
-
-        var days = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60 * 60 *24));
-        var hours = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-
-
-        if(days > 1){
-            document.getElementById("updated").innerHTML = "<strong>"+ days + " days " + hours + " hours ago.</strong>";
-        } else if(hours > 1){
-            document.getElementById("updated").innerHTML = "<strong>"+ hours + "h " + minutes + "m ago.</strong>";
-        } else if(minutes > 1) {
-            document.getElementById("updated").innerHTML = "<strong>"+ minutes + "m " + seconds + "s ago.</strong>";
-        } else {
-            document.getElementById("updated").innerHTML = "<strong>"+ seconds + "s.</strong>";
-        }
-
-
-      }, 1000);
-    </script>
-
-
-
-
-  <h2>
-    <a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>
-    :
-    <?php /*echo $bloodPrice;*/?><span class='gold-g'>g </span>
-    <a href='blood.php' class="btn btn-default links">See Blood of Sargeras Price in-depth</a>
-  </h2>
-    
-   
-	-->
 	<hr>
 	<div class="col-xs-12 text-center">
 		<div class="list-group col-md-8 col-xs-12">
+
 			<p>Goblineer is a website where you can find out plenty of information about the World of Warcraft auction house, like Market Value, Historical price, and crafting profits!</p>
+		
+	  		<hr>
+
+			<p class="text-left">
+				<?php echo "<span id='lastUpdate' style='display: none;'>".$last_updated_unix."</span>"; ?>
+				The Blizzard API updates around every 30-40 minutes.
+				Last Updated: <span id='updated'></span>
+			</p>
+
+			<hr>
+
+			<p class="text-left">
+				<a href='//wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>
+				:
+				<?php echo $bloodPrice; ?><span class='gold-g'>g </span>
+				<a href='/blood' class="btn btn-default links">See Blood of Sargeras Price in-depth</a>
+			</p>
+
+
 		</div>
 		<div class="list-group col-md-4 col-xs-12">
 			<h3 class="text-left">Categories</h3>
