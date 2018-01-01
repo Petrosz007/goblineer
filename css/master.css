@@ -1,3 +1,6 @@
+html {
+    min-height: 100%;
+}
 body, html {
     height: 100%;
 }
@@ -61,6 +64,12 @@ span.gold-g {
 }
 #inner-message {
     margin: 0 auto;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 /* iPhone 4 ----------- */
