@@ -5,12 +5,21 @@ body, html {
     height: 100%;
 }
 
+.container-fluid {
+    min-height: 90%;
+    position: relative;
+}
+
+#main-body {
+    padding-bottom: 1px; /* for the footer to not clip*/
+}
+
 a, u {
     text-decoration: none;
 }
 
 .table-mats {
-   width: 500px !important;
+   width: 600px !important;
    margin:auto;
 }
 
@@ -67,9 +76,12 @@ span.gold-g {
 }
 
 #footer {
+    height: 1px;
     position: absolute;
     bottom: 0;
     width: 100%;
+    text-align: center;
+    font-size: 11px;
 }
 
 /* iPhone 4 ----------- */

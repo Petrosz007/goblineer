@@ -23,7 +23,8 @@
       <meta name="keywords" content="wow,ah,goblineer,money,gold">
       <meta name="author" content="Peter Andi">
 
-      <link rel="stylesheet" href="./css/master.css">
+      <?/* REMOVE THE QUERY IN PRODUCTION!!!!!!!!!!!!!*/?>
+      <link rel="stylesheet" href="./css/master.css?v=<?=time();?>">
 
       <script async type="text/javascript" src="//wow.zamimg.com/widgets/power.js"></script>
       <script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
@@ -78,7 +79,8 @@
         </div><!-- /.container-fluid -->
       </nav>
       <div class="container-fluid" id="bootstrap-overrides">
-         <div class="col-md-3 col-sm-1 col-xs-0">
-         </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-1 col-xs-0">
+          </div>
 
-         <div class="col-md-6 col-sm-8 col-xs-12">
+          <div class="col-md-6 col-sm-8 col-xs-12" id="main-body">
