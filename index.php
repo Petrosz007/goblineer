@@ -67,21 +67,21 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 			</div>
 			  
 			<div class="list-group">
-				<a href="#" class="list-group-item">Herbalism</a>
-				<a href="#" class="list-group-item">Mining</a>
-				<a href="#" class="list-group-item">Skinning</a>
+				<a href="/categories/herbalism" class="list-group-item">Herbalism</a>
+				<a href="" class="list-group-item">Mining</a>
+				<a href="" class="list-group-item">Skinning</a>
 			</div>
 
 			<div class="list-group">
-				<a href="#" class="list-group-item">Blacksmithing</a>
-				<a href="#" class="list-group-item">Leatherworking</a>
-				<a href="#" class="list-group-item">Tailoring</a>
+				<a href="" class="list-group-item">Blacksmithing</a>
+				<a href="" class="list-group-item">Leatherworking</a>
+				<a href="" class="list-group-item">Tailoring</a>
 			</div>
 
 			<div class="list-group">
-				<a href="#" class="list-group-item">Jewelcrafting</a>
-				<a href="#" class="list-group-item">Engineering</a>
-				<a href="#" class="list-group-item">Cooking</a>
+				<a href="" class="list-group-item">Jewelcrafting</a>
+				<a href="" class="list-group-item">Engineering</a>
+				<a href="" class="list-group-item">Cooking</a>
 			</div>
 			
 		</div>
