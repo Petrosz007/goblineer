@@ -68,9 +68,19 @@ function tableRow($item)
     ");
 }
 
+function cmp($a, $b) {
+    if ($a["marketvalue"] == $b["marketvalue"]) {
+        return 0;
+    }
+    return ($a["marketvalue"] > $b["marketvalue"]) ? -1 : 1;
+}
 
 function table($items, $caption)
 {
+    
+
+    uasort($items, 'cmp');
+
     echo('
     <div class="table-responsive">
     <table class="table table-striped table-hover table-mats align-center">
