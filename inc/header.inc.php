@@ -23,8 +23,8 @@
       <meta name="keywords" content="wow,ah,goblineer,money,gold">
       <meta name="author" content="Peter Andi">
 
-      <?/* REMOVE THE QUERY IN PRODUCTION!!!!!!!!!!!!!*/?>
-      <link rel="stylesheet" href="./css/master.css?v=<?=time();?>">
+      <?/* REMOVE THE QUERY IN PRODUCTION!!!!!!!!!!!!! */?>
+      <link rel="stylesheet" href="./css/master.css">
 
       <script async type="text/javascript" src="//wow.zamimg.com/widgets/power.js"></script>
       <script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
