@@ -386,6 +386,7 @@ $cInks = [
 <?php include_once($path . "/inc/header.inc.php"); ?>
 
 <h2 class="text-center"> Category: Inscription</h2>
+<hr>
 
 <?php 
 
