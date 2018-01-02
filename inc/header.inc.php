@@ -23,12 +23,14 @@
       <meta name="keywords" content="wow,ah,goblineer,money,gold">
       <meta name="author" content="Peter Andi">
 
+      <?/* REMOVE THE QUERY IN PRODUCTION!!!!!!!!!!!!! */?>
       <link rel="stylesheet" href="./css/master.css">
 
       <script async type="text/javascript" src="//wow.zamimg.com/widgets/power.js"></script>
       <script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
 
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!--DARK THEME <link href="https://bootswatch.com/3/cyborg/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
       
 
       <script async>
@@ -77,7 +79,8 @@
         </div><!-- /.container-fluid -->
       </nav>
       <div class="container-fluid" id="bootstrap-overrides">
-         <div class="col-md-3 col-sm-1 col-xs-0">
-         </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-1 col-xs-0">
+          </div>
 
-         <div class="col-md-6 col-sm-8 col-xs-12">
+          <div class="col-md-6 col-sm-8 col-xs-12" id="main-body">
