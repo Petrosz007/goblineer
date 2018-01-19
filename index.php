@@ -42,8 +42,9 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
 			<p class="text-left">
 				<?php echo "<span id='lastUpdate' style='display: none;'>".$last_updated_unix."</span>"; ?>
-				The Blizzard API updates around every 30-40 minutes.
-				Last Updated: <span id='updated'></span>
+				The Blizzard API updates around every 30-40 minutes.<br>
+				Last Updated: <span id='updated'></span><br>
+				Check the API status here: <a href="https://does.theapi.work/">https://does.theapi.work/</a>
 			</p>
 
 			<hr>
