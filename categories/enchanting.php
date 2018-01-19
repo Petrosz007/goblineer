@@ -15,24 +15,17 @@ $all_data = [
     "Abyss Crystal" => 34057,
     "Maelstrom Crystal" => 52722,
     "Fractured Temporal Crystal" => 115504,
-    "Nexus Crystal" => 20725,
 
     "Luminous Shard" => 111245,
     "Large Brilliant Shard" => 14344,
     "Leylight Shard" => 124441,
     "Dream Shard" => 34052,
-    "Large Radiant Shard" => 11178,
     "Heavenly Shard" => 52721,
     "Ethereal Shard" => 74247,
     "Large Prismatic Shard" => 22449,
-    "Large Glimmering Shard" => 11084,
-    "Large Glowing Shard" => 11139,
 
-    "Greater Nether Essence" => 11175,
     "Greater Eternal Essence" => 16203,
     "Greater Planar Essence" => 22446,
-    "Greater Astral Essence" => 11082,
-    "Greater Mystic Essence" => 11135,
     "Greater Magic Essence" => 10939,
     "Greater Cosmic Essence" => 34055,
     "Mysterious Essence" => 74250,
@@ -41,14 +34,12 @@ $all_data = [
     "Hypnotic Dust" => 52555,
     "Arkhana" => 124440,
     "Arcane Dust" => 22445,
-    "Vision Dust" => 11137,
     "Illusion Dust" => 16204,
     "Strange Dust" => 10940,
-    "Dream Dust" => 11176,
-    "Soul Dust" => 11083,
     "Infinite Dust" => 34054,
     "Draenic Dust" => 109693,
     "Spirit Dust" => 74249,
+    "Rich Illusion Dust" => 156930,
 
     "Enchant Cloak - Binding of Intellect" => 128550,
     "Enchant Cloak - Binding of Agility" => 128549,
@@ -106,8 +97,7 @@ $crystals = [
 	$all["Sha Crystal"],
 	$all["Abyss Crystal"],
 	$all["Maelstrom Crystal"],
-	$all["Fractured Temporal Crystal"],
-	$all["Nexus Crystal"]
+	$all["Fractured Temporal Crystal"]
 ];
 
 $shards = [
@@ -115,20 +105,14 @@ $shards = [
 	$all["Large Brilliant Shard"],
 	$all["Leylight Shard"],
 	$all["Dream Shard"],
-	$all["Large Radiant Shard"],
 	$all["Heavenly Shard"],
 	$all["Ethereal Shard"],
-	$all["Large Prismatic Shard"],
-	$all["Large Glimmering Shard"],
-	$all["Large Glowing Shard"]
+	$all["Large Prismatic Shard"]
 ];
 
 $essences = [
-	$all["Greater Nether Essence"],
 	$all["Greater Eternal Essence"],
 	$all["Greater Planar Essence"],
-	$all["Greater Astral Essence"],
-	$all["Greater Mystic Essence"],
 	$all["Greater Magic Essence"],
 	$all["Greater Cosmic Essence"],
 	$all["Mysterious Essence"],
@@ -139,14 +123,12 @@ $dusts = [
 	$all["Hypnotic Dust"],
 	$all["Arkhana"],
 	$all["Arcane Dust"],
-	$all["Vision Dust"],
 	$all["Illusion Dust"],
 	$all["Strange Dust"],
-	$all["Dream Dust"],
-	$all["Soul Dust"],
 	$all["Infinite Dust"],
 	$all["Draenic Dust"],
-	$all["Spirit Dust"]
+    $all["Spirit Dust"],
+    $all["Rich Illusion Dust"]
 ];
 
 $enchCloak = [
