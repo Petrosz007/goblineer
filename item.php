@@ -70,7 +70,7 @@ if(isset($item)){
                 if(!($row["owner"] == $old_row["owner"] && $row["buyout"] == $old_row["buyout"] && $row["quantity"] == $old_row["quantity"])){
 
                     echo "<tr>
-                    <td>".$row['owner']."</td>
+                    <td><a href='/seller?seller=".$row['owner']."' class='q3 links'>".$row['owner']."</a></td>
                     <td>".number_format($row['unit_price']/10000, 2) . "<span class='gold-g'>g</span></td>
                     <td>".number_format($row['buyout']/10000, 2) . "<span class='gold-g'>g</span></td>
                     <td>".$row['quantity']."</td>
