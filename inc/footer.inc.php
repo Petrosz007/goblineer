@@ -7,7 +7,7 @@
 
         <div class="row">
             <footer class="text-center col-xs-12" id="footer">
-                <p>Copyright Goblineer © <?php echo date("Y"); ?>. All Rights Reserved.
+                <p>Copyright Goblineer © 2017 - <?php echo date("Y"); ?>. All Rights Reserved.
                 World of Warcraft © is a registered trademark of Blizzard Entertainment, Inc.
                 Goblineer is not associated with or endorsed by Blizzard Entertainment, Inc.</p>
             </footer>
