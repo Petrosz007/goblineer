@@ -123,6 +123,9 @@ function writeData($conn, $responseObject){
    echo "Updating Market Values.". PHP_EOL;
    system('php /var/www/html/cron/cron_mv_all.php 2>&1', $output);
    echo $output. PHP_EOL;
+   system('pm2 restart bot', $output); //Restarts the discord bot to prevent caching issues. Replace 'bot' with the name of the apprunning in pm2
+   echo $output. PHP_EOL;
+
    exit();
 ;
 
