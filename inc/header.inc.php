@@ -62,9 +62,10 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li><a href="/custom">Custom Tables</a></li>
-              <li><a href="/seller">Look up a Seller</a></li>
               <li><a href="/addon">Addon</a></li>
+              <li><a href="/uc">Undercut Checker</a></li>
+              <li><a href="/seller">Look up a Seller</a></li>
+              <li><a href="/custom">Custom Tables</a></li>
             </ul>
             <div class="navbar-form navbar-left" id="search-from">
                <div class="input-group" id="nav-input-group">
