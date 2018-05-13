@@ -118,23 +118,27 @@ function marketValue($item, $conn) {
          }
       }
 
+      $marketArrayCount = count($marketArray);
       //After it is through 15% of the auctions, any increase of 20% or more in price from one auction to the next will trigger the algorithm to throw out that auction and any above it. It will consider at most the lowest 30% of the auctions.
-      if(count($marketArray) < 4){
-         for($i = ceil(count($marketArray)*0.15); $i <= count($marketArray); $i++){
-            if($i ==  count($marketArray)){
-               $marketValueArray = array_slice($marketArray, 0, $i);
-            } elseif($marketArray[$i-1]*1.30 >= $marketArray[$i]) {
-               $marketValueArray = array_slice($marketArray, 0, $i);
-            }
-         }
-      } else {
-         for($i = ceil(count($marketArray)*0.15); $i <= ceil(count($marketArray)*0.30); $i++){
-            if($i ==  ceil(count($marketArray)*0.30)){
-               $marketValueArray = array_slice($marketArray, 0, $i);
-            } elseif($marketArray[$i]*1.30 >= $marketArray[$i+1]) {
-               $marketValueArray = array_slice($marketArray, 0, $i);
-            }
-         }
+      if($marketArrayCount < 4){
+        for($i = ceil($marketArrayCount*0.15); $i <= $marketArrayCount; $i++){
+           if($i ==  $marketArrayCount){
+              $marketValueArray = array_slice($marketArray, 0, $i);
+           } elseif($marketArray[$i-1]*1.30 >= $marketArray[$i]) {
+              $marketValueArray = array_slice($marketArray, 0, $i);
+           }
+        }
+     } else {
+         // If the differance between the 15% and 30% value is less than 30% it will not count step by step, it will get the average of the cheapest 30%
+         if($marketArray[ceil($marketArrayCount*0.15)] / $marketArray[ceil($marketArrayCount*0.30)] >= 0.7) {
+              $marketValueArray = array_slice($marketArray, 0, ceil($marketArrayCount*0.30));
+          } elseif($marketArray[ceil($marketArrayCount*0.15)] / $marketArray[ceil($marketArrayCount*0.25)] >= 0.7) {
+              $marketValueArray = stepBystepArrayCheck(ceil($marketArrayCount*0.25), ceil($marketArrayCount*0.30), $marketArray);
+         } elseif($marketArray[ceil($marketArrayCount*0.15)] / $marketArray[ceil($marketArrayCount*0.20)] >= 0.7) {
+              $marketValueArray = stepBystepArrayCheck(ceil($marketArrayCount*0.20), ceil($marketArrayCount*0.30), $marketArray);
+         } else {
+              $marketValueArray = stepBystepArrayCheck(ceil($marketArrayCount*0.15), ceil($marketArrayCount*0.30), $marketArray);
+          }
       }
 
 
@@ -165,6 +169,20 @@ function marketValue($item, $conn) {
       mysqli_query($conn, "INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (".$item.",".$marketValue.", ".$quantity.")");
       return $marketValue;
    }
+}
+
+function stepBystepArrayCheck($startingPoint, $maxPoint, $marketArray) {
+    $marketValueArray = array();
+
+    for($i = $startingPoint, $max = $maxPoint; $i <= $max; $i++){
+        if($i == $max){
+            $marketValueArray = array_slice($marketArray, 0, $i);
+        } elseif($marketArray[$i]*1.30 >= $marketArray[$i+1]) {
+            $marketValueArray = array_slice($marketArray, 0, $i);
+        }
+    }
+
+    return $marketValueArray;
 }
 
 /*function marketValueAll($conn){
