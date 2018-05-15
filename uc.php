@@ -50,7 +50,7 @@ if(isset($seller)){
       while ($row = mysqli_fetch_assoc($result)) {
          if(!($row['buyout'] == $old_row['buyout'] && $row['quantity'] == $old_row['quantity'] && $row['item'] == $old_row['item'])){
 
-            $minPrice = item($row['item'],$conn);
+            $minPrice = number_format(item($row['item'],$conn), 2);
             $tableRow = "<td>".$row['quantity']."</td>
                          <td><a href='item.php?item=".$row['item']."' class='q3 links' rel='item=".$row['item']."'></td>
                          <td>".number_format($row['unit_price']/10000, 2) . "<span class='gold-g'>g</span></td>
@@ -58,7 +58,9 @@ if(isset($seller)){
                          <td>".$counter."</td>
                          <td>".$counter*$row['quantity']."</td>";
 
-            if($minPrice < number_format($row['unit_price']/10000, 2)) {
+            if($minPrice == number_format($row['unit_price']/10000, 2)) {
+                  $tableRow = "<tr class='warning'>" . $tableRow . "<td>Your auction is at the same price as someone else's.</td></tr>";
+            } elseif($minPrice < number_format($row['unit_price']/10000, 2)) {
                   $tableRow = "<tr class='danger'>" . $tableRow . "<td>You have been undercut.</td></tr>";
             } else {
                   $tableRow = "<tr class='success'>". $tableRow . "<td>Your auction hasn't been undercut.</td></tr>";
