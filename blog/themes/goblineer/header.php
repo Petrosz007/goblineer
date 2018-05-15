@@ -5,7 +5,7 @@
       <?php wp_head();?>
       <link href="<?php echo get_bloginfo( 'template_directory' );?>/blog.css" rel="stylesheet">
    </head>
-   <body>
+   <?php echo '<body class="'.join(' ', get_body_class()).'">'.PHP_EOL; ?>
       <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/inc/header_parts/navbar.php'); ?>
       <div class="container-fluid" id="bootstrap-overrides">
 

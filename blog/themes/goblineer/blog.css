@@ -153,3 +153,13 @@ textarea#comment {
     margin-top: 0;
     margin-bottom: 10px;
 }
+
+
+/* This fixes the WordPress admin-bar 28px overlap issue with Bootstrap 3. */
+
+body.admin-bar .navbar {
+  position:fixed;
+  top: 28px;
+  z-index: 1000;
+  height: 55px;
+}

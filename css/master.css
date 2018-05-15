@@ -21,8 +21,8 @@ a, u {
     min-height: 90%;
     position: relative;
 
-    /* This way the Navbar dropdowns appear above the main body */
-    z-index: -1; 
+    /* to comansate for the top-fixed navbar */
+    margin-top: 55px;
 }
 
 #main-body {
