@@ -15,7 +15,12 @@ $last_updated_unix_row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(real
 $last_updated_unix = $last_updated_unix_row["MAX(realm)"];
 $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
-
+// AH data
+$auctionCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(auc) FROM auctions"))[0], 0, ',', ' ');
+$itemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(quantity) FROM auctions"))[0], 0, ',', ' ');
+$totalValue = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(buyout)/10000 FROM auctions"))[0], 2);
+$distinctItemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(DISTINCT item) FROM auctions"))[0], 0, ',', ' ');
+$sellerCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(DISTINCT owner) FROM auctions"))[0], 0, ',', ' ');
 ?>
 
 
@@ -40,6 +45,14 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 	
 		<hr>
 
+		<p>
+			There are currently <b><?php echo $distinctItemCount; ?></b> different items by <b><?php echo $sellerCount; ?></b> different sellers on the Auction House
+			with the total value of <b><?php echo $totalValue; ?><span class='gold-g'>g</span></b>.<br>
+			These <b><?php echo $auctionCount; ?></b> auctions have a total of <b><?php echo $itemCount; ?></b> items.
+		</p>
+
+		<hr>
+		
 		<p class="text-left">
 			<?php echo "<span id='lastUpdate' style='display: none;'>".$last_updated_unix."</span>"; ?>
 			Last Updated: <span id='updated'></span>
@@ -61,6 +74,14 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 			<a href='/blood' class="btn btn-default links">See Blood of Sargeras Price in-depth</a>
 		</h2>
 
+
+		<?php 
+			// echo $auctionCount ."<br>"; 
+			// echo $itemCount ."<br>"; 
+			// echo $totalValue ."<br>"; 
+			// echo $distinctItemCount ."<br>"; 
+			// echo $sellerCount ."<br>"; 
+		?>
 	</div>
 	
 
