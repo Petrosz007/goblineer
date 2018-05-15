@@ -34,7 +34,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 
 	<hr>
 	<div class="col-xs-12 text-center">
-		<div class="list-group col-md-8 col-xs-12">
+		<!-- <div class="list-group col-md-8 col-xs-12"> -->
 
 			<p>Goblineer is a website where you can find out plenty of information about the World of Warcraft auction house, like Market Value, Historical price, and crafting profits!</p>
 		
@@ -57,8 +57,8 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 			</p>
 
 
-		</div>
-		<div class="list-group col-md-4 col-xs-12">
+		<!-- </div> -->
+		<!-- <div class="list-group col-md-4 col-xs-12">
 			<h3 class="text-left">Categories</h3>
 			
 			<div class="list-group">
@@ -85,7 +85,7 @@ $last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 				<a href="/categories/cooking" class="list-group-item">Cooking</a>
 			</div>
 			
-		</div>
+		</div> -->
 		<!--<div class="list-group col-md-4 col-xs-1"></div>-->
 	</div>
 	

@@ -1,4 +1,8 @@
 /* General CSS */
+* {
+    font-family: 'Roboto', sans-serif !important;
+}
+
 html {
     min-height: 100%;
 }
@@ -16,6 +20,9 @@ a, u {
 .container-fluid {
     min-height: 90%;
     position: relative;
+
+    /* This way the Navbar dropdowns appear above the main body */
+    z-index: -1; 
 }
 
 #main-body {
@@ -27,24 +34,83 @@ a, u {
     background-color: white;
     border-color: none;
 
+    padding-top: 2px;
+    padding-bottom: 2px;
+
     -webkit-box-shadow: 0px 0px 11px -3px rgba(0,0,0,0.24);
     -moz-box-shadow: 0px 0px 11px -3px rgba(0,0,0,0.24);
     box-shadow: 0px 0px 11px -3px rgba(0,0,0,0.24);
 }
 
-ul.nav li a {
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid transparent;
+.dropdown-menu {
+    position: absolute;
+    z-index: 1001;
 }
 
-ul.nav li:after {
-     display: block;
-    content: '';
-    border-bottom: solid 3px #3a8df4;  
-    transform: scaleX(0);  
-    transition: transform 200ms ease-in-out;
+@media(min-width: 768px) {
+    
+    /* Main Navbar list item hover -> blue bottom border */
+    .navbar-hoverable a {
+        border-bottom: 2px solid transparent;
+    }
+    
+    .navbar-hoverable:after {
+        display: block;
+        content: '';
+        border-bottom: solid 2px #3a8df4;  
+        transform: scaleX(0);  
+        transition: transform 200ms ease-in-out;
+    }
+    
+    .navbar-hoverable:hover:after { transform: scaleX(1); }
+
+
+    /* Overriding Default Bootstrap dropdown coloring */
+    .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+        background-color: transparent !important;
+    }
+
+    .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+        background-color: transparent;
+    }
+
+    .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+        border-color: transparent !important;
+    }
+
+    /* Dropdown hover */
+    .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+        background-color: transparent !important;
+        border-left: solid 3px #3a8df4;
+    }
 }
-ul.nav li:hover:after { transform: scaleX(1); }
+
+@media(max-width: 768px) {
+
+    .navbar-hoverable a {
+        border-left: 2px solid transparent;
+    }
+    
+    .navbar-hoverable:after {
+        display: block;
+        content: '';
+        border-left: solid 2px #3a8df4;  
+        transform: scaleX(0);  
+        transition: transform 200ms ease-in-out;
+    }
+    
+    .navbar-hoverable:hover:after { transform: scaleX(1); }
+}
+
+@media(min-width: 1200px) {
+
+    .navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+    }
+
+}
 
 
 /* Tables */
