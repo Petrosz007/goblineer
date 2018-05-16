@@ -15,7 +15,32 @@
 
 <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
 <title>Goblineer</title>
-<meta name="description" content="In-depth data analizer tool for the World of Warcraft Auction House">
+
+<!-- <meta name="description" content="In-depth data analizer tool for the World of Warcraft Auction House"> -->
+<!-- When sharing to Facebook / Discord, if the page is a blogpost it will show its thumbnail and excerpt -->
+<?php
+// Include WordPress
+  define('WP_USE_THEMES', false);
+  require($_SERVER['DOCUMENT_ROOT'] . '/blog/wp-blog-header.php');
+?>
+
+<?php if ( have_posts() ) : $displayedOnePost = false; while ( have_posts() ) : the_post(); ?>
+
+    <?php if(!$displayedOnePost)  : ?>
+        <meta name="description" content="<?php if (is_single()) {
+                //single_post_title('', true); 
+                echo wp_strip_all_tags(get_the_excerpt(), true);
+            } else {
+                echo "In-depth data analizer tool for the World of Warcraft Auction House";
+            }
+            ?>" />
+    <?php $displayedOnePost = true; endif; ?>
+
+<?php endwhile; endif; ?>
+
+
+
+
 <meta name="keywords" content="wow,ah,goblineer,money,gold">
 <meta name="author" content="Peter Andi">
 
