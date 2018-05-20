@@ -57,6 +57,8 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!--DARK THEME <link href="https://bootswatch.com/3/cyborg/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
 
+<!-- Lightbox (Picture Gallery) -->
+<link href="./css/lightbox.min.css" rel="stylesheet">
 
 <script async>
     //Google Analytics

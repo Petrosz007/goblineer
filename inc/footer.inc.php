@@ -33,6 +33,7 @@
       <script async type="text/javascript" src="/js/typeahead.js"></script>
       <script defer type="text/javascript" src="/js/chart.js"></script>
       <script defer type="text/javascript" src="/js/offline.js"></script>
+      <script defer type="text/javascript" src="/js/lightbox-plus-jquery.min.js"></script>
    </body>
 </html>
 
