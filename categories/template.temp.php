@@ -17,7 +17,7 @@ include_once($path . "/includes.php");
 
 <?php 
 
-table($, "");
+//table($, "");
 
 ?>
 

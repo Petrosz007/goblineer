@@ -3,27 +3,41 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 include_once($path . "/includes.php");
 
 function item($id, $conn){
-   $sql_herb = "SELECT MIN(buyout / quantity)/10000 as MIN FROM auctions where item=$id";
-   $result_herb = mysqli_query($conn, $sql_herb);
-   if (mysqli_num_rows($result_herb) > 0) {
-       while($row = mysqli_fetch_assoc($result_herb)) {
-   	      $herb=$row["MIN"];
-       }
-   }
-   return $herb;
+    $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/10000 as MIN FROM auctions where item=?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result_herb = $stmt->get_result();
+
+    if (mysqli_num_rows($result_herb) > 0) {
+
+        while($row = mysqli_fetch_assoc($result_herb)) {
+            $herb = $row["MIN"];
+        }
+    }
+
+    $stmt->close();
+    return $herb;
 }
 
 function item_q($id, $conn){
-   $sql_herb = "SELECT sum(quantity) as SUM FROM auctions where item=$id";
-   $result_herb = mysqli_query($conn, $sql_herb);
-   if (mysqli_num_rows($result_herb) > 0) {
-       while($row = mysqli_fetch_assoc($result_herb)) {
-   	      $herb=$row["SUM"];
-       }
-   } elseif (mysqli_num_rows($result_herb) == 0) {
-      return 0;
-   }
-   return $herb;
+
+    $stmt = $conn->prepare("SELECT sum(quantity) as SUM FROM auctions where item=?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result_herb = $stmt->get_result();
+
+    if (mysqli_num_rows($result_herb) > 0) {
+
+        while($row = mysqli_fetch_assoc($result_herb)) {
+            $herb = $row["SUM"];
+        }
+
+    } elseif (mysqli_num_rows($result_herb) == 0) {
+        return 0;
+    }
+
+    $stmt->close();
+    return $herb;
 }
 
 
@@ -36,8 +50,11 @@ function item_array($ids, $conn)
     $items = [];
     foreach($ids as $name => $id)
     {
-        $sql_item = "SELECT MIN(buyout / quantity)/10000 as MIN, sum(quantity) as quantity FROM auctions where item=$id";
-        $result_item = mysqli_query($conn, $sql_item);
+        $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/10000 as MIN, sum(quantity) as quantity FROM auctions where item=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result_item = $stmt->get_result();
+
         if (mysqli_num_rows($result_item) > 0) {
             while($row = mysqli_fetch_assoc($result_item)) {
                 $items[$name]["id"] = $id;
@@ -51,6 +68,8 @@ function item_array($ids, $conn)
             $items[$name]["quantity"] =  null;
             $items[$name]["marketvalue"] = null;
         }
+
+        $stmt->close();
     }
 
     return $items;

@@ -39,25 +39,27 @@ if(isset($seller)){
          </thead>
          <tbody>
       ";
-      $sql =  "SELECT item, owner, buyout, quantity, (buyout / quantity) AS unit_price
-               FROM auctions
-               WHERE owner='".$seller."'
-               ORDER BY unit_price ASC";
+      $stmt = $conn->prepare("SELECT item, owner, buyout, quantity, (buyout / quantity) AS unit_price
+                              FROM auctions
+                              WHERE owner=?
+                              ORDER BY unit_price DESC");
+      $stmt->bind_param("s", $seller);
+      $stmt->execute();
+      $stmt->store_result();
+      $stmt->bind_result($item, $owner, $buyout, $quantity, $unit_price);
 
-      $result = mysqli_query($conn, $sql);
-
-      $old_row = array('owner' => '', 'buyout' => '', 'quantity' => '');
+      $old_row = array('buyout' => '', 'quantity' => '', 'item' => '');
       $counter = 1;
-      while ($row = mysqli_fetch_assoc($result)) {
-         if(!($row['buyout'] == $old_row['buyout'] && $row['quantity'] == $old_row['quantity'] && $row['item'] == $old_row['item'])){
+      while ($stmt->fetch()) {
+         if(!($buyout == $old_row['buyout'] && $quantity == $old_row['quantity'] && $item == $old_row['item'])){
 
             echo "<tr>
-            <td>".$row['quantity']."</td>
-            <td><a href='item.php?item=".$row['item']."' class='q3 links' rel='item=".$row['item']."'></td>
-            <td>".number_format($row['unit_price']/10000, 2) . "<span class='gold-g'>g</span></td>
-            <td>".number_format($row['buyout']/10000, 2) . "<span class='gold-g'>g</span></td>
+            <td>".$quantity."</td>
+            <td><a href='item.php?item=".$item."' class='q3 links' rel='item=".$item."'></td>
+            <td>".number_format($unit_price/10000, 2) . "<span class='gold-g'>g</span></td>
+            <td>".number_format($buyout/10000, 2) . "<span class='gold-g'>g</span></td>
             <td>".$counter."</td>
-            <td>".$counter*$row['quantity']."</td>
+            <td>".$counter*$quantity."</td>
             </tr>";
 
             $counter = 1;
@@ -66,8 +68,11 @@ if(isset($seller)){
             $counter++;
          }
 
-         $old_row = $row;
+         $old_row = array('buyout' => $buyout, 'quantity' => $quantity, 'item' => $item);
       }
+
+      $stmt->close();
+
       echo"
          </tbody>
          </table>
