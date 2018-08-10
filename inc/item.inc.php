@@ -6,17 +6,12 @@ function item($id, $conn){
     $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/10000 as MIN FROM auctions where item=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    $result_herb = $stmt->get_result();
-
-    if (mysqli_num_rows($result_herb) > 0) {
-
-        while($row = mysqli_fetch_assoc($result_herb)) {
-            $herb = $row["MIN"];
-        }
-    }
-
+    $stmt->store_result();
+    $stmt->bind_result($result);
+    $stmt->fetch();
     $stmt->close();
-    return $herb;
+
+    return $result;
 }
 
 function item_q($id, $conn){
@@ -24,20 +19,15 @@ function item_q($id, $conn){
     $stmt = $conn->prepare("SELECT sum(quantity) as SUM FROM auctions where item=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    $result_herb = $stmt->get_result();
+    $stmt->store_result();
+    $stmt->bind_result($result);
 
-    if (mysqli_num_rows($result_herb) > 0) {
-
-        while($row = mysqli_fetch_assoc($result_herb)) {
-            $herb = $row["SUM"];
-        }
-
-    } elseif (mysqli_num_rows($result_herb) == 0) {
+    if($stmt->fetch() == null) {
         return 0;
     }
 
     $stmt->close();
-    return $herb;
+    return $result;
 }
 
 
@@ -53,15 +43,15 @@ function item_array($ids, $conn)
         $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/10000 as MIN, sum(quantity) as quantity FROM auctions where item=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        $result_item = $stmt->get_result();
+        $stmt->store_result();
+        $stmt->bind_result($min, $quantity);
 
-        if (mysqli_num_rows($result_item) > 0) {
-            while($row = mysqli_fetch_assoc($result_item)) {
-                $items[$name]["id"] = $id;
-                $items[$name]["min"] =  $row["MIN"];
-                $items[$name]["quantity"] =  $row["quantity"];
-                $items[$name]["marketvalue"] = marketValue($id, $conn);
-            }
+
+        if ($stmt->fetch()) {
+            $items[$name]["id"] = $id;
+            $items[$name]["min"] =  $min;
+            $items[$name]["quantity"] =  $quantity;
+            $items[$name]["marketvalue"] = marketValue($id, $conn);
         } else {
             $items[$name]["id"] = null;
             $items[$name]["min"] =  null;
