@@ -6,7 +6,7 @@ $rustart = getrusage();
 require __DIR__ . "/cron_includes.php";
 
 
-sleep(20);
+//sleep(20);
 
 
 $sql = "SELECT DISTINCT item FROM auctions ORDER BY item ASC";
@@ -70,7 +70,9 @@ while($row = mysqli_fetch_assoc($selectResult)){
 echo "Created Array...". PHP_EOL;
 //write to json file
 $fp = fopen(__DIR__ . '/../json/mv_names.json', 'w');
-fwrite($fp, json_encode($allItems));
+
+//array_unique removes the duplicates, and keeps one
+fwrite($fp, json_encode(array_values(array_unique($allItems, SORT_REGULAR))));
 fclose($fp);
 echo "File created!". PHP_EOL;
 

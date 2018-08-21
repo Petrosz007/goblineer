@@ -11,7 +11,7 @@ while($row = mysqli_fetch_assoc($selectResult)){
 echo "Created Array...". PHP_EOL;
 //write to json file
 $fp = fopen(__DIR__ . '/items.json', 'w');
-fwrite($fp, json_encode($allItems));
+fwrite($fp, json_encode(array_values(array_unique($allItems, SORT_REGULAR))));
 fclose($fp);
 echo "File created!". PHP_EOL;
 exit();
