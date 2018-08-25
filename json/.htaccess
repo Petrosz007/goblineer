@@ -1,0 +1,2 @@
+#Makes the search page usable, without this it throws a CORS error
+Header set Access-Control-Allow-Origin "https://search.goblineer.tk"
