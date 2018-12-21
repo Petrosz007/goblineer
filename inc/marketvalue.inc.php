@@ -135,13 +135,13 @@ function marketValue($item, $conn) {
         $marketArrayCount = count($marketArray);
         //After it is through 15% of the auctions, any increase of 20% or more in price from one auction to the next will trigger the algorithm to throw out that auction and any above it. It will consider at most the lowest 30% of the auctions.
         if($marketArrayCount < 4){
-        for($i = ceil($marketArrayCount*0.15); $i <= $marketArrayCount; $i++){
-            if($i ==  $marketArrayCount){
-                $marketValueArray = array_slice($marketArray, 0, $i);
-            } elseif($marketArray[$i-1]*1.30 >= $marketArray[$i]) {
-                $marketValueArray = array_slice($marketArray, 0, $i);
+            for($i = ceil($marketArrayCount*0.15); $i <= $marketArrayCount; $i++){
+                if($i ==  $marketArrayCount){
+                    $marketValueArray = array_slice($marketArray, 0, $i);
+                } elseif($marketArray[$i-1]*1.30 >= $marketArray[$i]) {
+                    $marketValueArray = array_slice($marketArray, 0, $i);
+                }
             }
-        }
         } else {
             // If the differance between the 15% and 30% value is less than 30% it will not count step by step, it will get the average of the cheapest 30%
             if($marketArray[ceil($marketArrayCount*0.15)] / $marketArray[ceil($marketArrayCount*0.30)] >= 0.7) {
