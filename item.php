@@ -55,6 +55,7 @@ if(isset($item)){
 <div id="JSON-date" style="display:none;"><?php echo json_encode($historicalArrayDate); ?></div>
 <!--<canvas id="myChart" width="400" height="200"></canvas>-->
 <div id="chart" style="width:100%; height:400px;"></div>
+<div id="chart_candlestick" style="width:100%; height:400px;"></div>
 
 <div class='table-responsive'>
     <table class="table table-striped table-hover align-center">
@@ -109,4 +110,7 @@ if(isset($item)){
     </table>
 </div>
 
+<script defer src="https://cdn.anychart.com/releases/8.3.0/js/anychart-bundle.min.js" type="text/javascript"></script>
+<script defer type="text/javascript" src="/js/chart.js"></script>
+<script defer type="text/javascript" src="/js/candlestick.js"></script>
 <?php include "inc/footer.inc.php"; ?>

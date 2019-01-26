@@ -85,6 +85,7 @@ $sellerCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(
 	</div>
 	
 
-    
+
+<script defer type="text/javascript" src="/js/last_updated.js"></script>
 
 <?php include "inc/footer.inc.php"; ?>

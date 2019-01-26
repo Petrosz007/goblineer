@@ -74,6 +74,6 @@ anychart.onDocumentLoad(function () {
     // Wowhead p loads after this executes, meaning this has no target => can't get the name of the item
     // var itemName = document.getElementById("item-name").getElementsByTagName("SPAN")[0].innerHTML;
     // series.name(itemName + " prices");
-    chart.container("chart");
+    chart.container("chart_candlestick");
     chart.draw();
 });
