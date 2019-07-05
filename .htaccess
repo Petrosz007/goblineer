@@ -54,6 +54,7 @@ RewriteRule ^/          index.php [NC,L]
 RewriteRule ^/?addon    addon.php [NC,L]
 RewriteRule ^/?custom   custom.php [NC,L]
 RewriteRule ^/?blood    blood.php [NC,L]
+RewriteRule ^/?bfa      bfa.php [NC,L]
 
 #RewriteRule ^/?categories/ categories/.php [NC,L]
 RewriteRule ^/?categories/alchemy           categories/alchemy.php [NC,L]
