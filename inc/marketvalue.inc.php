@@ -18,7 +18,7 @@ function marketValueArray($item, $conn) {
         return 0;
         exit();
     } elseif (mysqli_num_rows($result2) == 1){
-        $marketValue = number_format(mysqli_fetch_assoc($result2)['unit_price']/10000, 2,".","");
+        $marketValue = number_format(mysqli_fetch_assoc($result2)['unit_price']/100, 2,".","");
         return array('item' => $item, 'marketValue' => $marketValue,'quantity' => $quantitySum);
         exit();
     }
@@ -29,7 +29,7 @@ function marketValueArray($item, $conn) {
     //Puts each unit_price into the marketArray (if quantity = 100 it will put the unit_price in 100 times)
     while ($row2 = mysqli_fetch_assoc($result2)) {
         for($i = 0; $i < $row2['quantity']; $i++){
-        array_push($marketArray, number_format($row2['unit_price']/10000, 2,".",""));
+        array_push($marketArray, number_format($row2['unit_price']/100, 2,".",""));
         }
     }
 
@@ -112,7 +112,7 @@ function marketValue($item, $conn) {
             return 0;
             exit();
         } elseif (mysqli_num_rows($result2) == 1){
-            $marketValue = number_format(mysqli_fetch_assoc($result2)['unit_price']/10000, 2,".","");
+            $marketValue = number_format(mysqli_fetch_assoc($result2)['unit_price']/100, 2,".","");
 
             $stmt4 = $conn->prepare("INSERT INTO marketvalue (item, marketvalue, quantity) VALUES (?, ?, ?)");
             $stmt4->bind_param("sss", $item, $marketValue, $quantitySum);
@@ -128,7 +128,7 @@ function marketValue($item, $conn) {
         //Puts each unit_price into the marketArray (if quantity = 100 it will put the unit_price in 100 times)
         while ($row2 = mysqli_fetch_assoc($result2)) {
             for($i = 0; $i < $row2['quantity']; $i++){
-            array_push($marketArray, number_format($row2['unit_price']/10000, 2,".",""));
+            array_push($marketArray, number_format($row2['unit_price']/100, 2,".",""));
             }
         }
 

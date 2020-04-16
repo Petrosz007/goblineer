@@ -57,20 +57,20 @@ if (isset($seller)) {
                   $minPrice = number_format(item($item, $conn), 2);
                   $tableRow = "<td>" . $quantity . "</td>
                          <td><a href='item.php?item=" . $item . "' class='q3 links' rel='item=" . $item . "'></td>
-                         <td>" . number_format($unit_price / 10000, 2) . "<span class='gold-g'>g</span></td>
-                         <td>" . number_format($buyout / 10000, 2) . "<span class='gold-g'>g</span></td>
+                         <td>" . number_format($unit_price / 100, 2) . "<span class='gold-g'>g</span></td>
+                         <td>" . number_format($buyout / 100, 2) . "<span class='gold-g'>g</span></td>
                          <td>" . $counter . "</td>
                          <td>" . $counter * $quantity . "</td>";
 
                   //TODO: $owner should be the owner of the min-priced item!
-                  if ($minPrice == number_format($unit_price / 10000, 2)) {
+                  if ($minPrice == number_format($unit_price / 100, 2)) {
                         $tableRow = "<tr class='success'>" . $tableRow . "<td>Your auction hasn't been undercut.</td></tr>";
                         /*if($owner == $seller) {
                               $tableRow = "<tr class='success'>" . $tableRow . "<td>Your auction hasn't been undercut.</td></tr>";
                         } else {
                               $tableRow = "<tr class='warning'>" . $tableRow . "<td>Your auction is at the same price as someone else's.</td></tr>";
                         }*/
-                  } elseif ($minPrice < number_format($unit_price / 10000, 2)) {
+                  } elseif ($minPrice < number_format($unit_price / 100, 2)) {
                         $tableRow = "<tr class='danger'>" . $tableRow . "<td>You have been undercut.</td></tr>";
                         /*if($owner == $seller) {
                               $tableRow = "<tr class='info'>" . $tableRow . "<td>You have undercut yourself.</td></tr>";

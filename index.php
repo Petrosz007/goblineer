@@ -11,14 +11,13 @@ $GLOBALS['conn'] = $conn;
 $bloodPrice = bloodPrice($conn);
 
 //Getting the time of the last update
-$last_updated_unix_row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(realm) FROM status"));
-$last_updated_unix = $last_updated_unix_row["MAX(realm)"];
-$last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
+$last_updated_unix_row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(id), realm FROM status"));
+$last_updated = $last_updated_unix_row["realm"];
 
 // AH data
 $auctionCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(auc) FROM auctions"))[0], 0, ',', ' ');
 $itemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(quantity) FROM auctions"))[0], 0, ',', ' ');
-$totalValue = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(buyout)/10000 FROM auctions"))[0], 2);
+$totalValue = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(buyout)/100 FROM auctions"))[0], 2);
 $distinctItemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(DISTINCT item) FROM auctions"))[0], 0, ',', ' ');
 $sellerCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(DISTINCT owner) FROM auctions"))[0], 0, ',', ' ');
 ?>
@@ -54,7 +53,7 @@ $sellerCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(
 		<hr>
 		
 		<p class="text-left">
-			<?php echo "<span id='lastUpdate' style='display: none;'>".$last_updated_unix."</span>"; ?>
+			<?php echo "<span id='lastUpdate' style='display: none;'>".$last_updated."</span>"; ?>
 			Last Updated: <span id='updated'></span>
 
 			<a href="#update-collapse" data-toggle="collapse" >?</a><br>

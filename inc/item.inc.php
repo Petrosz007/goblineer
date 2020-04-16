@@ -3,7 +3,7 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 include_once($path . "/includes.php");
 
 function item($id, $conn){
-    $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/10000 as MIN FROM auctions where item=?");
+    $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/100 as MIN FROM auctions where item=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->store_result();
@@ -40,7 +40,7 @@ function item_array($ids, $conn)
     $items = [];
     foreach($ids as $name => $id)
     {
-        $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/10000 as MIN, sum(quantity) as quantity FROM auctions where item=?");
+        $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/100 as MIN, sum(quantity) as quantity FROM auctions where item=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->store_result();

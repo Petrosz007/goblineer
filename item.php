@@ -88,8 +88,8 @@ if(isset($item)){
 
                     echo "<tr>
                     <td><a href='/seller?seller=".$owner."' class='q3 links'>".$owner."</a></td>
-                    <td>".number_format($unit_price/10000, 2) . "<span class='gold-g'>g</span></td>
-                    <td>".number_format($buyout/10000, 2) . "<span class='gold-g'>g</span></td>
+                    <td>".number_format($unit_price/100, 2) . "<span class='gold-g'>g</span></td>
+                    <td>".number_format($buyout/100, 2) . "<span class='gold-g'>g</span></td>
                     <td>".$quantity."</td>
                     <td>".$counter."</td>
                     <td>".$counter * $quantity."</td>
