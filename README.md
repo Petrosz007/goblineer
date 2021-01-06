@@ -1,6 +1,8 @@
+This version of Goblineer is no longer updated, Goblineer's development is continuing on a new repository: https://github.com/Goblineer-AH
+
 # Goblineer
 
-https://goblineer.tk
+https://goblineer.net
 
 To make it work rename dbh_github.php to dbh.php and fill it in with your data.
 
