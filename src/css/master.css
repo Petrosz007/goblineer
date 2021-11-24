@@ -1,0 +1,243 @@
+/* General CSS */
+* {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+html {
+    min-height: 100%;
+}
+
+body, html {
+    height: 100%;
+}
+
+a, u {
+    text-decoration: none;
+}
+
+
+/* Main Body */
+.container-fluid {
+    min-height: 90%;
+    position: relative;
+
+    /* to comansate for the top-fixed navbar */
+    margin-top: 55px;
+}
+
+#main-body {
+    padding-bottom: 1px; /* for the footer to not clip*/
+}
+
+/* Main Navbar */
+#main-navbar {
+    background-color: white;
+    border-color: none;
+
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+    -webkit-box-shadow: 0px 0px 11px -3px rgba(0,0,0,0.24);
+    -moz-box-shadow: 0px 0px 11px -3px rgba(0,0,0,0.24);
+    box-shadow: 0px 0px 11px -3px rgba(0,0,0,0.24);
+}
+
+.dropdown-menu {
+    position: absolute;
+    z-index: 1001;
+}
+
+@media(min-width: 768px) {
+    
+    /* Main Navbar list item hover -> blue bottom border */
+    .navbar-hoverable a {
+        border-bottom: 2px solid transparent;
+    }
+    
+    .navbar-hoverable:after {
+        display: block;
+        content: '';
+        border-bottom: solid 2px #3a8df4;  
+        transform: scaleX(0);  
+        transition: transform 200ms ease-in-out;
+    }
+    
+    .navbar-hoverable:hover:after { transform: scaleX(1); }
+
+
+    /* Overriding Default Bootstrap dropdown coloring */
+    .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+        background-color: transparent !important;
+    }
+
+    .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+        background-color: transparent;
+    }
+
+    .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+        border-color: transparent !important;
+    }
+
+    /* Dropdown hover */
+    .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+        background-color: transparent !important;
+        border-left: solid 3px #3a8df4;
+    }
+}
+
+@media(max-width: 768px) {
+
+    .navbar-hoverable a {
+        border-left: 2px solid transparent;
+    }
+    
+    .navbar-hoverable:after {
+        display: block;
+        content: '';
+        border-left: solid 2px #3a8df4;  
+        transform: scaleX(0);  
+        transition: transform 200ms ease-in-out;
+    }
+    
+    .navbar-hoverable:hover:after { transform: scaleX(1); }
+}
+
+@media(min-width: 1200px) {
+
+    .navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+    }
+
+}
+
+
+/* Tables */
+.table-mats {
+   width: 600px !important;
+   margin:auto;
+}
+
+/* Gold spans */
+span.gold-g {
+   color: rgb(221, 153, 53);
+}
+
+/* Region Selection */
+.choose-region {
+   padding-top: 150px !important;
+   padding-bottom: 150px !important;
+
+}
+
+.choose-region :hover {
+   transition: background-color 2s ease;
+   background-color: #f7f7f7;
+}
+
+.select-region-p {
+   padding-top: 10px;
+}
+
+.links {
+   z-index:9999 !important;
+}
+
+
+/* Seller search */
+.seller-search {
+    width: 60%;
+}
+
+/* Main Item Search */
+#search-dropdown {
+    min-width: 100%; /* Set width of the dropdown */
+    margin-top: 32px;
+    background: #d3d3d3;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    list-style: none;
+    overflow: hidden;
+}
+#search-dropdown li{
+    display: block;
+}
+
+/* Offline Notification */
+#offline-notification {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+#inner-message {
+    margin: 0 auto;
+}
+
+
+/* Footer */
+#footer {
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+   .table-mats {
+      font-size: 75%;
+      width: 100% !important;
+   }
+   .table-crafts {
+      font-size: 75%;
+      width: 100% !important;
+   }
+
+   div#bootsrap-overrides {
+      padding: 0 !important;
+   }
+
+   .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+      padding: 8px 2px 8px 2px;
+   }
+
+   .seller-search {
+        width: 100%;
+    }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+   .table-mats {
+      font-size: 75%;
+      width: 100% !important;
+   }
+   .table-crafts {
+      font-size: 75%;
+      width: 100% !important;
+   }
+
+   div#bootsrap-overrides {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+   }
+
+   .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+      padding: 8px 2px 8px 2px;
+   }
+
+    .seller-search {
+        width: 100%;
+    }
+}
