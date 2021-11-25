@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  db:
+    image: mariadb:10.7
+    ports: 
+      - 3306:3306
+    networks:
+      - goblineer-dev
+    environment: 
+      MYSQL_ROOT_PASSWORD: kebab
+      MYSQL_DATABASE: wowah
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: unless-stopped
+
+networks:
+  goblineer-dev:
+    external: true
