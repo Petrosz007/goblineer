@@ -10,6 +10,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
     add-apt-repository ppa:ondrej/php
     
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends php8.0 php8.0-mysql
+    && apt-get -y install --no-install-recommends php8.0 php8.0-mysql php8.0-curl
 
 

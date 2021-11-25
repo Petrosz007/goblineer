@@ -11,14 +11,14 @@ $sql2 = "SELECT * FROM items";
 $result2 = mysqli_query($conn, $sql2);
 $alreadydid = array();
 
-$last_sql = "SELECT MAX(last) AS last FROM item_status";
-$last_result = mysqli_query($conn, $last_sql);
-$last = mysqli_fetch_assoc($last_result)['last'];
-echo "Last: ".$last. PHP_EOL;
+// $last_sql = "SELECT MAX(last) AS last FROM item_status";
+// $last_result = mysqli_query($conn, $last_sql);
+// $last = mysqli_fetch_assoc($last_result)['last'];
+// echo "Last: ".$last. PHP_EOL;
 
-while($row = mysqli_fetch_assoc($result2)){
-    array_push($alreadydid, $row['item']);
-}
+// while($row = mysqli_fetch_assoc($result2)){
+//     array_push($alreadydid, $row['item']);
+// }
 
 
 $sql = 'INSERT INTO items (item, name) VALUES ';
