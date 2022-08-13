@@ -55,7 +55,7 @@ if (isset($seller)) {
       while ($stmt->fetch()) {
             if (!($buyout == $old_row['buyout'] && $quantity == $old_row['quantity'] && $item == $old_row['item'])) {
 
-                  $minPrice = number_format(item($item, $conn), 2);
+                  $minPrice = number_format(item($item), 2);
                   $tableRow = "<td>" . $quantity . "</td>
                          <td><a href='item.php?item=" . $item . "' class='q3 links' rel='item=" . $item . "'></td>
                          <td>" . number_format($unit_price / 100, 2) . "<span class='gold-g'>g</span></td>

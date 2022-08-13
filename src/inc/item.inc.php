@@ -3,10 +3,13 @@ include_once(__DIR__ . "/../includes.php");
 
 global $conn;
 
-function item($id, $conn){
+function item(int|string $id): float
+{
+    global $conn;
+
     $result = null;
 
-    $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/100 as MIN FROM auctions where item=?");
+    $stmt = $conn->prepare("SELECT MIN(buyout)/100 as MIN FROM auctions where item=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->store_result();
@@ -17,7 +20,10 @@ function item($id, $conn){
     return $result;
 }
 
-function item_q($id, $conn){
+function item_q($id)
+{
+    global $conn;
+
     $result = null;
 
     $stmt = $conn->prepare("SELECT sum(quantity) as SUM FROM auctions where item=?");
@@ -26,7 +32,7 @@ function item_q($id, $conn){
     $stmt->store_result();
     $stmt->bind_result($result);
 
-    if($stmt->fetch() == null) {
+    if ($stmt->fetch() == null) {
         return 0;
     }
 
@@ -42,12 +48,11 @@ function item_q($id, $conn){
 function item_array($ids, $conn)
 {
     $items = [];
-    foreach($ids as $name => $id)
-    {
+    foreach ($ids as $name => $id) {
         $min = null;
         $quantity = null;
 
-        $stmt = $conn->prepare("SELECT MIN(buyout / quantity) as MIN, sum(quantity) as quantity FROM auctions where item=?");
+        $stmt = $conn->prepare("SELECT MIN(buyout)/100 as MIN, sum(quantity) as quantity FROM auctions where item=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->store_result();
@@ -58,7 +63,7 @@ function item_array($ids, $conn)
             $items[$name]["id"] = $id;
             $items[$name]["min"] =  $min;
             $items[$name]["quantity"] =  $quantity;
-            $items[$name]["marketvalue"] = marketValue($id, $conn);
+            $items[$name]["marketvalue"] = marketValue($id);
         } else {
             $items[$name]["id"] = null;
             $items[$name]["min"] =  null;
@@ -77,14 +82,15 @@ function tableRow($item)
     echo("
     <tr>
       <td><a href='./item.php?item=".$item["id"]."' class='q3 links' rel='item=".$item["id"]."'></td>
-      <td align='right'>".number_format($item["min"] ?? 0,2)."<span class='gold-g'>g</span></td>
+      <td align='right'>".number_format($item["min"] ?? 0, 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".number_format($item["marketvalue"] ?? 0, 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".($item["quantity"] ?? 0)."</td>
     </tr>
     ");
 }
 
-function cmp($a, $b) {
+function cmp($a, $b)
+{
     if ($a["marketvalue"] == $b["marketvalue"]) {
         return 0;
     }
@@ -110,10 +116,9 @@ function table($items, $caption)
 
         <tbody>');
 
-        foreach($items as $item)
-        {
-            tableRow($item);
-        }
+    foreach ($items as $item) {
+        tableRow($item);
+    }
         
     echo('
         </tbody>
@@ -127,42 +132,43 @@ function table($items, $caption)
 
 
 
-function herbRow($id, $herb, $q) {
+function herbRow($id, $herb, $q)
+{
     global $conn;
 
-   echo ("
+    echo ("
    <tr>
       <td><a href='./item.php?item=".$id."' class='q3 links' rel='item=".$id."'></td>
-      <td align='right'>".number_format($herb,2)."<span class='gold-g'>g</span></td>
-      <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
+      <td align='right'>".number_format($herb, 2)."<span class='gold-g'>g</span></td>
+      <td align='right'>".number_format(marketValue($id), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>
    </tr>
    ");
 }
 
-function flaskRow($id, $flask, $q, $cost, $profit, $profit_r3){
+function flaskRow($id, $flask, $q, $cost, $profit, $profit_r3)
+{
     global $conn;
 
-   echo "
+    echo "
    <tr>
       <td><a href='./item.php".$id."' class='q3 links' rel='item=".$id."'></td>
-      <td align='right'>".number_format($flask,2)."<span class='gold-g'>g</span></td>
-      <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
+      <td align='right'>".number_format($flask, 2)."<span class='gold-g'>g</span></td>
+      <td align='right'>".number_format(marketValue($id), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>
       <td align='right'>";
-         if ($profit>0) {
-            echo "<b><font color=green> +" .number_format($profit,2)."<span class='gold-g'>g</span>";
-         } else {
-            echo "<b><font color=red>" .number_format($profit,2)."<span class='gold-g'>g</span>";
-         }
+    if ($profit>0) {
+        echo "<b><font color=green> +" .number_format($profit, 2)."<span class='gold-g'>g</span>";
+    } else {
+        echo "<b><font color=red>" .number_format($profit, 2)."<span class='gold-g'>g</span>";
+    }
       echo "</td>
             <td align='right'>";
-      if ($profit_r3>0)
-      {
-         echo "<b><font color=green> +" .number_format($profit_r3,2)."<span class='gold-g'>g</span>";
-      } else {
-         echo "<b><font color=red>" .number_format($profit_r3,2)."<span class='gold-g'>g</span>";
-      }
+    if ($profit_r3>0) {
+        echo "<b><font color=green> +" .number_format($profit_r3, 2)."<span class='gold-g'>g</span>";
+    } else {
+        echo "<b><font color=red>" .number_format($profit_r3, 2)."<span class='gold-g'>g</span>";
+    }
       echo "</td>";
-   echo "</tr>";
+    echo "</tr>";
 }

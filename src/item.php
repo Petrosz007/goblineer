@@ -45,9 +45,9 @@ if(isset($item)){
 
 <h2><a href='//wowhead.com/item=<?php echo $item;?>' class='q3 iconmedium1 links' rel='item=<?php echo $item;?>' class="text-center"></a></h2>
 <p>
-   <h4>Lowest Price: <?php echo number_format(item($item, $conn), 2);?><span class='gold-g'>g</span></h4>
-   <h4>Market Value: <?php echo number_format(marketValue($item, $conn), 2); ?><span class='gold-g'>g</span></h4>
-   <h4>Available: <?php echo item_q($item, $conn);?></h4>
+   <h4>Lowest Price: <?php echo number_format(item($item), 2);?><span class='gold-g'>g</span></h4>
+   <h4>Market Value: <?php echo number_format(marketValue($item), 2); ?><span class='gold-g'>g</span></h4>
+   <h4>Available: <?php echo item_q($item);?></h4>
 <p>
 
 <div id="JSON-mv" style="display:none;"><?php echo json_encode($historicalArrayMv); ?></div>
@@ -71,7 +71,7 @@ if(isset($item)){
         </thead>
         <tbody>
             <?php
-            $stmt = $conn->prepare("SELECT owner, buyout, quantity, (buyout / quantity) AS unit_price
+            $stmt = $conn->prepare("SELECT owner, buyout AS unit_price, quantity, (buyout * quantity) AS buyout
                                     FROM auctions
                                     WHERE item=?
                                     ORDER BY unit_price ASC");
@@ -79,7 +79,7 @@ if(isset($item)){
             $stmt->bind_param("s", $item);
             $stmt->execute();
             $stmt->store_result();
-            $stmt->bind_result($owner, $buyout, $quantity, $unit_price);
+            $stmt->bind_result($owner, $unit_price, $quantity, $buyout);
 
             $old_row = array("owner" => "", "buyout" => "", "quantity" => "");
             $counter = 1;

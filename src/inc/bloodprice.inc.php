@@ -30,22 +30,22 @@ function bloodPrices($conn){
       $sql = "INSERT INTO blood(item, marketvalue, quantity, bloodprice) VALUES ";
 
       foreach($Blood20 as $b){
-         $mv = marketValue($b, $conn);
+         $mv = marketValue($b);
          $sql = $sql . "($b, $mv, 20, ".($mv*20)."),";
       }
 
       foreach($Blood10 as $b){
-         $mv = marketValue($b, $conn);
+         $mv = marketValue($b);
          $sql = $sql . "($b, $mv, 10, ".($mv*10)."),";
       }
 
       foreach($Blood5 as $b){
-         $mv = marketValue($b, $conn);
+         $mv = marketValue($b);
          $sql = $sql . "($b, $mv, 5, ".($mv*5)."),";
       }
 
       foreach($Blood3 as $b){
-         $mv = marketValue($b, $conn);
+         $mv = marketValue($b);
          $sql = $sql . "($b, $mv, 3, ".($mv*3)."),";
       }
 

@@ -2,7 +2,8 @@
 ini_set('mysql.connect_timeout', 1000);
 ini_set('default_socket_timeout', 1000); 
 
-require __DIR__ . "/cron_includes.php";
+require_once __DIR__ . "/cron_includes.php";
+require_once __DIR__ . "/cron_mv_all.php";
 
 global $conn, $clientId, $clientSecret, $realmRegion, $realmName;
 
@@ -12,9 +13,21 @@ echo "Got the OAuth Access token\n";
 
 
 // Getting the time of the last update
-$lastUpdateSql="SELECT realm from status WHERE id IN (SELECT MAX(id) FROM status)";
-$lastUpdateResult = mysqli_query($conn, $lastUpdateSql);
-$lastUpdate = (mysqli_fetch_assoc($lastUpdateResult) ?? [])["realm"] ?? "";
+function getLastUpdateMilliseconds() {
+    global $conn;
+
+    $lastUpdateSql="SELECT realm from status WHERE id IN (SELECT MAX(id) FROM status)";
+    $lastUpdateResult = mysqli_query($conn, $lastUpdateSql);
+
+    $lastUpdateResultData = $lastUpdateResult->fetch_assoc();
+    if ($lastUpdateResultData) {
+        return $lastUpdateResultData['realm'] . '000';
+    }
+
+    return 0;
+}
+
+$lastUpdate = getLastUpdateMilliseconds();
 
 // Checking if the auctions table is empty
 $checkEmptyResult = mysqli_query($conn, "SELECT * FROM auctions");
@@ -52,7 +65,7 @@ if($responseObject == null) {
     exit();
 }
 else {
-    $apiLastUpdate = getLastUpdate($auctionsUrl);
+    $apiLastUpdate = getLastUpdateFromHeader($auctionsUrl);
     $sql = "INSERT INTO status (realm) VALUES('".$apiLastUpdate."');";
     var_dump($sql);
     mysqli_query($conn, $sql);
@@ -126,7 +139,7 @@ function getAuctionsRequest($url, $date) {
     return $response;
 }
 
-function getLastUpdate($url) {
+function getLastUpdateFromHeader($url) {
     $headers = get_headers($url, 1);
     $lastUpdateString = $headers['Last-Modified'];
 
@@ -137,9 +150,8 @@ function writeData($conn, $responseObject){
 
 	$last_updated_unix_row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(realm) FROM status"));
 	$last_updated_unix = $last_updated_unix_row["MAX(realm)"];
-	$last_updated = substr($last_updated_unix_row["MAX(realm)"], 0, -3);
 	/*Archiving previous data*/
-	$historicalSql = "INSERT INTO historical(item, marketvalue, quantity, date) SELECT item, marketvalue, quantity, ".$last_updated." FROM marketvalue";
+	$historicalSql = "INSERT INTO historical(item, marketvalue, quantity, date) SELECT item, marketvalue, quantity, ".$last_updated_unix." FROM marketvalue";
 	mysqli_query($conn, $historicalSql);
 
       /*deleting duplicates*/
@@ -164,11 +176,11 @@ function writeData($conn, $responseObject){
     foreach ($auctionsArray as $auction) {
         // Stackable items
         if(array_key_exists('unit_price', $auction)) {
-            $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",null,".$auction['unit_price'].",".$auction['quantity']."),";
+            $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",null,".($auction['unit_price']/100).",".$auction['quantity']."),";
         }
         // Battle pets, BOEs, ...
         else if(array_key_exists('buyout', $auction)) {
-            $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",null,".$auction['buyout'].",".$auction['quantity']."),";
+            $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",null,".($auction['buyout']/100).",".$auction['quantity']."),";
         } else {
             // This item only has a bid price, ignore it
         }
@@ -206,9 +218,8 @@ function writeData($conn, $responseObject){
 
 
    echo "Update successful.". PHP_EOL;
-//   echo "Updating Market Values.". PHP_EOL;
-//   system('php /var/www/html/cron/cron_mv_all.php 2>&1', $output);
-//   echo $output. PHP_EOL;
+   echo "Updating Market Values.". PHP_EOL;
+   benchmarkMarketvalueCalculation();
 //   system('pm2 restart bot', $output); //Restarts the discord bot to prevent caching issues. Replace 'bot' with the name of the apprunning in pm2
 //   echo $output. PHP_EOL;
 
