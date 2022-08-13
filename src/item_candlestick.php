@@ -86,7 +86,7 @@ if(isset($item)){
                 if(!($owner == $old_row["owner"] && $buyout == $old_row["buyout"] && $quantity == $old_row["quantity"])){
 
                     echo "<tr>
-                    <td><a href='/seller?seller=".$owner."' class='q3 links'>".$owner."</a></td>
+                    <td><a href='./seller.php?seller=".$owner."' class='q3 links'>".$owner."</a></td>
                     <td>".number_format($unit_price/100, 2) . "<span class='gold-g'>g</span></td>
                     <td>".number_format($buyout/100, 2) . "<span class='gold-g'>g</span></td>
                     <td>".$quantity."</td>
@@ -142,11 +142,11 @@ if(isset($item)){
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
       <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <script defer src="https://cdn.anychart.com/releases/8.3.0/js/anychart-bundle.min.js" type="text/javascript"></script>
-      <script defer type="text/javascript" src="/js/candlestick.js"></script>
-      <script defer type="text/javascript" src="/js/last_updated.js"></script>
-      <script async type="text/javascript" src="/js/typeahead.js"></script>
-      <script defer type="text/javascript" src="/js/offline.js"></script>
-      <script defer type="text/javascript" src="/js/lightbox-plus-jquery.min.js"></script>
+      <script defer type="text/javascript" src="./js/candlestick.js"></script>
+      <script defer type="text/javascript" src="./js/last_updated.js"></script>
+      <script async type="text/javascript" src="./js/typeahead.js"></script>
+      <script defer type="text/javascript" src="./js/offline.js"></script>
+      <script defer type="text/javascript" src="./js/lightbox-plus-jquery.min.js"></script>
    </body>
 </html>
 

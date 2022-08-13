@@ -22,7 +22,7 @@ function displayMatches() {
             <option value="${item.name}">
             `;*/
             return `
-            <a href="/item/${item.name}" class="list-group-item">${item.name}</a>
+            <a href="./item.php?item=${item.name}" class="list-group-item">${item.name}</a>
             `;
         }).join('');
         suggestions.innerHTML = html;
@@ -44,7 +44,7 @@ jQuery(document).ready(() => {
 
     $("#searchSubmit").on("click", () => {
       let val = $("#item").val()
-      $(location).attr('href', '/item/'+ val);
+      $(location).attr('href', './item.php?item='+ val);
     });
 });
 $(document).on("click", (event) => {

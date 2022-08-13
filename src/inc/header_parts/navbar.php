@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="/">Goblineer</a>
+        <a class="navbar-brand" href="./">Goblineer</a>
 
     </div>
 
@@ -21,33 +21,33 @@
             <li role="presentation" class="dropdown navbar-hoverable">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/categories/alchemy">Alchemy</a></li>
-                    <li><a href="/categories/enchanting">Enchanting</a></li>
-                    <li><a href="/categories/inscription">Inscription</a></li>
+                    <li><a href="./categories/alchemy.php">Alchemy</a></li>
+                    <li><a href="./categories/enchanting.php">Enchanting</a></li>
+                    <li><a href="./categories/inscription.php">Inscription</a></li>
 
                     <li role="separator" class="divider"></li>
 
-                    <li><a href="/categories/herbalism">Herbalism</a></li>
-                    <li><a href="/categories/mining">Mining</a></li>
-                    <li><a href="/categories/skinning">Skinning</a></li>
+                    <li><a href="./categories/herbalism.php">Herbalism</a></li>
+                    <li><a href="./categories/mining.php">Mining</a></li>
+                    <li><a href="./categories/skinning.php">Skinning</a></li>
 
                     <li role="separator" class="divider"></li>
 
-                    <li><a href="/categories/blacksmithing">Blacksmithing</a></li>
-                    <li><a href="/categories/leatherworking">Leatherworking</a></li>
-                    <li><a href="/categories/tailoring">Tailoring</a></li>
+                    <li><a href="./categories/blacksmithing.php">Blacksmithing</a></li>
+                    <li><a href="./categories/leatherworking.php">Leatherworking</a></li>
+                    <li><a href="./categories/tailoring.php">Tailoring</a></li>
 
                     <li role="separator" class="divider"></li>
 
-                    <li><a href="/categories/jewelcrafting">Jewelcrafting</a></li>
-                    <li><a href="/categories/engineering">Engineering</a></li>
-                    <li><a href="/categories/cooking">Cooking</a></li>
+                    <li><a href="./categories/jewelcrafting.php">Jewelcrafting</a></li>
+                    <li><a href="./categories/engineering.php">Engineering</a></li>
+                    <li><a href="./categories/cooking.php">Cooking</a></li>
                 </ul>
             </li>
-            <li class="navbar-hoverable"><a href="/addon">Addon</a></li>
-            <li class="navbar-hoverable"><a href="/uc">Undercut Checker</a></li>
-            <li class="navbar-hoverable"><a href="/seller">Seller Search</a></li>
-            <li class="navbar-hoverable"><a href="/custom">Custom Tables</a></li>
+            <li class="navbar-hoverable"><a href="./addon.php">Addon</a></li>
+            <li class="navbar-hoverable"><a href="./uc.php">Undercut Checker</a></li>
+            <li class="navbar-hoverable"><a href="./seller.php">Seller Search</a></li>
+            <li class="navbar-hoverable"><a href="./custom.php">Custom Tables</a></li>
         </ul>
 
         <div class="navbar-form navbar-right" id="search-from">

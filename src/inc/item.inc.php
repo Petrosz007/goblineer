@@ -76,7 +76,7 @@ function tableRow($item)
 {
     echo("
     <tr>
-      <td><a href='item/".$item["id"]."' class='q3 links' rel='item=".$item["id"]."'></td>
+      <td><a href='./item.php?item=".$item["id"]."' class='q3 links' rel='item=".$item["id"]."'></td>
       <td align='right'>".number_format($item["min"] ?? 0,2)."<span class='gold-g'>g</span></td>
       <td align='right'>".number_format($item["marketvalue"] ?? 0, 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".($item["quantity"] ?? 0)."</td>
@@ -132,7 +132,7 @@ function herbRow($id, $herb, $q) {
 
    echo ("
    <tr>
-      <td><a href='item/".$id."' class='q3 links' rel='item=".$id."'></td>
+      <td><a href='./item.php?item=".$id."' class='q3 links' rel='item=".$id."'></td>
       <td align='right'>".number_format($herb,2)."<span class='gold-g'>g</span></td>
       <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>
@@ -145,7 +145,7 @@ function flaskRow($id, $flask, $q, $cost, $profit, $profit_r3){
 
    echo "
    <tr>
-      <td><a href='item/".$id."' class='q3 links' rel='item=".$id."'></td>
+      <td><a href='./item.php".$id."' class='q3 links' rel='item=".$id."'></td>
       <td align='right'>".number_format($flask,2)."<span class='gold-g'>g</span></td>
       <td align='right'>".number_format(marketValue($id, $conn), 2)."<span class='gold-g'>g</span></td>
       <td align='right'>".$q."</td>
