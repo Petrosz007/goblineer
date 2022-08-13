@@ -61,7 +61,6 @@ if(isset($item)){
     <table class="table table-striped table-hover align-center">
         <thead>
             <tr>
-                <td>Seller</td>
                 <td>$/1</td>
                 <td>Buyout</td>
                 <td>Stack size</td>
@@ -71,7 +70,7 @@ if(isset($item)){
         </thead>
         <tbody>
             <?php
-            $stmt = $conn->prepare("SELECT owner, buyout AS unit_price, quantity, (buyout * quantity) AS buyout
+            $stmt = $conn->prepare("SELECT buyout AS unit_price, quantity, (buyout * quantity) AS buyout
                                     FROM auctions
                                     WHERE item=?
                                     ORDER BY unit_price ASC");
@@ -79,15 +78,14 @@ if(isset($item)){
             $stmt->bind_param("s", $item);
             $stmt->execute();
             $stmt->store_result();
-            $stmt->bind_result($owner, $unit_price, $quantity, $buyout);
+            $stmt->bind_result($unit_price, $quantity, $buyout);
 
-            $old_row = array("owner" => "", "buyout" => "", "quantity" => "");
+            $old_row = array("buyout" => "", "quantity" => "");
             $counter = 1;
             while ($stmt->fetch()) {
-                if(!($owner == $old_row["owner"] && $buyout == $old_row["buyout"] && $quantity == $old_row["quantity"])){
+                if(!($buyout == $old_row["buyout"] && $quantity == $old_row["quantity"])){
 
                     echo "<tr>
-                    <td><a href='/seller?seller=".$owner."' class='q3 links'>".$owner."</a></td>
                     <td>".number_format($unit_price/100, 2) . "<span class='gold-g'>g</span></td>
                     <td>".number_format($buyout/100, 2) . "<span class='gold-g'>g</span></td>
                     <td>".$quantity."</td>
@@ -101,7 +99,7 @@ if(isset($item)){
                     $counter++;
                 }
 
-                $old_row = array("owner" => $owner, "buyout" => $buyout, "quantity" => $quantity);
+                $old_row = array("buyout" => $buyout, "quantity" => $quantity);
             }
 
             $stmt->close();

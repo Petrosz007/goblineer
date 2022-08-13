@@ -145,11 +145,6 @@ span.gold-g {
 }
 
 
-/* Seller search */
-.seller-search {
-    width: 60%;
-}
-
 /* Main Item Search */
 #search-dropdown {
     min-width: 100%; /* Set width of the dropdown */
@@ -208,10 +203,6 @@ only screen and (min-device-pixel-ratio : 1.5) {
    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
       padding: 8px 2px 8px 2px;
    }
-
-   .seller-search {
-        width: 100%;
-    }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -236,8 +227,4 @@ and (max-device-width : 480px) {
    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
       padding: 8px 2px 8px 2px;
    }
-
-    .seller-search {
-        width: 100%;
-    }
 }

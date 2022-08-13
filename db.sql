@@ -31,7 +31,6 @@ USE `wowah`;
 CREATE TABLE `auctions` (
   `auc` int(15) NOT NULL,
   `item` int(15) DEFAULT NULL,
-  `owner` varchar(22) CHARACTER SET utf8 COLLATE utf8_hungarian_ci DEFAULT NULL,
   `buyout` int(15) DEFAULT NULL,
   `quantity` int(15) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

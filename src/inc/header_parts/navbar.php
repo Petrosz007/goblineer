@@ -45,8 +45,6 @@
                 </ul>
             </li>
             <li class="navbar-hoverable"><a href="./addon.php">Addon</a></li>
-            <li class="navbar-hoverable"><a href="./uc.php">Undercut Checker</a></li>
-            <li class="navbar-hoverable"><a href="./seller.php">Seller Search</a></li>
             <li class="navbar-hoverable"><a href="./custom.php">Custom Tables</a></li>
         </ul>
 

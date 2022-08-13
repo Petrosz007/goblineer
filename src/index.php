@@ -19,7 +19,6 @@ $auctionCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count
 $itemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(quantity) FROM auctions"))[0] ?? 0, 0, ',', ' ');
 $totalValue = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(buyout) FROM auctions"))[0] ?? 0, 2);
 $distinctItemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(DISTINCT item) FROM auctions"))[0], 0, ',', ' ');
-$sellerCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(DISTINCT owner) FROM auctions"))[0], 0, ',', ' ');
 ?>
 
 
@@ -47,7 +46,7 @@ $sellerCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(
 		<hr>
 
 		<p>
-			There are currently <b><?php echo $distinctItemCount; ?></b> different items by <b><?php echo $sellerCount; ?></b> different sellers on the Auction House
+			There are currently <b><?php echo $distinctItemCount; ?></b> different items on the Auction House
 			with the total value of <b><?php echo $totalValue; ?><span class='gold-g'>g</span></b>.<br>
 			These <b><?php echo $auctionCount; ?></b> auctions have a total of <b><?php echo $itemCount; ?></b> items.
 		</p>
@@ -80,15 +79,6 @@ $sellerCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(
 			<?php echo $bloodPrice; ?><span class='gold-g'>g </span>
 			<a href='./blood.php' class="btn btn-default links">See Blood of Sargeras Price in-depth</a>
 		</h2>
-
-
-		<?php 
-			// echo $auctionCount ."<br>"; 
-			// echo $itemCount ."<br>"; 
-			// echo $totalValue ."<br>"; 
-			// echo $distinctItemCount ."<br>"; 
-			// echo $sellerCount ."<br>"; 
-		?>
 	</div>
 	
 

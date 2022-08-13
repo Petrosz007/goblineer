@@ -5,7 +5,6 @@ self.addEventListener('install', function(event) {
         '/',
         '/index.php',
         '/blood.php',
-        '/seller.php',
         '/item.php',
         '/custom.php',
         '/js/chart.js',

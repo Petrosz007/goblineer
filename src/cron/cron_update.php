@@ -60,6 +60,7 @@ $response = getAuctionsRequest($auctionsUrl, $lastUpdate);
 $responseObject = json_decode($response, true);
 echo "Got the API json data.\n";
 
+// TODO: This doesn't work yet, somehow it always updates
 if($responseObject == null) {
     echo "No need for update".PHP_EOL;
     exit();
@@ -154,33 +155,24 @@ function writeData($conn, $responseObject){
 	$historicalSql = "INSERT INTO historical(item, marketvalue, quantity, date) SELECT item, marketvalue, quantity, ".$last_updated_unix." FROM marketvalue";
 	mysqli_query($conn, $historicalSql);
 
-      /*deleting duplicates*/
-//      mysqli_query($conn,    "CREATE TABLE historical_tmp LIKE historical;
-//                              INSERT INTO historical_tmp (item, marketvalue, quantity, date) SELECT DISTINCT item, marketvalue, quantity, date FROM `historical`;
-//                              TRUNCATE TABLE historical;
-//                              INSERT INTO historical SELECT * FROM historical_tmp;
-//                              DROP TABLE historical_tmp;");
-
-//    $auctionsFile = file_get_contents($responseObject['files'][0]['url']);
-//    $auctionsArray = json_decode($auctionsFile, true)['auctions'];
     $auctionsArray = $responseObject["auctions"];
 
    mysqli_query($conn, "TRUNCATE TABLE auctions");
    mysqli_query($conn, "TRUNCATE TABLE marketvalue");
    mysqli_query($conn, "TRUNCATE TABLE blood");
 
-   $sql = "INSERT INTO auctions (auc, item, owner, buyout, quantity) VALUES ";
+   $sql = "INSERT INTO auctions (auc, item, buyout, quantity) VALUES ";
    $i = 0;
    $counter = 0;
 
     foreach ($auctionsArray as $auction) {
         // Stackable items
         if(array_key_exists('unit_price', $auction)) {
-            $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",null,".($auction['unit_price']/100).",".$auction['quantity']."),";
+            $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",".($auction['unit_price']/100).",".$auction['quantity']."),";
         }
         // Battle pets, BOEs, ...
         else if(array_key_exists('buyout', $auction)) {
-            $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",null,".($auction['buyout']/100).",".$auction['quantity']."),";
+            $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",".($auction['buyout']/100).",".$auction['quantity']."),";
         } else {
             // This item only has a bid price, ignore it
         }
@@ -193,7 +185,7 @@ function writeData($conn, $responseObject){
             $sql = $sql .";";
             mysqli_query($conn, $sql);
             echo "Ran ".$counter. PHP_EOL;
-            $sql = "INSERT INTO auctions (auc, item, owner, buyout, quantity) VALUES ";
+            $sql = "INSERT INTO auctions (auc, item, buyout, quantity) VALUES ";
             $i = 0;
         }
     }
@@ -207,14 +199,6 @@ function writeData($conn, $responseObject){
 
 
    mysqli_query($conn, "DELETE FROM auctions WHERE buyout=0");
-
-//   mysqli_query($conn, "CREATE TABLE auctions_tmp LIKE auctions;
-//                        INSERT INTO auctions_tmp (auc, item, owner, buyout, quantity) SELECT auc, item, owner, buyout, quantity FROM auctions ORDER BY item, owner, quantity, buyout;
-//                        TRUNCATE TABLE auctions;
-//                        INSERT INTO auctions SELECT * FROM auctions_tmp;
-//                        DROP TABLE auctions_tmp");
-
-
 
 
    echo "Update successful.". PHP_EOL;

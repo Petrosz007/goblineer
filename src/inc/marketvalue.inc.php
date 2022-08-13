@@ -39,7 +39,7 @@ function calculateMarketValue(string $item): array
 {
     global $conn;
 
-    $stmt2 = $conn->prepare("SELECT owner, buyout, quantity, buyout AS unit_price
+    $stmt2 = $conn->prepare("SELECT buyout, quantity, buyout AS unit_price
                                 FROM auctions
                                 WHERE item=?
                                 ORDER BY unit_price ASC");
