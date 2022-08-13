@@ -4,8 +4,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-$path = $_SERVER['DOCUMENT_ROOT'];
-include_once($path . "/includes.php");
+include_once(__DIR__ . "..//includes.php");
+global $conn;
 
 $legionOre = item_array([
     "Infernal Brimstone" => 124444,
@@ -103,7 +103,7 @@ $classicBar = item_array([
 
 ?>
 
-<?php include_once($path . "/inc/header.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/header.inc.php"); ?>
 
 <h2 class="text-center"> Category: Mining</h2>
 <hr>
@@ -127,4 +127,4 @@ table($classicBar, "Classic Bar");
 
 
 
-<?php include_once($path . "/inc/footer.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/footer.inc.php"); ?>

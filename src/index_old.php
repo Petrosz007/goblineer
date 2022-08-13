@@ -2,8 +2,7 @@
 
 
 include "includes.php";
-
-$GLOBALS['conn'] = $conn;
+global $conn;
 
 //blood of sargeras price
 $bloodPrice = bloodPrice($conn);

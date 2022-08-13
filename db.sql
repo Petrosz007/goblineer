@@ -110,7 +110,7 @@ CREATE TABLE `realms` (
 --
 
 CREATE TABLE `status` (
-  `realm` varchar(21) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `realm` varchar(30) COLLATE utf8_hungarian_ci DEFAULT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 

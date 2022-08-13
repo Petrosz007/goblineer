@@ -5,6 +5,7 @@ $rustart = getrusage();
 //ini_set('max_execution_time', 300);
 require __DIR__ . "/cron_includes.php";
 
+global $conn;
 
 //sleep(20);
 

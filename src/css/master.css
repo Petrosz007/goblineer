@@ -32,7 +32,7 @@ a, u {
 /* Main Navbar */
 #main-navbar {
     background-color: white;
-    border-color: none;
+    border-color: transparent;
 
     padding-top: 2px;
     padding-bottom: 2px;

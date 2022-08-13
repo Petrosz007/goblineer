@@ -7,7 +7,8 @@ function bloodPrice($conn){
            LIMIT 1";
 
    $result = mysqli_query($conn, $sql);
-   return number_format(mysqli_fetch_assoc($result)['unit_price'], 2);
+   $unit_price = mysqli_fetch_assoc($result)['unit_price'] ?? 0;
+   return number_format($unit_price, 2);
 }
 
 function bloodPrices($conn){

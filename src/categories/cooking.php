@@ -4,8 +4,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-$path = $_SERVER['DOCUMENT_ROOT'];
-include_once($path . "/includes.php");
+include_once(__DIR__ . "/../includes.php");
+global $conn;
 
 $legionFish = item_array([
     "Black Barracuda" => 124112,
@@ -45,7 +45,7 @@ $legionFood = item_array([
 
 ?>
 
-<?php include_once($path . "/inc/header.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/header.inc.php"); ?>
 
 <h2 class="text-center"> Category: Cooking</h2>
 <hr>
@@ -60,4 +60,4 @@ table($legionFood, "Legion Food");
 
 
 
-<?php include_once($path . "/inc/footer.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/footer.inc.php"); ?>

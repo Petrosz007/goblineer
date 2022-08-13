@@ -4,8 +4,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-$path = $_SERVER['DOCUMENT_ROOT'];
-include_once($path . "/includes.php");
+include_once(__DIR__ . "/../includes.php");
+global $conn;
 
 $all_data = [
     "Felwort" => 124106,
@@ -214,7 +214,7 @@ $classicHerbs = [
 
 ?>
 
-<?php include_once($path . "/inc/header.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/header.inc.php"); ?>
 
 <h2 class="text-center"> Category: Herbalism</h2>
 <hr>
@@ -235,4 +235,4 @@ table($classicHerbs, "Classic Herbs");
 
 
 
-<?php include_once($path . "/inc/footer.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/footer.inc.php"); ?>

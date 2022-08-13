@@ -1,5 +1,6 @@
 <?php
-include "includes.php";
+include_once(__DIR__ . "/includes.php");
+global $conn;
 ?>
 
 <?php include "inc/header.inc.php"; ?>

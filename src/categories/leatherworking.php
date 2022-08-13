@@ -4,8 +4,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-$path = $_SERVER['DOCUMENT_ROOT'];
-include_once($path . "/includes.php");
+include_once(__DIR__ . "/../includes.php");
+global $conn;
 
 $fiendish = item_array([
     "Fiendish Spaulders" => 151578,
@@ -97,7 +97,7 @@ $wodCons = item_array([
 ], $conn);
 ?>
 
-<?php include_once($path . "/inc/header.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/header.inc.php"); ?>
 
 <h2 class="text-center"> Category: Leatherworking</h2>
 <hr>
@@ -120,4 +120,4 @@ table($wodCons, "Warlords of Draenor Consumables");
 
 
 
-<?php include_once($path . "/inc/footer.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/footer.inc.php"); ?>

@@ -3,6 +3,8 @@
 ini_set('max_execution_time', 300);
 require __DIR__ . "/cron_includes.php";
 
+global $conn, $clientId, $clientSecret, $realmRegion;
+
 $sql = "SELECT DISTINCT item FROM auctions";
 $result = mysqli_query($conn, $sql);
 

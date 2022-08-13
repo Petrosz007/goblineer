@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . "/cron_includes.php";
+global $conn;
 
 bloodPrices($conn);
 

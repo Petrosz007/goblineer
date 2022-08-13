@@ -1,5 +1,6 @@
 <?php
 include 'includes.php';
+global $conn;
 
 if(isset($_GET['items']) && $_GET['items'] != ""){
    $items = explode(",", $_GET['items']);

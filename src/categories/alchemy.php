@@ -3,9 +3,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+include_once(__DIR__ . "/../includes.php");
 
-$path = $_SERVER['DOCUMENT_ROOT'];
-include_once($path . "/includes.php");
+global $conn;
 
 $legionFlasks = item_array([
     "Flask of the Seventh Demon" => 127848,
@@ -79,7 +79,7 @@ $general = item_array([
 ], $conn);
 ?>
 
-<?php include_once($path . "/inc/header.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/header.inc.php"); ?>
 
 <h2 class="text-center"> Category: Alchemy</h2>
 <hr>
@@ -96,4 +96,4 @@ table($general, "General Purpose Elixirs and Potions");
 
 
 
-<?php include_once($path . "/inc/footer.inc.php"); ?>
+<?php include_once(__DIR__ . "/../inc/footer.inc.php"); ?>

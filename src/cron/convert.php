@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . "/cron_includes.php";
+global $conn;
 
 $selectSql = "SELECT item, name FROM items";
 $selectResult = mysqli_query($conn, $selectSql);

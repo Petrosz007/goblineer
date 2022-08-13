@@ -4,8 +4,8 @@ services:
     image: mariadb:10.7
     ports: 
       - 3306:3306
-    networks:
-      - goblineer-dev
+#    networks:
+#      - goblineer-dev
     environment: 
       MYSQL_ROOT_PASSWORD: kebab
       MYSQL_DATABASE: wowah

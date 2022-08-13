@@ -4,6 +4,8 @@ ini_set('default_socket_timeout', 1000);
 
 require __DIR__ . "/cron_includes.php";
 
+global $conn, $clientId, $clientSecret, $realmRegion, $realmName;
+
 // Getting the oauth token
 $oauthToken = getOAuthToken($clientId, $clientSecret);
 echo "Got the OAuth Access token\n";
@@ -12,14 +14,14 @@ echo "Got the OAuth Access token\n";
 // Getting the time of the last update
 $lastUpdateSql="SELECT realm from status WHERE id IN (SELECT MAX(id) FROM status)";
 $lastUpdateResult = mysqli_query($conn, $lastUpdateSql);
-$lastUpdate = mysqli_fetch_assoc($lastUpdateResult)["realm"];
+$lastUpdate = (mysqli_fetch_assoc($lastUpdateResult) ?? [])["realm"] ?? "";
 
 // Checking if the auctions table is empty
 $checkEmptyResult = mysqli_query($conn, "SELECT * FROM auctions");
 $isEmpty = mysqli_num_rows($checkEmptyResult) == 0;
 
-
-if($argv[1] == 'force'){
+$force = isset($argv) ? $argv[1] == 'force' : false;
+if($force){
     echo "Forcing update.". PHP_EOL;
     $lastUpdate = "";
 }
@@ -33,7 +35,7 @@ else if($isEmpty) {
 $connectedRealmRaw = getRequest('https://'.$realmRegion.'.api.blizzard.com/data/wow/realm/'.$realmName.'?namespace=dynamic-'
 .$realmRegion.'&locale=en_US&access_token='.$oauthToken);
 $realmHref = json_decode($connectedRealmRaw, true)["connected_realm"]["href"];
-$matches;
+//$matches; // I have no idea what this var was supposed to do
 preg_match('/connected-realm\/(\d+)\?/', $realmHref, $matches);
 $realmId = $matches[1];
 
@@ -128,7 +130,7 @@ function getLastUpdate($url) {
     $headers = get_headers($url, 1);
     $lastUpdateString = $headers['Last-Modified'];
 
-    return $lastUpdateString;
+    return strtotime($lastUpdateString);
 }
 
 function writeData($conn, $responseObject){
@@ -141,11 +143,11 @@ function writeData($conn, $responseObject){
 	mysqli_query($conn, $historicalSql);
 
       /*deleting duplicates*/
-      mysqli_query($conn,    "CREATE TABLE historical_tmp LIKE historical;
-                              INSERT INTO historical_tmp (item, marketvalue, quantity, date) SELECT DISTINCT item, marketvalue, quantity, date FROM `historical`;
-                              TRUNCATE TABLE historical;
-                              INSERT INTO historical SELECT * FROM historical_tmp;
-                              DROP TABLE historical_tmp;");
+//      mysqli_query($conn,    "CREATE TABLE historical_tmp LIKE historical;
+//                              INSERT INTO historical_tmp (item, marketvalue, quantity, date) SELECT DISTINCT item, marketvalue, quantity, date FROM `historical`;
+//                              TRUNCATE TABLE historical;
+//                              INSERT INTO historical SELECT * FROM historical_tmp;
+//                              DROP TABLE historical_tmp;");
 
 //    $auctionsFile = file_get_contents($responseObject['files'][0]['url']);
 //    $auctionsArray = json_decode($auctionsFile, true)['auctions'];
@@ -165,8 +167,10 @@ function writeData($conn, $responseObject){
             $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",null,".$auction['unit_price'].",".$auction['quantity']."),";
         }
         // Battle pets, BOEs, ...
-        else {
+        else if(array_key_exists('buyout', $auction)) {
             $sql = $sql . " (". $auction['id'].",". $auction['item']['id'].",null,".$auction['buyout'].",".$auction['quantity']."),";
+        } else {
+            // This item only has a bid price, ignore it
         }
 
 
@@ -192,24 +196,23 @@ function writeData($conn, $responseObject){
 
    mysqli_query($conn, "DELETE FROM auctions WHERE buyout=0");
 
-   mysqli_query($conn, "CREATE TABLE auctions_tmp LIKE auctions;
-                        INSERT INTO auctions_tmp (auc, item, owner, buyout, quantity) SELECT auc, item, owner, buyout, quantity FROM auctions ORDER BY item, owner, quantity, buyout;
-                        TRUNCATE TABLE auctions;
-                        INSERT INTO auctions SELECT * FROM auctions_tmp;
-                        DROP TABLE auctions_tmp");
+//   mysqli_query($conn, "CREATE TABLE auctions_tmp LIKE auctions;
+//                        INSERT INTO auctions_tmp (auc, item, owner, buyout, quantity) SELECT auc, item, owner, buyout, quantity FROM auctions ORDER BY item, owner, quantity, buyout;
+//                        TRUNCATE TABLE auctions;
+//                        INSERT INTO auctions SELECT * FROM auctions_tmp;
+//                        DROP TABLE auctions_tmp");
 
 
 
 
    echo "Update successful.". PHP_EOL;
-   echo "Updating Market Values.". PHP_EOL;
-   system('php /var/www/html/cron/cron_mv_all.php 2>&1', $output);
-   echo $output. PHP_EOL;
-   system('pm2 restart bot', $output); //Restarts the discord bot to prevent caching issues. Replace 'bot' with the name of the apprunning in pm2
-   echo $output. PHP_EOL;
+//   echo "Updating Market Values.". PHP_EOL;
+//   system('php /var/www/html/cron/cron_mv_all.php 2>&1', $output);
+//   echo $output. PHP_EOL;
+//   system('pm2 restart bot', $output); //Restarts the discord bot to prevent caching issues. Replace 'bot' with the name of the apprunning in pm2
+//   echo $output. PHP_EOL;
 
    exit();
-;
 
 }
 

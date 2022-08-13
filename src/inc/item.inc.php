@@ -1,8 +1,11 @@
 <?php
-$path = $_SERVER['DOCUMENT_ROOT'];
-include_once($path . "/includes.php");
+include_once(__DIR__ . "/../includes.php");
+
+global $conn;
 
 function item($id, $conn){
+    $result = null;
+
     $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/100 as MIN FROM auctions where item=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -15,6 +18,7 @@ function item($id, $conn){
 }
 
 function item_q($id, $conn){
+    $result = null;
 
     $stmt = $conn->prepare("SELECT sum(quantity) as SUM FROM auctions where item=?");
     $stmt->bind_param("i", $id);
@@ -40,7 +44,10 @@ function item_array($ids, $conn)
     $items = [];
     foreach($ids as $name => $id)
     {
-        $stmt = $conn->prepare("SELECT MIN(buyout / quantity)/100 as MIN, sum(quantity) as quantity FROM auctions where item=?");
+        $min = null;
+        $quantity = null;
+
+        $stmt = $conn->prepare("SELECT MIN(buyout / quantity) as MIN, sum(quantity) as quantity FROM auctions where item=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->store_result();
@@ -70,9 +77,9 @@ function tableRow($item)
     echo("
     <tr>
       <td><a href='item/".$item["id"]."' class='q3 links' rel='item=".$item["id"]."'></td>
-      <td align='right'>".number_format($item["min"],2)."<span class='gold-g'>g</span></td>
-      <td align='right'>".number_format($item["marketvalue"], 2)."<span class='gold-g'>g</span></td>
-      <td align='right'>".$item["quantity"]."</td>
+      <td align='right'>".number_format($item["min"] ?? 0,2)."<span class='gold-g'>g</span></td>
+      <td align='right'>".number_format($item["marketvalue"] ?? 0, 2)."<span class='gold-g'>g</span></td>
+      <td align='right'>".($item["quantity"] ?? 0)."</td>
     </tr>
     ");
 }
@@ -120,8 +127,9 @@ function table($items, $caption)
 
 
 
-function herbRow($id, $herb, $q){
-   include 'dbh.php';
+function herbRow($id, $herb, $q) {
+    global $conn;
+
    echo ("
    <tr>
       <td><a href='item/".$id."' class='q3 links' rel='item=".$id."'></td>
@@ -133,7 +141,8 @@ function herbRow($id, $herb, $q){
 }
 
 function flaskRow($id, $flask, $q, $cost, $profit, $profit_r3){
-   include 'dbh.php';
+    global $conn;
+
    echo "
    <tr>
       <td><a href='item/".$id."' class='q3 links' rel='item=".$id."'></td>

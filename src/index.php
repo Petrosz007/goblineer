@@ -3,9 +3,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include "includes.php";
+include __DIR__ . "/includes.php";
 
-$GLOBALS['conn'] = $conn;
+global $conn;
 
 //blood of sargeras price
 $bloodPrice = bloodPrice($conn);
@@ -15,9 +15,9 @@ $last_updated_unix_row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(id),
 $last_updated = $last_updated_unix_row["realm"];
 
 // AH data
-$auctionCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(auc) FROM auctions"))[0], 0, ',', ' ');
-$itemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(quantity) FROM auctions"))[0], 0, ',', ' ');
-$totalValue = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(buyout)/100 FROM auctions"))[0], 2);
+$auctionCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(auc) FROM auctions"))[0] ?? 0, 0, ',', ' ');
+$itemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(quantity) FROM auctions"))[0] ?? 0, 0, ',', ' ');
+$totalValue = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT sum(buyout) FROM auctions"))[0] ?? 0, 2);
 $distinctItemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(DISTINCT item) FROM auctions"))[0], 0, ',', ' ');
 $sellerCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT count(DISTINCT owner) FROM auctions"))[0], 0, ',', ' ');
 ?>

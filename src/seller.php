@@ -1,5 +1,6 @@
 <?php
 include 'includes.php';
+global $conn;
 
 if(isset($_GET['seller']) && $_GET['seller'] != ""){
    $seller = $_GET['seller'];
