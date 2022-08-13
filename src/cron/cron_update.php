@@ -202,6 +202,10 @@ function writeData($conn, $responseObject){
 
 
    echo "Update successful.". PHP_EOL;
+
+   echo "Updating blood prices..." . PHP_EOL;
+   bloodPrices();
+
    echo "Updating Market Values.". PHP_EOL;
    benchmarkMarketvalueCalculation();
 //   system('pm2 restart bot', $output); //Restarts the discord bot to prevent caching issues. Replace 'bot' with the name of the apprunning in pm2

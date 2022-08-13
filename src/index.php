@@ -8,7 +8,7 @@ include __DIR__ . "/includes.php";
 global $conn;
 
 //blood of sargeras price
-$bloodPrice = bloodPrice($conn);
+$bloodPrice = bloodPrice();
 
 //Getting the time of the last update
 $last_updated_unix_row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(id), realm FROM status"));
@@ -30,57 +30,58 @@ $distinctItemCount = number_format(mysqli_fetch_row(mysqli_query($conn, "SELECT 
 <?php include "inc/header.inc.php"; ?>
 
 
-  <div class="text-center">
+<div class="text-center">
 
     <h1>Welcome to Goblineer!</h1>
 
-	<h2>Goblineer will soon be updated! <a href="https://github.com/Goblineer-AH">Stay tuned</a></h2>
-  
-  </div>
+    <h2>Goblineer will soon be updated! <a href="https://github.com/Goblineer-AH">Stay tuned</a></h2>
 
-	<hr>
-	<div class="col-xs-12 text-center">
+</div>
 
-		<p>Goblineer is a website where you can find out plenty of information about the World of Warcraft auction house, like Market Value, Historical price, and crafting profits!</p>
-	
-		<hr>
+<hr>
+<div class="col-xs-12 text-center">
 
-		<p>
-			There are currently <b><?php echo $distinctItemCount; ?></b> different items on the Auction House
-			with the total value of <b><?php echo $totalValue; ?><span class='gold-g'>g</span></b>.<br>
-			These <b><?php echo $auctionCount; ?></b> auctions have a total of <b><?php echo $itemCount; ?></b> items.
-		</p>
+    <p>Goblineer is a website where you can find out plenty of information about the World of Warcraft auction house,
+        like Market Value, Historical price, and crafting profits!</p>
 
-		<hr>
-		
-		<p class="text-left">
-			<?php echo "<span id='lastUpdate' style='display: none;'>".$last_updated."</span>"; ?>
-			Last Updated: <span id='updated'></span>
+    <hr>
 
-			<a href="#update-collapse" data-toggle="collapse" >?</a><br>
-			<div id="update-collapse" class="collapse">
-				The Blizzard API updates around every 30-40 minutes.<br>
-				Check the API status here: <a href="https://does.theapi.work/">https://does.theapi.work/</a>
-			</div>
-		</p>
+    <p>
+        There are currently <b><?php echo $distinctItemCount; ?></b> different items on the Auction House
+        with the total value of <b><?php echo $totalValue; ?><span class='gold-g'>g</span></b>.<br>
+        These <b><?php echo $auctionCount; ?></b> auctions have a total of <b><?php echo $itemCount; ?></b> items.
+    </p>
+
+    <hr>
+
+    <p class="text-left">
+        <?php echo "<span id='lastUpdate' style='display: none;'>" . $last_updated . "</span>"; ?>
+        Last Updated: <span id='updated'></span>
+
+        <a href="#update-collapse" data-toggle="collapse">?</a><br>
+        <div id="update-collapse" class="collapse">
+            The Blizzard API updates around every 30-40 minutes.<br>
+            Check the API status here: <a href="https://does.theapi.work/">https://does.theapi.work/</a>
+        </div>
+    </p>
 
 
-		<hr>
+    <hr>
 
-		<h2 class="text-left">
-			<a href="./bfa.php">Battle for Azeroth Material Price List</a>
-		</h2>
+    <h2 class="text-left">
+        <a href="./bfa.php">Battle for Azeroth Material Price List</a>
+    </h2>
 
-		<hr>
+    <hr>
 
-		<h2 class="text-left">
-			<a href='https://wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124' class="text-center"></a>
-			:
-			<?php echo $bloodPrice; ?><span class='gold-g'>g </span>
-			<a href='./blood.php' class="btn btn-default links">See Blood of Sargeras Price in-depth</a>
-		</h2>
-	</div>
-	
+    <h2 class="text-left">
+        <a href='https://wowhead.com/item=124124' class='q3 iconmedium1 links' rel='item=124124'
+           class="text-center"></a>
+        :
+        <?php echo $bloodPrice; ?><span class='gold-g'>g </span>
+        <a href='./blood.php' class="btn btn-default links">See Blood of Sargeras Price in-depth</a>
+    </h2>
+</div>
 
 
 <script defer type="text/javascript" src="/js/last_updated.js"></script>

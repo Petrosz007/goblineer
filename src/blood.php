@@ -18,7 +18,7 @@ global $conn;
    </thead>
    <tbody>
       <?php
-         $result = bloodPrices($conn);
+         $result = bloodPrices();
 			while($row = mysqli_fetch_assoc($result)){
 			   echo "
 			   <tr>
