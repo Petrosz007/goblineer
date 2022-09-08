@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  db:
+    image: mariadb:10.7
+    ports:
+      - 3306:3306
+    networks:
+      - goblineer
+    environment:
+      MYSQL_ROOT_PASSWORD: kebab
+      MYSQL_DATABASE: wowah
+    volumes:
+      - ./docker/db_data:/var/lib/mysql
+    restart: unless-stopped
+
+  goblineer:
+      build: .
+      networks:
+        - goblineer
+      environment:
+        DB_SERVERNAME: db
+        DB_USERNAME: root
+        DB_PASSWORD: kebab
+        SCHEMA: wowah
+        API_KEY: ''
+        CLIENT_ID: ''
+        CLIENT_SECRET: ''
+        REALM_NAME: ragnaros
+        REALM_REGION: eu
+      ports:
+        - 8080:80
+      restart: unless-stopped
+
+
+networks:
+  goblineer:
